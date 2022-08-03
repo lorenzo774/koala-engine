@@ -7,6 +7,10 @@ export abstract class Entity {
         this.components.push(newComponent);
     }
 
+    getComponent<T extends Component>(component: typeof Component): T {
+        return this.components.find((c) => c instanceof component) as T;
+    }
+
     draw(ctx: CanvasRenderingContext2D) {
         this.components.forEach((component) => {
             component.draw(ctx);

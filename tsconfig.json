@@ -2,8 +2,9 @@
     "compilerOptions": {
         "rootDir": "src",
         "outDir": "public",
-        "lib": ["es6", "dom"],
-        "module": "es6",
+        "lib": ["ES6", "dom"],
+        "module": "ES6",
+        "target": "ESNext",
         "moduleResolution": "node",
         "removeComments": true
     }
