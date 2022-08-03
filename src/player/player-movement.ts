@@ -3,7 +3,7 @@ import { Component } from "../core/component.js";
 import { Entity } from "../core/entity";
 import { Input } from "../core/input.js";
 import { Key } from "../core/key.js";
-import { Vector2 } from "../math/vector2.js";
+import { Vector2 } from "../core/math/vector2.js";
 
 export class PlayerMovement extends Component {
     private velocity: Vector2;

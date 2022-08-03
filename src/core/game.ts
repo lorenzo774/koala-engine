@@ -1,14 +1,19 @@
-import { Entity } from "./core/entity.js";
-import { Player } from "./player/player.js";
-import { Settings } from "./settings.js";
+import { Entity } from "./entity.js";
+import { Settings } from "../settings.js";
 
-export class Game {
-    entities: Entity[] = [new Player()];
+export abstract class Game {
+    protected entities: Entity[] = [];
 
     constructor(private ctx: CanvasRenderingContext2D) {
         this.runLoop();
+        this.init();
         this.entities.forEach((entity) => entity.start());
     }
+
+    /**
+     *  Virtual method, this method will be called on children to initialize entities
+     */
+    protected init() {}
 
     reload() {
         this.entities.forEach((entity) => entity.start());

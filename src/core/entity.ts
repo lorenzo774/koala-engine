@@ -2,33 +2,42 @@ import { Transform } from "./components/transform.js";
 import { Component } from "./component.js";
 
 export abstract class Entity {
-    constructor(public name: string, private components: Component[] = []) {
-        this.addComponent(new Transform(this));
+    protected set components(value: Component[]) {
+        this._components = [...this._components, ...value];
     }
 
+    constructor(public name: string, private _components: Component[] = []) {
+        this.addComponent(new Transform(this));
+        this.init();
+    }
+
+    /**
+     * On start or reload
+     */
     start() {}
 
-    init(components: Component[]) {
-        this.components = components;
-    }
+    /**
+     * For initialization
+     */
+    protected init() {}
 
-    addComponent(newComponent: Component): Component {
-        this.components.push(newComponent);
+    private addComponent(newComponent: Component): Component {
+        this._components.push(newComponent);
         return newComponent;
     }
 
     getComponent<T extends Component>(component: typeof Component): T {
-        return this.components.find((c) => c instanceof component) as T;
+        return this._components.find((c) => c instanceof component) as T;
     }
 
     draw(ctx: CanvasRenderingContext2D) {
-        this.components.forEach((component) => {
+        this._components.forEach((component) => {
             component.draw(ctx);
         });
     }
 
     update() {
-        this.components.forEach((component) => {
+        this._components.forEach((component) => {
             component.update();
         });
     }

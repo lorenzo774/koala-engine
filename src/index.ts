@@ -1,5 +1,5 @@
 import { Input } from "./core/input.js";
-import { Game } from "./game.js";
+import { Platform } from "./platform.js";
 import { Settings } from "./settings.js";
 
 const canvas = document.querySelector("#canvas") as HTMLCanvasElement;
@@ -12,9 +12,9 @@ const setSize = function () {
     context.imageSmoothingEnabled = false;
 };
 setSize();
-window.onresize = setSize;
 
+// Events
+window.onresize = setSize;
 Input.listen();
 
-// Draw test
-new Game(context);
+new Platform(context);

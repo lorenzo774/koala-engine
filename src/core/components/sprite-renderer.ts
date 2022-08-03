@@ -1,4 +1,4 @@
-import { Vector2 } from "../../math/vector2.js";
+import { Vector2 } from "../math/vector2.js";
 import { Component } from "../component.js";
 import { Entity } from "../entity.js";
 import { ImageRect } from "../image-rect.js";

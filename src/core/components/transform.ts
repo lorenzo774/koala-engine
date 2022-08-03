@@ -1,5 +1,5 @@
 import { Component } from "../component.js";
-import { Vector2 } from "../../math/vector2.js";
+import { Vector2 } from "../math/vector2.js";
 import { Entity } from "../entity.js";
 
 export class Transform extends Component {

@@ -3,15 +3,18 @@ import { AnimatedSpriteRenderer } from "../core/components/animated-sprite-rende
 import { Entity } from "../core/entity.js";
 import { ImageRect } from "../core/image-rect.js";
 import { SpriteSheet } from "../core/sprite-sheet.js";
-import { Vector2 } from "../math/vector2.js";
+import { Vector2 } from "../core/math/vector2.js";
 import { Settings } from "../settings.js";
-import { loadImage } from "../utils/helper.js";
+import { loadImage } from "../core/utils/helper.js";
 import { PlayerMovement } from "./player-movement.js";
 
 export class Player extends Entity {
     constructor() {
         super("player");
-        this.init([
+    }
+
+    protected init() {
+        this.components = [
             new AnimatedSpriteRenderer(
                 this,
                 new ImageRect(Vector2.ZERO, new Vector2(19, 23)),
@@ -23,14 +26,14 @@ export class Player extends Entity {
                 this.loadAnimations()
             ),
             new PlayerMovement(this),
-        ]);
+        ];
     }
 
     private loadAnimations(): Animation[] {
         return [
             new Animation(
                 new SpriteSheet(
-                    loadImage("../../assets/Player/Shroom-Sheet-Idle.png"),
+                    loadImage("./assets/Player/Shroom-Sheet-Idle.png"),
                     2
                 ),
                 "idle",
