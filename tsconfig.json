@@ -1,8 +1,8 @@
 {
     "compilerOptions": {
         "rootDir": "src",
-        "outDir": "public",
-        "lib": ["ES6", "dom"],
+        "outDir": "public/scripts",
+        "lib": ["Es2016", "dom"],
         "module": "ES6",
         "target": "ESNext",
         "moduleResolution": "node",

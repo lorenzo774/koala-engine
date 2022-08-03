@@ -1,5 +1,5 @@
 import { Entity } from "./core/entity.js";
-import { Player } from "./entities/player.js";
+import { Player } from "./player/player.js";
 import { Settings } from "./settings.js";
 
 export class Game {
@@ -7,9 +7,12 @@ export class Game {
 
     constructor(private ctx: CanvasRenderingContext2D) {
         this.runLoop();
+        this.entities.forEach((entity) => entity.start());
     }
 
-    reload() {}
+    reload() {
+        this.entities.forEach((entity) => entity.start());
+    }
 
     private runLoop() {
         this.update();
