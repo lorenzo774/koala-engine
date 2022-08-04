@@ -14,8 +14,8 @@ export class AnimatedSpriteRenderer extends SpriteRenderer {
      */
     constructor(
         entity: Entity,
-        imgRect: ImageRect,
-        size: Vector2,
+        imgRect: ImageRect = new ImageRect(Vector2.ZERO, new Vector2(100, 100)),
+        size: Vector2 = new Vector2(100, 100),
         offset: Vector2 = Vector2.ZERO,
         public animations: Animation[] = []
     ) {
@@ -27,6 +27,8 @@ export class AnimatedSpriteRenderer extends SpriteRenderer {
         this.curAnimation = animations[0];
         this.texture = this.curAnimation.spriteSheet.texture;
     }
+
+    start() {}
 
     private findAnimation(name: string): Animation | null {
         return this.animations.find((animation) => animation.name === name);

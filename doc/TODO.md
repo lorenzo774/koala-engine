@@ -4,4 +4,6 @@
 [x] Copy Input system from sad-html-cat project
 [ ] Add gravity
 [ ] Create CollisionBox component
+[ ] Create Tilemap
 [ ] Create sound manager
+[ ] Create UI manager

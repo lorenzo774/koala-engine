@@ -7,6 +7,7 @@ import { Vector2 } from "../core/math/vector2.js";
 import { Settings } from "../settings.js";
 import { loadImage } from "../core/utils/helper.js";
 import { PlayerMovement } from "./player-movement.js";
+import { Transform } from "../core/components/transform.js";
 
 export class Player extends Entity {
     constructor() {
@@ -27,6 +28,13 @@ export class Player extends Entity {
             ),
             new PlayerMovement(this),
         ];
+    }
+
+    start() {
+        this.getComponent<Transform>(Transform).position = new Vector2(
+            1000,
+            400
+        );
     }
 
     private loadAnimations(): Animation[] {
