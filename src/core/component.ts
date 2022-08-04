@@ -5,5 +5,6 @@ export abstract class Component {
 
     start() {}
     draw(ctx: CanvasRenderingContext2D) {}
+    debugDraw(ctx: CanvasRenderingContext2D) {}
     update() {}
 }

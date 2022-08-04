@@ -45,6 +45,12 @@ export abstract class Entity {
         });
     }
 
+    debugDraw(ctx: CanvasRenderingContext2D): void {
+        this._components.forEach((component) => {
+            component.debugDraw(ctx);
+        });
+    }
+
     update() {
         this._components.forEach((component) => {
             component.update();

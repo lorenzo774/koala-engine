@@ -22,7 +22,14 @@ export abstract class Game {
     private runLoop() {
         this.update();
         this.draw();
+        if (Settings.DEBUG_MODE) {
+            this.debugger();
+        }
         requestAnimationFrame(this.runLoop.bind(this));
+    }
+
+    private debugger() {
+        this.entities.forEach((entity) => entity.debugDraw(this.ctx));
     }
 
     private draw() {

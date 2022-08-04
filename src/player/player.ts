@@ -8,6 +8,8 @@ import { Settings } from "../settings.js";
 import { loadImage } from "../core/utils/helper.js";
 import { PlayerMovement } from "./player-movement.js";
 import { Transform } from "../core/components/transform.js";
+import { RigidBody } from "../core/components/rigidbody.js";
+import { CollisionBox } from "../core/collision-box.js";
 
 export class Player extends Entity {
     constructor() {
@@ -15,24 +17,32 @@ export class Player extends Entity {
     }
 
     protected init() {
+        const [width, height] = [
+            Settings.TILE_SCALED * 1.9,
+            Settings.TILE_SCALED * 2.3,
+        ];
         this.components = [
             new AnimatedSpriteRenderer(
                 this,
                 new ImageRect(Vector2.ZERO, new Vector2(19, 23)),
-                new Vector2(
-                    Settings.TILE_SCALED * 1.9,
-                    Settings.TILE_SCALED * 2.3
-                ),
+                new Vector2(width, height),
                 Vector2.ZERO,
                 this.loadAnimations()
             ),
             new PlayerMovement(this),
+            new RigidBody(
+                this,
+                new CollisionBox(
+                    new Vector2(0, 50),
+                    new Vector2(width, height - 50)
+                )
+            ),
         ];
     }
 
     start() {
         this.getComponent<Transform>(Transform).position = new Vector2(
-            1000,
+            800,
             400
         );
     }
