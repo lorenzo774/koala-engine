@@ -5,8 +5,11 @@
 [x] Add gravity
 [x] Create Debugger
 [x] Create Rigidbody
-[-] Create CollisionBox component (Collision system)
+[x] Create CollisionBox component
+[x] Create CollisionSystem
+[ ] Check collision in CollisionBody
+[ ] Add fixed FPS
+[ ] Add debugger UI
 [ ] Create Tilemap
 [ ] Create sound manager
 [ ] Create UI manager
-[ ] Add debugger UI

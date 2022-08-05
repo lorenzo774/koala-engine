@@ -1,13 +1,16 @@
 import { Entity } from "./entity.js";
 import { Settings } from "../settings.js";
+import { CollisionSystem } from "./collision-system.js";
 
 export abstract class Game {
+    private collisionSystem: CollisionSystem;
     protected entities: Entity[] = [];
 
     constructor(private ctx: CanvasRenderingContext2D) {
-        this.runLoop();
         this.init();
+        this.collisionSystem = new CollisionSystem(this.entities);
         this.entities.forEach((entity) => entity.start());
+        this.runLoop();
     }
 
     /**
@@ -21,6 +24,7 @@ export abstract class Game {
 
     private runLoop() {
         this.update();
+        this.collisionSystem.checkCollisions();
         this.draw();
         if (Settings.DEBUG_MODE) {
             this.debugger();
