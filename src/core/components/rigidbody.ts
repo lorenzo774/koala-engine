@@ -7,7 +7,7 @@ import { Transform } from "./transform.js";
 
 export class RigidBody extends CollisionBody {
     private fallingFactor: number;
-    private velocity: Vector2;
+    private velocity: Vector2 = Vector2.ZERO;
 
     constructor(
         entity: Entity,
@@ -20,7 +20,9 @@ export class RigidBody extends CollisionBody {
         super(entity, collisionBox);
     }
 
-    protected onCollision() {}
+    protected onCollision() {
+        console.log("COLLISION");
+    }
 
     start() {
         this.fallingFactor = Settings.GRAVITY * this.mass;
@@ -29,6 +31,7 @@ export class RigidBody extends CollisionBody {
     }
 
     update() {
+        super.update();
         this.velocity.y += this.fallingFactor;
 
         // Update position

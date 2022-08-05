@@ -1,0 +1,1 @@
+{"version":3,"file":"animation.js","sourceRoot":"","sources":["../../../src/core/animation.ts"],"names":[],"mappings":"AAEA,MAAM,OAAO,SAAS;IAIP;IACA;IACA;IALX,WAAW,CAAS;IAEpB,YACW,WAAwB,EACxB,IAAY,EACZ,QAAgB,CAAC;QAFjB,gBAAW,GAAX,WAAW,CAAa;QACxB,SAAI,GAAJ,IAAI,CAAQ;QACZ,UAAK,GAAL,KAAK,CAAY;QAExB,IAAI,CAAC,WAAW,GAAG,GAAG,GAAG,KAAK,CAAC;IACnC,CAAC;CACJ"}

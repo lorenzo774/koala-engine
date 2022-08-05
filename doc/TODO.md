@@ -13,3 +13,4 @@
 [ ] Create Tilemap
 [ ] Create sound manager
 [ ] Create UI manager
+[ ] Improve CollisionSystem performance

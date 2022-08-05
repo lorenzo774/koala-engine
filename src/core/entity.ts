@@ -7,12 +7,15 @@ export abstract class Entity {
     }
 
     protected set components(value: Component[]) {
+        // Start components
         this._components = [...this._components, ...value];
     }
 
     constructor(public name: string, private _components: Component[] = []) {
         this.addComponent(new Transform(this));
         this.init();
+        this.start();
+        this._components.forEach((component) => component.start());
         this.startComponents();
     }
 

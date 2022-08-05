@@ -8,4 +8,9 @@ export class Vector2 {
     static get ONE() {
         return new Vector2(1, 1);
     }
+
+    // String
+    toString = (): string => {
+        return `Vector2(x: ${this.x}, y: ${this.y})`;
+    };
 }

@@ -9,7 +9,7 @@ export abstract class Game {
     constructor(private ctx: CanvasRenderingContext2D) {
         this.init();
         this.collisionSystem = new CollisionSystem(this.entities);
-        this.entities.forEach((entity) => entity.start());
+        // this.entities.forEach((entity) => entity.start());
         this.runLoop();
     }
 
@@ -23,8 +23,8 @@ export abstract class Game {
     }
 
     private runLoop() {
-        this.update();
         this.collisionSystem.checkCollisions();
+        this.update();
         this.draw();
         if (Settings.DEBUG_MODE) {
             this.debugger();

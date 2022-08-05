@@ -5,11 +5,12 @@ import { Vector2 } from "../math/vector2.js";
 import { Transform } from "./transform.js";
 
 export abstract class CollisionBody extends Component {
+    public position: Vector2;
     protected transform: Transform;
 
     constructor(
         entity: Entity,
-        protected collisionBox: CollisionBox = new CollisionBox(
+        public collisionBox: CollisionBox = new CollisionBox(
             Vector2.ZERO,
             new Vector2(100, 100)
         )
@@ -18,9 +19,35 @@ export abstract class CollisionBody extends Component {
         this.transform = entity.getComponent<Transform>(Transform);
     }
 
+    start() {
+        this.position = this.transform.position;
+    }
+
     protected onCollision() {}
 
-    checkCollision(otherCollisionBody: CollisionBody) {}
+    checkCollision(otherCollisionBody: CollisionBody) {
+        if (
+            // Check Y
+            this.position.y + this.collisionBox.size.y >
+                otherCollisionBody.position.y &&
+            this.position.y <
+                otherCollisionBody.position.y +
+                    otherCollisionBody.collisionBox.size.y &&
+            // Check X
+            this.position.x + this.collisionBox.size.x >
+                otherCollisionBody.position.x &&
+            this.position.x <
+                otherCollisionBody.position.x +
+                    otherCollisionBody.collisionBox.size.x
+        ) {
+            this.onCollision();
+        }
+    }
+
+    update() {
+        this.position.x = this.transform.position.x;
+        this.position.y = this.transform.position.y;
+    }
 
     debugDraw(ctx: CanvasRenderingContext2D) {
         ctx.fillStyle = "rgba(255, 0, 0, 0.4)";

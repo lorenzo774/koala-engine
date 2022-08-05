@@ -21,14 +21,14 @@ export class PlayerMovement extends Component {
     }
 
     update() {
-        this.velocity.x = 0;
+        this.velocity.y = 0;
 
         if (Input.isPressed(Key.D)) {
-            this.velocity.x = 1;
+            this.velocity.y = 1;
             this.spriteRenderer.flipH = true;
         }
         if (Input.isPressed(Key.A)) {
-            this.velocity.x = -1;
+            this.velocity.y = -1;
             this.spriteRenderer.flipH = false;
         }
 
