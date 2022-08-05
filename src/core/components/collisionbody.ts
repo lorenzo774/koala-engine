@@ -20,7 +20,9 @@ export abstract class CollisionBody extends Component {
     }
 
     start() {
-        this.position = this.transform.position;
+        this.position = Vector2.ZERO;
+        this.position.x = this.transform.position.x;
+        this.position.y = this.transform.position.y;
     }
 
     protected onCollision() {}
@@ -45,8 +47,10 @@ export abstract class CollisionBody extends Component {
     }
 
     update() {
-        this.position.x = this.transform.position.x;
-        this.position.y = this.transform.position.y;
+        this.position.x =
+            this.transform.position.x + this.collisionBox.offset.x;
+        this.position.y =
+            this.transform.position.y + this.collisionBox.offset.y;
     }
 
     debugDraw(ctx: CanvasRenderingContext2D) {

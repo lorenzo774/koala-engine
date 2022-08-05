@@ -7,7 +7,8 @@
 [x] Create Rigidbody
 [x] Create CollisionBox component
 [x] Create CollisionSystem
-[ ] Check collision in CollisionBody
+[x] Check collision in CollisionBody
+[ ] Improve Jump in Player movement
 [ ] Add fixed FPS
 [ ] Add debugger UI
 [ ] Create Tilemap

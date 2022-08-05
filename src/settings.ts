@@ -5,7 +5,7 @@ export class Settings {
     static TILE_SIZE: number = 20;
     static SCALE: number = 5;
     static TILE_SCALED = Settings.TILE_SIZE * Settings.SCALE;
-    static GRAVITY: number = 0.7;
+    static GRAVITY: number = 0.2;
 
     // DEV
     static DEBUG_MODE: boolean = true;
