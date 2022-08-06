@@ -6,7 +6,7 @@ import { CollisionBody } from "./collisionbody.js";
 
 export class RigidBody extends CollisionBody {
     private fallingFactor: number;
-    private velocity: Vector2 = Vector2.ZERO;
+    public velocity: Vector2 = Vector2.ZERO;
 
     public onGround: boolean = false;
 
@@ -63,6 +63,7 @@ export class RigidBody extends CollisionBody {
         } else {
             this.velocity.y = 0;
         }
+        console.log(this.onGround);
 
         // Update position
         this.transform.position.x += this.velocity.x;

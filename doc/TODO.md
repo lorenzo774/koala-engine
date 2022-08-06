@@ -8,9 +8,9 @@
 [x] Create CollisionBox component
 [x] Create CollisionSystem
 [x] Check collision in CollisionBody
+[x] Add debugger UI
 [ ] Improve Jump in Player movement
 [ ] Add fixed FPS
-[ ] Add debugger UI
 [ ] Create Tilemap
 [ ] Create sound manager
 [ ] Create UI manager

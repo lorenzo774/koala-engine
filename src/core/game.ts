@@ -1,6 +1,7 @@
 import { Entity } from "./entity.js";
 import { Settings } from "../settings.js";
 import { CollisionSystem } from "./collision-system.js";
+import { UIDebug } from "./debug/ui-debug.js";
 
 export abstract class Game {
     private collisionSystem: CollisionSystem;
@@ -9,6 +10,9 @@ export abstract class Game {
     constructor(private ctx: CanvasRenderingContext2D) {
         this.init();
         this.collisionSystem = new CollisionSystem(this.entities);
+        if (Settings.DEBUG_MODE) {
+            UIDebug.I.showDebugUI();
+        }
         // this.entities.forEach((entity) => entity.start());
         this.runLoop();
     }
@@ -34,6 +38,7 @@ export abstract class Game {
 
     private debugger() {
         this.entities.forEach((entity) => entity.debugDraw(this.ctx));
+        UIDebug.I.run(this.entities);
     }
 
     private draw() {
