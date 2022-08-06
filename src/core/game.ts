@@ -14,6 +14,7 @@ export abstract class Game {
             UIDebug.I.showDebugUI();
         }
         // this.entities.forEach((entity) => entity.start());
+        setInterval(this.runLoop.bind(this), 1000 / Settings.FPS);
         this.runLoop();
     }
 
@@ -33,12 +34,11 @@ export abstract class Game {
         if (Settings.DEBUG_MODE) {
             this.debugger();
         }
-        requestAnimationFrame(this.runLoop.bind(this));
     }
 
     private debugger() {
         this.entities.forEach((entity) => entity.debugDraw(this.ctx));
-        UIDebug.I.run(this.entities);
+        UIDebug.I.run(this.entities, Settings.FPS);
     }
 
     private draw() {

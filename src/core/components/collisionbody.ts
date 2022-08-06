@@ -6,8 +6,9 @@ import { StaticBody } from "./staticbody.js";
 import { Transform } from "./transform.js";
 
 export abstract class CollisionBody extends Component {
-    public position: Vector2;
+    private otherCollisionBody: CollisionBody;
     protected transform: Transform;
+    public position: Vector2;
 
     constructor(
         entity: Entity,
@@ -28,7 +29,19 @@ export abstract class CollisionBody extends Component {
 
     protected onCollision() {}
 
+    public onTerrain() {
+        return (
+            // Check Y
+            this.position.y + this.collisionBox.size.y >
+                this.otherCollisionBody.position.y &&
+            this.position.y <
+                this.otherCollisionBody.position.y +
+                    this.otherCollisionBody.collisionBox.size.y
+        );
+    }
+
     checkCollision(otherCollisionBody: CollisionBody) {
+        this.otherCollisionBody = otherCollisionBody;
         if (
             // Check Y
             this.position.y + this.collisionBox.size.y >

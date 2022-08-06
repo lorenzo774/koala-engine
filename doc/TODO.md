@@ -9,9 +9,10 @@
 [x] Create CollisionSystem
 [x] Check collision in CollisionBody
 [x] Add debugger UI
-[ ] Improve Jump in Player movement
-[ ] Add fixed FPS
+[x] Improve Jump in Player movement
+[x] Add fixed FPS
 [ ] Create Tilemap
 [ ] Create sound manager
+[ ] Improve player jumping smoothness
 [ ] Create UI manager
 [ ] Improve CollisionSystem performance

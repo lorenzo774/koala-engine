@@ -11,12 +11,14 @@ export class UIDebug {
     }
 
     private entityList: HTMLUListElement = document.querySelector("#ui-entity");
+    private fpsLbl: HTMLElement = document.querySelector("#fps");
 
     showDebugUI() {
         document.querySelector("#ui-debug").classList.remove("hide");
     }
 
-    public run(entities: Entity[]) {
+    public run(entities: Entity[], fps: number) {
+        this.fpsLbl.textContent = `FPS: ${fps}`;
         this.entityList.innerHTML = entities
             .map((entity) => `<li> - ${entity.name}</li>`)
             .join("");
