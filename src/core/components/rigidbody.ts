@@ -9,6 +9,7 @@ export class RigidBody extends CollisionBody {
     public velocity: Vector2 = Vector2.ZERO;
 
     public onGround: boolean = false;
+    public leftRightCollision: boolean = false;
 
     constructor(
         entity: Entity,
@@ -21,11 +22,39 @@ export class RigidBody extends CollisionBody {
         super(entity, collisionBox);
     }
 
+    private yCollision(otherCollisionBody: CollisionBody): boolean {
+        return (
+            // Check Y
+            this.position.y + this.collisionBox.size.y + this.velocity.y >
+                otherCollisionBody.position.y &&
+            this.position.y + this.velocity.y <
+                otherCollisionBody.position.y +
+                    otherCollisionBody.collisionBox.size.y
+        );
+    }
+
+    private xCollision(otherCollisionBody: CollisionBody): boolean {
+        return (
+            this.position.x +
+                this.collisionBox.offset.x +
+                this.collisionBox.size.x +
+                this.velocity.x >
+                otherCollisionBody.position.x +
+                    otherCollisionBody.collisionBox.offset.x &&
+            this.position.x + this.collisionBox.offset.x + this.velocity.x <
+                otherCollisionBody.position.x +
+                    otherCollisionBody.collisionBox.offset.x +
+                    otherCollisionBody.collisionBox.size.x
+        );
+    }
+
     protected onCollision() {
+        this.velocity.x = 0;
         this.onGround = true;
     }
 
     protected exitCollision() {
+        this.leftRightCollision = false;
         this.onGround = false;
     }
 
@@ -37,30 +66,21 @@ export class RigidBody extends CollisionBody {
 
     checkCollision(otherCollisionBody: CollisionBody) {
         if (
-            // Check Y
-            this.position.y + this.collisionBox.size.y + this.velocity.y >
-                otherCollisionBody.position.y &&
-            this.position.y + this.velocity.y <
-                otherCollisionBody.position.y +
-                    otherCollisionBody.collisionBox.size.y &&
-            // Check X
-            this.position.x + this.collisionBox.size.x + this.velocity.x >
-                otherCollisionBody.position.x &&
-            this.position.x + this.velocity.x <
-                otherCollisionBody.position.x +
-                    otherCollisionBody.collisionBox.size.x
+            this.yCollision(otherCollisionBody) &&
+            this.xCollision(otherCollisionBody)
         ) {
+            this.leftRightCollision = this.xCollision(otherCollisionBody);
             this.onCollision();
         } else {
             this.exitCollision();
         }
     }
 
-    update() {
+    move() {
         super.update();
         if (!this.onGround) {
             this.velocity.y += this.fallingFactor;
-        } else {
+        } else if (this.velocity.y > 0) {
             this.velocity.y = 0;
         }
 

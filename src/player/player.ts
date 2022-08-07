@@ -57,6 +57,22 @@ export class Player extends Entity {
                 "idle",
                 5
             ),
+            new Animation(
+                new SpriteSheet(
+                    loadImage("./assets/Player/Shroom-Sheet-Run.png"),
+                    4
+                ),
+                "run",
+                20
+            ),
+            new Animation(
+                new SpriteSheet(
+                    loadImage("./assets/Player/Shroom-Sheet-Jump.png"),
+                    9
+                ),
+                "jump",
+                15
+            ),
         ];
     }
 }

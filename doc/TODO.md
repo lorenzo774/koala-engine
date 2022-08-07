@@ -11,6 +11,7 @@
 [x] Add debugger UI
 [x] Improve Jump in Player movement
 [x] Add fixed FPS
+[ ] Improve collision
 [ ] Create Tilemap
 [ ] Create sound manager
 [ ] Improve player jumping smoothness

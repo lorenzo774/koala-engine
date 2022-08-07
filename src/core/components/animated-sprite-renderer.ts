@@ -49,8 +49,13 @@ export class AnimatedSpriteRenderer extends SpriteRenderer {
     play(name: string) {
         const animationFound = this.findAnimation(name);
         if (!animationFound) return;
+        if (
+            JSON.stringify(animationFound) === JSON.stringify(this.curAnimation)
+        )
+            return;
 
         this.curAnimation = animationFound;
+        this.imgRect.position.x = 0;
         this.texture = this.curAnimation.spriteSheet.texture;
         this.timeElapsed = 0;
         this.frameCounter = 0;
