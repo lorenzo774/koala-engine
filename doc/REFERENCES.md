@@ -1,0 +1,1 @@
+1. COLLISION DETECTION & RESOLUTION: https://youtu.be/8JJ-4JgR7Dg
