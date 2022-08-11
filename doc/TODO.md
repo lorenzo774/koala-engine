@@ -12,8 +12,9 @@
 [x] Improve Jump in Player movement
 [x] Add fixed FPS
 [x] Create Tilemap
-[ ] Create collision detection and resolution system
+[ ] Create collision detection and resolution system (Swept AABB)
+[ ] Improve CollisionSystem performance (Tile based checking)
+[ ] Create Save/Load system for tilemap
 [ ] Create sound manager
-[ ] Improve player jumping smoothness
 [ ] Create UI manager
-[ ] Improve CollisionSystem performance
+[ ] Create Save/Load system for game (entities, components, textures path, etc...)

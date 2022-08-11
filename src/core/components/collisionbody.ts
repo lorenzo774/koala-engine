@@ -2,11 +2,9 @@ import { CollisionBox } from "../collision-box.js";
 import { Component } from "../component.js";
 import { Entity } from "../entity.js";
 import { Vector2 } from "../math/vector2.js";
-import { StaticBody } from "./staticbody.js";
 import { Transform } from "./transform.js";
 
 export abstract class CollisionBody extends Component {
-    private otherCollisionBody: CollisionBody;
     protected transform: Transform;
     public position: Vector2;
 
@@ -27,38 +25,10 @@ export abstract class CollisionBody extends Component {
         this.position.y = this.transform.position.y;
     }
 
-    protected onCollision() {}
-
-    public onTerrain() {
-        return (
-            // Check Y
-            this.position.y + this.collisionBox.size.y >
-                this.otherCollisionBody.position.y &&
-            this.position.y <
-                this.otherCollisionBody.position.y +
-                    this.otherCollisionBody.collisionBox.size.y
-        );
-    }
-
-    checkCollision(otherCollisionBody: CollisionBody) {
-        this.otherCollisionBody = otherCollisionBody;
-        if (
-            // Check Y
-            this.position.y + this.collisionBox.size.y >
-                otherCollisionBody.position.y &&
-            this.position.y <
-                otherCollisionBody.position.y +
-                    otherCollisionBody.collisionBox.size.y &&
-            // Check X
-            this.position.x + this.collisionBox.size.x >
-                otherCollisionBody.position.x &&
-            this.position.x <
-                otherCollisionBody.position.x +
-                    otherCollisionBody.collisionBox.size.x
-        ) {
-            this.onCollision();
-        }
-    }
+    /**
+     * Called when the body is in collision with another
+     */
+    onCollision() {}
 
     update() {
         this.position.x =

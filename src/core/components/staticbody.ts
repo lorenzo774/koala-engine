@@ -14,7 +14,7 @@ export class StaticBody extends CollisionBody {
         super(entity, collisionBox);
     }
 
-    protected onCollision() {}
+    onCollision() {}
 
     // String
     toString = (): string => {

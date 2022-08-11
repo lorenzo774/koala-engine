@@ -4,6 +4,9 @@ import { Entity } from "../entity.js";
 import { Vector2 } from "../math/vector2.js";
 import { CollisionBody } from "./collisionbody.js";
 
+/**
+ * Dyamic body, this body has a velocity and it moves
+ */
 export class RigidBody extends CollisionBody {
     private fallingFactor: number;
     public velocity: Vector2 = Vector2.ZERO;
@@ -22,58 +25,12 @@ export class RigidBody extends CollisionBody {
         super(entity, collisionBox);
     }
 
-    private yCollision(otherCollisionBody: CollisionBody): boolean {
-        return (
-            // Check Y
-            this.position.y + this.collisionBox.size.y + this.velocity.y >
-                otherCollisionBody.position.y &&
-            this.position.y + this.velocity.y <
-                otherCollisionBody.position.y +
-                    otherCollisionBody.collisionBox.size.y
-        );
-    }
-
-    private xCollision(otherCollisionBody: CollisionBody): boolean {
-        return (
-            this.position.x +
-                this.collisionBox.offset.x +
-                this.collisionBox.size.x +
-                this.velocity.x >
-                otherCollisionBody.position.x +
-                    otherCollisionBody.collisionBox.offset.x &&
-            this.position.x + this.collisionBox.offset.x + this.velocity.x <
-                otherCollisionBody.position.x +
-                    otherCollisionBody.collisionBox.offset.x +
-                    otherCollisionBody.collisionBox.size.x
-        );
-    }
-
-    protected onCollision() {
-        this.velocity.x = 0;
-        this.onGround = true;
-    }
-
-    protected exitCollision() {
-        this.leftRightCollision = false;
-        this.onGround = false;
-    }
+    onCollision() {}
 
     start() {
         super.start();
         this.fallingFactor = Settings.GRAVITY * this.mass;
         this.velocity = Vector2.ZERO;
-    }
-
-    checkCollision(otherCollisionBody: CollisionBody) {
-        if (
-            this.yCollision(otherCollisionBody) &&
-            this.xCollision(otherCollisionBody)
-        ) {
-            this.leftRightCollision = this.xCollision(otherCollisionBody);
-            this.onCollision();
-        } else {
-            this.exitCollision();
-        }
     }
 
     move() {
