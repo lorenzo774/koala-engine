@@ -1,20 +1,24 @@
-[x] Create a way to get a component from the entity inside a component
-[x] Create SpriteRenderer component
-[x] Create Transform Component
-[x] Copy Input system from sad-html-cat project
-[x] Add gravity
-[x] Create Debugger
-[x] Create Rigidbody
-[x] Create CollisionBox component
-[x] Create CollisionSystem
-[x] Check collision in CollisionBody
-[x] Add debugger UI
-[x] Improve Jump in Player movement
-[x] Add fixed FPS
-[x] Create Tilemap
-[ ] Create collision detection and resolution system (Swept AABB)
-[ ] Improve CollisionSystem performance (Tile based checking)
-[ ] Create Save/Load system for tilemap
-[ ] Create sound manager
-[ ] Create UI manager
-[ ] Create Save/Load system for game (entities, components, textures path, etc...)
+# TODO
+
+-   [x] Create a way to get a component from the entity inside a component
+-   [x] Create SpriteRenderer component
+-   [x] Create Transform Component
+-   [x] Copy Input system from sad-html-cat project
+-   [x] Add gravity
+-   [x] Create Debugger
+-   [x] Create Rigidbody
+-   [x] Create CollisionBox component
+-   [x] Create CollisionSystem
+-   [x] Check collision in CollisionBody
+-   [x] Add debugger UI
+-   [x] Improve Jump in Player movement
+-   [x] Add fixed FPS
+-   [x] Create Tilemap
+-   [ ] Create collision detection and resolution system (Swept AABB)
+-   [ ] Improve CollisionSystem performance (Tile based checking)
+-   [ ] Create Save/Load system for tilemap
+-   [ ] Create sound manager
+-   [ ] Create UI manager
+-   [ ] Create Save/Load system for game (entities, components, textures path, etc...)
+-   [ ] Create Game system (every game system has its own behaviors)
+-   [ ] Fix tilemap not loading at first

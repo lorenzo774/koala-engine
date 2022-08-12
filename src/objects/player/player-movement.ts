@@ -1,9 +1,9 @@
-import { Component } from "../core/component.js";
-import { Input } from "../core/input.js";
-import { Key } from "../core/key.js";
-import { AnimatedSpriteRenderer } from "../core/components/animated-sprite-renderer.js";
-import { RigidBody } from "../core/components/rigidbody.js";
-import { Vector2 } from "../core/math/vector2.js";
+import { Component } from "../../core/component.js";
+import { Input } from "../../core/systems/input-system.js";
+import { Key } from "../../core/key.js";
+import { AnimatedSpriteRenderer } from "../../core/components/animated-sprite-renderer.js";
+import { RigidBody } from "../../core/components/rigidbody.js";
+import { Vector2 } from "../../core/math/vector2.js";
 
 export class PlayerMovement extends Component {
     private speed: number = 15;

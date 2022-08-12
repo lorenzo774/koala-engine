@@ -1,6 +1,6 @@
 import { Entity } from "./entity.js";
 import { Settings } from "../settings.js";
-import { CollisionSystem } from "./collision-system.js";
+import { CollisionSystem } from "./systems/collision-system.js";
 import { UIDebug } from "./debug/ui-debug.js";
 
 export abstract class Game {
@@ -13,7 +13,6 @@ export abstract class Game {
         if (Settings.DEBUG_MODE) {
             UIDebug.I.showDebugUI();
         }
-        // this.entities.forEach((entity) => entity.start());
         setInterval(this.runLoop.bind(this), 1000 / Settings.FPS);
         this.runLoop();
     }
@@ -28,9 +27,13 @@ export abstract class Game {
     }
 
     private runLoop() {
-        this.collisionSystem.checkCollisions();
+        // COLLISION SYSTEM SHOULD BE HERE!!!!
         this.update();
         this.draw();
+        this.collisionSystem.checkCollisions(
+            // FIXME: JUST A TEST!!!!
+            this.ctx
+        );
         if (Settings.DEBUG_MODE) {
             this.debugger();
         }
