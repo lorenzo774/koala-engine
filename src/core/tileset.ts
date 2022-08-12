@@ -2,7 +2,7 @@ import { Vector2 } from "./math/vector2.js";
 
 export class Tileset {
     public columns: number;
-    public row: number;
+    public rows: number;
 
     constructor(
         public texture: HTMLImageElement,
@@ -10,6 +10,6 @@ export class Tileset {
         public worldSize: Vector2
     ) {
         this.columns = texture.width / this.tileSize.x;
-        this.row = texture.height / this.tileSize.y;
+        this.rows = texture.height / this.tileSize.y;
     }
 }

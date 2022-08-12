@@ -1,19 +1,16 @@
+import { Settings } from "../../settings.js";
 import { Component } from "../component.js";
 import { Entity } from "../entity.js";
 import { Vector2 } from "../math/vector2.js";
 import { Tileset } from "../tileset.js";
-import { Transform } from "./transform.js";
 
 export class Tilemap extends Component {
-    private transform: Transform;
-
     constructor(
         entity: Entity,
         private tileset: Tileset = null,
         private map: number[][] = [[]]
     ) {
         super(entity);
-        this.transform = entity.getComponent<Transform>(Transform);
     }
 
     // Draw single tile
@@ -40,10 +37,38 @@ export class Tilemap extends Component {
     }
 
     draw(ctx: CanvasRenderingContext2D) {
-        this.map.forEach((row, i) =>
-            row.forEach((tile, j) =>
-                this.drawTile.call(this, ctx, tile, new Vector2(j, i))
-            )
-        );
+        for (let i = 0; i < this.map.length; i++) {
+            for (let j = 0; j < this.map[i].length; j++) {
+                this.drawTile(ctx, this.map[i][j], new Vector2(j, i));
+            }
+        }
+    }
+
+    debugDraw(ctx: CanvasRenderingContext2D) {
+        // Get max length in the map
+        let maxLength = 0;
+        for (let i = 0; i < this.map.length; i++) {
+            if (this.map[i].length > maxLength) {
+                maxLength = this.map[i].length;
+            }
+        }
+        // Draw rows
+        for (let i = 0; i <= this.map.length; i++) {
+            ctx.beginPath();
+            ctx.strokeStyle = Settings.DEBUG_COLOR;
+            ctx.moveTo(0, i * this.tileset.worldSize.y);
+            ctx.lineTo(Settings.WIDTH, i * this.tileset.worldSize.y);
+            ctx.stroke();
+            ctx.closePath();
+        }
+        // Draw columns
+        for (let i = 0; i <= maxLength; i++) {
+            ctx.beginPath();
+            ctx.strokeStyle = Settings.DEBUG_COLOR;
+            ctx.moveTo(i * this.tileset.worldSize.x, 0);
+            ctx.lineTo(i * this.tileset.worldSize.x, Settings.HEIGHT);
+            ctx.stroke();
+            ctx.closePath();
+        }
     }
 }

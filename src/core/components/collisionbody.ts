@@ -1,3 +1,4 @@
+import { Settings } from "../../settings.js";
 import { CollisionBox } from "../collision-box.js";
 import { Component } from "../component.js";
 import { Entity } from "../entity.js";
@@ -38,7 +39,7 @@ export abstract class CollisionBody extends Component {
     }
 
     debugDraw(ctx: CanvasRenderingContext2D) {
-        ctx.fillStyle = "rgba(255, 0, 0, 0.4)";
+        ctx.fillStyle = Settings.DEBUG_COLOR;
         ctx.fillRect(
             this.transform.position.x + this.collisionBox.offset.x,
             this.transform.position.y + this.collisionBox.offset.y,

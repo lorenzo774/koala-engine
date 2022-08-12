@@ -20,6 +20,7 @@ export class Settings {
 
     // DEV
     static DEBUG_MODE: boolean = true;
+    static DEBUG_COLOR: string = "rgba(255, 0, 0, 0.4)";
 
     // Rendering
     static FPS: number = 60;

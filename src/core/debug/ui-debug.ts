@@ -1,4 +1,5 @@
-import { Entity } from "../entity";
+import { Settings } from "../../settings.js";
+import { Entity } from "../entity.js";
 
 export class UIDebug {
     // Singleton
@@ -12,6 +13,18 @@ export class UIDebug {
 
     private entityList: HTMLUListElement = document.querySelector("#ui-entity");
     private fpsLbl: HTMLElement = document.querySelector("#fps");
+    private toggleDebugUI: HTMLButtonElement =
+        document.querySelector("#toggle-debug-mode");
+
+    constructor() {
+        if (!this.toggleDebugUI) return;
+        this.toggleDebugUI.addEventListener("click", (_) => {
+            Settings.DEBUG_MODE = !Settings.DEBUG_MODE;
+            this.toggleDebugUI.textContent = Settings.DEBUG_MODE ? "ON" : "OFF";
+            this.toggleDebugUI.classList.toggle("on");
+            this.toggleDebugUI.classList.toggle("off");
+        });
+    }
 
     showDebugUI() {
         document.querySelector("#ui-debug").classList.remove("hide");
