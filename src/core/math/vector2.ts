@@ -1,30 +1,43 @@
 export class Vector2 {
     constructor(public x: number, public y: number) {}
+    /**
+     * MATH
+     */
+    public get length(): number {
+        return Math.sqrt(Math.pow(this.x, 2) + Math.pow(this.y, 2));
+    }
 
-    public static get ZERO() {
+    public get normalized(): Vector2 {
+        return new Vector2(this.x / this.length, this.y / this.length);
+    }
+
+    /**
+     * VALUES
+     */
+    public static get ZERO(): Vector2 {
         return new Vector2(0, 0);
     }
 
-    public static get ONE() {
+    public static get ONE(): Vector2 {
         return new Vector2(1, 1);
     }
 
     /**
      * DIRECTIONS
      */
-    public static get RIGHT() {
+    public static get RIGHT(): Vector2 {
         return new Vector2(1, 0);
     }
 
-    public static get LEFT() {
+    public static get LEFT(): Vector2 {
         return new Vector2(-1, 0);
     }
 
-    public static get UP() {
+    public static get UP(): Vector2 {
         return new Vector2(0, -1);
     }
 
-    public static get DOWN() {
+    public static get DOWN(): Vector2 {
         return new Vector2(0, 1);
     }
 
@@ -34,6 +47,14 @@ export class Vector2 {
      */
     public static divide(a: Vector2, b: Vector2): Vector2 {
         return new Vector2(a.x / b.x, a.y / b.y);
+    }
+
+    /**
+     * Divide each component of 2 vectors by a number
+     * @returns Vector with components divided
+     */
+    public static divideBy(a: Vector2, n: number): Vector2 {
+        return new Vector2(a.x / n, a.y / n);
     }
 
     /**

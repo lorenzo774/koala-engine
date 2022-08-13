@@ -1,15 +1,15 @@
 import { Entity } from "./entity.js";
 import { Settings } from "../settings.js";
-import { CollisionSystem } from "./physics/collision-system.js";
+import { PhysicsEngine } from "./physics/physics-engine.js";
 import { UIDebug } from "./debug/ui-debug.js";
 
 export abstract class Game {
-    private collisionSystem: CollisionSystem;
+    private physicsEngine: PhysicsEngine;
     protected entities: Entity[] = [];
 
     constructor(private ctx: CanvasRenderingContext2D) {
         this.init();
-        this.collisionSystem = new CollisionSystem(this.entities);
+        this.physicsEngine = new PhysicsEngine(this.entities);
         if (Settings.DEBUG_MODE) {
             UIDebug.I.showDebugUI();
         }
@@ -30,7 +30,7 @@ export abstract class Game {
         // COLLISION SYSTEM SHOULD BE HERE!!!!
         this.update();
         this.draw();
-        this.collisionSystem.checkCollisions(
+        this.physicsEngine.checkCollisions(
             // FIXME: JUST A TEST!!!!
             this.ctx
         );

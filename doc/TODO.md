@@ -15,6 +15,7 @@
 -   [x] Add fixed FPS
 -   [x] Create Tilemap
 -   [ ] Create collision detection and resolution system (Swept AABB)
+-   [ ] Move physics engine on a different loop
 -   [ ] Improve CollisionSystem performance (Tile based checking)
 -   [ ] Create Save/Load system for tilemap
 -   [ ] Create sound manager
