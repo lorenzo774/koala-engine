@@ -1,14 +1,11 @@
-import { SpriteRenderer } from "../core/components/sprite-renderer.js";
+import { SpriteRenderer } from "../core/components/sprite/sprite-renderer.js";
 import { Entity } from "../core/entity.js";
-import { ImageRect } from "../core/image-rect.js";
+import { ImageRect } from "../core/components/sprite/image-rect.js";
 import { Vector2 } from "../core/math/vector2.js";
 import { loadImage } from "../core/utils/helper.js";
 import { Settings } from "../settings.js";
 
 export class Background extends Entity {
-    /**
-     *
-     */
     constructor() {
         super("background");
     }

@@ -1,6 +1,6 @@
 import { Entity } from "./entity.js";
 import { Settings } from "../settings.js";
-import { CollisionSystem } from "./systems/collision-system.js";
+import { CollisionSystem } from "./physics/collision-system.js";
 import { UIDebug } from "./debug/ui-debug.js";
 
 export abstract class Game {

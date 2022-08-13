@@ -1,7 +1,7 @@
-import { Vector2 } from "../math/vector2.js";
-import { Animation } from "../animation.js";
-import { Entity } from "../entity.js";
-import { ImageRect } from "../image-rect.js";
+import { Vector2 } from "../../math/vector2.js";
+import { Animation } from "./animation.js";
+import { Entity } from "../../entity.js";
+import { ImageRect } from "./image-rect.js";
 import { SpriteRenderer } from "./sprite-renderer.js";
 
 export class AnimatedSpriteRenderer extends SpriteRenderer {

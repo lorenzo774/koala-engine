@@ -1,4 +1,4 @@
-import { Vector2 } from "./math/vector2.js";
+import { Vector2 } from "../../math/vector2.js";
 
 export class ImageRect {
     constructor(

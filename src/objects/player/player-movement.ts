@@ -1,9 +1,8 @@
 import { Component } from "../../core/component.js";
-import { Input } from "../../core/systems/input-system.js";
-import { Key } from "../../core/key.js";
-import { AnimatedSpriteRenderer } from "../../core/components/animated-sprite-renderer.js";
-import { RigidBody } from "../../core/components/rigidbody.js";
-import { Vector2 } from "../../core/math/vector2.js";
+import { Keyboard } from "../../core/input/keyboard-input.js";
+import { Key } from "../../core/input/key.js";
+import { AnimatedSpriteRenderer } from "../../core/components/sprite/animated-sprite-renderer.js";
+import { RigidBody } from "../../core/components/bodies/rigidbody.js";
 
 export class PlayerMovement extends Component {
     private speed: number = 15;
@@ -29,11 +28,11 @@ export class PlayerMovement extends Component {
     update() {
         this.rigidBody.velocity.x = 0;
 
-        if (Input.isPressed(Key.D)) {
+        if (Keyboard.isPressed(Key.D)) {
             this.rigidBody.velocity.x = 1 * this.speed;
             this.spriteRenderer.flipH = true;
         }
-        if (Input.isPressed(Key.A)) {
+        if (Keyboard.isPressed(Key.A)) {
             this.rigidBody.velocity.x = -1 * this.speed;
             this.spriteRenderer.flipH = false;
         }
@@ -53,7 +52,7 @@ export class PlayerMovement extends Component {
             this.spriteRenderer.play("run");
         }
 
-        if (Input.justPressed(Key.SPACE) && this.canJump) {
+        if (Keyboard.justPressed(Key.SPACE) && this.canJump) {
             this.jump();
         }
 

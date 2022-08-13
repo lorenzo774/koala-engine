@@ -1,9 +1,9 @@
-import { Key } from "../key.js";
+import { Key } from "./key.js";
 
 /**
  * INPUT: This system its not controlled by the game
  */
-export class Input {
+export class Keyboard {
     private static keysPressed: Key[] = [];
     private static lastKey: Key;
 

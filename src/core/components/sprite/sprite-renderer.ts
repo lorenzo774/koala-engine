@@ -1,8 +1,8 @@
-import { Vector2 } from "../math/vector2.js";
-import { Component } from "../component.js";
-import { Entity } from "../entity.js";
-import { ImageRect } from "../image-rect.js";
-import { Transform } from "./transform.js";
+import { Vector2 } from "../../math/vector2.js";
+import { Component } from "../../component.js";
+import { Entity } from "../../entity.js";
+import { ImageRect } from "./image-rect.js";
+import { Transform } from "../transform.js";
 
 export class SpriteRenderer extends Component {
     private transform: Transform;

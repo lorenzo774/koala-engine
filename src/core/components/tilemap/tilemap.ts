@@ -1,8 +1,8 @@
-import { Settings } from "../../settings.js";
-import { Component } from "../component.js";
-import { Entity } from "../entity.js";
-import { Vector2 } from "../math/vector2.js";
-import { Tileset } from "../tileset.js";
+import { Settings } from "../../../settings.js";
+import { Component } from "../../component.js";
+import { Entity } from "../../entity.js";
+import { Vector2 } from "../../math/vector2.js";
+import { Tileset } from "./tileset.js";
 
 export class Tilemap extends Component {
     constructor(

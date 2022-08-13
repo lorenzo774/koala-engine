@@ -1,7 +1,7 @@
-import { Settings } from "../../settings.js";
-import { CollisionBox } from "../collision-box.js";
-import { Entity } from "../entity.js";
-import { Vector2 } from "../math/vector2.js";
+import { Settings } from "../../../settings.js";
+import { CollisionBox } from "./collision-box.js";
+import { Entity } from "../../entity.js";
+import { Vector2 } from "../../math/vector2.js";
 import { CollisionBody } from "./collisionbody.js";
 
 /**

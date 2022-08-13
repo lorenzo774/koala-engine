@@ -1,6 +1,6 @@
-import { CollisionBox } from "../collision-box.js";
-import { Entity } from "../entity.js";
-import { Vector2 } from "../math/vector2.js";
+import { CollisionBox } from "./collision-box.js";
+import { Entity } from "../../entity.js";
+import { Vector2 } from "../../math/vector2.js";
 import { CollisionBody } from "./collisionbody.js";
 
 export class StaticBody extends CollisionBody {

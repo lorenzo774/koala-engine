@@ -1,9 +1,9 @@
-import { Settings } from "../../settings.js";
-import { CollisionBox } from "../collision-box.js";
-import { Component } from "../component.js";
-import { Entity } from "../entity.js";
-import { Vector2 } from "../math/vector2.js";
-import { Transform } from "./transform.js";
+import { Settings } from "../../../settings.js";
+import { CollisionBox } from "./collision-box.js";
+import { Component } from "../../component.js";
+import { Entity } from "../../entity.js";
+import { Vector2 } from "../../math/vector2.js";
+import { Transform } from "./../transform.js";
 
 export abstract class CollisionBody extends Component {
     protected transform: Transform;

@@ -1,15 +1,15 @@
-import { Animation } from "../../core/animation.js";
-import { AnimatedSpriteRenderer } from "../../core/components/animated-sprite-renderer.js";
+import { Animation } from "../../core/components/sprite/animation.js";
+import { AnimatedSpriteRenderer } from "../../core/components/sprite/animated-sprite-renderer.js";
 import { Entity } from "../../core/entity.js";
-import { ImageRect } from "../../core/image-rect.js";
-import { SpriteSheet } from "../../core/sprite-sheet.js";
+import { ImageRect } from "../../core/components/sprite/image-rect.js";
+import { SpriteSheet } from "../../core/components/sprite/sprite-sheet.js";
 import { Vector2 } from "../../core/math/vector2.js";
 import { Settings } from "../../settings.js";
 import { loadImage } from "../../core/utils/helper.js";
 import { PlayerMovement } from "./player-movement.js";
 import { Transform } from "../../core/components/transform.js";
-import { RigidBody } from "../../core/components/rigidbody.js";
-import { CollisionBox } from "../../core/collision-box.js";
+import { RigidBody } from "../../core/components/bodies/rigidbody.js";
+import { CollisionBox } from "../../core/components/bodies/collision-box.js";
 
 export class Player extends Entity {
     constructor() {

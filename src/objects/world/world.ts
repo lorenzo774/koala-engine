@@ -1,7 +1,7 @@
-import { Tilemap } from "../../core/components/tilemap.js";
+import { Tilemap } from "../../core/components/tilemap/tilemap.js";
 import { Entity } from "../../core/entity.js";
 import { Vector2 } from "../../core/math/vector2.js";
-import { Tileset } from "../../core/tileset.js";
+import { Tileset } from "../../core/components/tilemap/tileset.js";
 import { loadImage } from "../../core/utils/helper.js";
 import { Settings } from "../../settings.js";
 
