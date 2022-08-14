@@ -1,6 +1,7 @@
 export class Vector2 {
     constructor(public x: number, public y: number) {}
-    /**
+
+    /*
      * MATH
      */
     public get length(): number {
