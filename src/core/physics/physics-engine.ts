@@ -5,6 +5,7 @@ import { Vector2 } from "../math/vector2.js";
 import { Rect } from "../utils/rect.js";
 import { MouseInput } from "../input/mouse-input.js";
 import { rayVsRect, dynamicRectVsRect } from "./swept-functions.js";
+import { TupleType } from "typescript";
 
 /**
  * Check collisions between entities with rigidbody - staticbody
@@ -21,12 +22,12 @@ export class PhysicsEngine {
             new Vector2(Settings.TILE_SCALED, Settings.TILE_SCALED)
         ),
     ];
-    private rayOrigin: Vector2 = new Vector2(
-        Settings.WIDTH / 2,
-        Settings.HEIGHT / 2
-    );
+    private collisions: [number, number][];
+    private player: Rect;
 
-    constructor(private entities: Entity[]) {}
+    constructor(private entities: Entity[]) {
+        this.player = this.rects[0];
+    }
 
     private getCollisionBody(entity: Entity): CollisionBody | null {
         for (const component of entity.components) {
@@ -52,33 +53,84 @@ export class PhysicsEngine {
     }
 
     /**
+     * Check collisions
+     */
+    private checkCollisions(ctx: CanvasRenderingContext2D) {
+        for (let i = 1; i < this.rects.length; i++) {
+            const collision = dynamicRectVsRect(
+                ctx,
+                this.player,
+                this.rects[i]
+            );
+            if (collision.collision) {
+                this.collisions.push([i, collision.tHitNear]);
+            }
+        }
+        // Order collisions by contact time
+        this.collisions.sort((a, b): number => a[1] - b[1]);
+    }
+
+    /**
+     * Resolve collisions
+     */
+    private resolveCollisions(ctx: CanvasRenderingContext2D) {
+        for (const collision of this.collisions) {
+            const result = dynamicRectVsRect(
+                ctx,
+                this.player,
+                this.rects[collision[0]]
+            );
+            if (result.collision) {
+                this.player.velocity = Vector2.add(
+                    this.player.velocity,
+                    Vector2.multiplyBy(
+                        Vector2.multiply(
+                            result.contactNormal,
+                            new Vector2(
+                                Math.abs(this.player.velocity.x),
+                                Math.abs(this.player.velocity.y)
+                            )
+                        ),
+                        1 - result.tHitNear
+                    )
+                );
+            }
+        }
+    }
+
+    /**
      * Check collisions between CollisionBody
      */
-    checkCollisions(
+    run(
         // FIXME: JUST A TEST!!
         ctx: CanvasRenderingContext2D
     ) {
         /*
-            TODO: 
-            Implement SWEPT AABB Resolution for RigidBody 
-            (In the game we have more than )
-        */
+                    TODO: 
+                    Implement SWEPT AABB Resolution for RigidBody 
+                    (In the game we have more than )
+                    */
         // FIXME: JUST A TEST!!
-        const player = this.rects[0];
+        this.collisions = new Array<[number, number]>(); // Reset collisions
 
         const mousePos = MouseInput.getMousePos();
-        const rayDirection = Vector2.subtract(mousePos, this.rayOrigin);
+        const rayDirection = Vector2.subtract(mousePos, this.player.position);
 
-        player.velocity = rayDirection;
-        player.position = Vector2.add(
-            player.position,
-            Vector2.multiply(player.velocity.normalized, 3)
+        this.player.velocity = rayDirection;
+
+        this.checkCollisions(ctx);
+        this.resolveCollisions(ctx); // Resolution
+
+        console.log();
+
+        // Update player position
+        this.player.position = Vector2.add(
+            this.player.position,
+            Vector2.multiplyBy(
+                Vector2.multiplyBy(this.player.velocity.normalized, 200),
+                1 / Settings.FPS
+            )
         );
-
-        const collision = rayVsRect(this.rayOrigin, rayDirection, player);
-
-        const rectColor =
-            collision.collision && collision.tHitNear < 1 ? "yellow" : "red";
 
         // DRAW RECTs
         for (let i = 0; i < this.rects.length; i++) {
@@ -89,7 +141,10 @@ export class PhysicsEngine {
         ctx.beginPath();
         ctx.lineWidth = 4;
         ctx.strokeStyle = "yellow";
-        ctx.moveTo(this.rayOrigin.x, this.rayOrigin.y);
+        ctx.moveTo(
+            this.player.position.x + this.player.size.x / 2,
+            this.player.position.y + this.player.size.y / 2
+        );
         ctx.lineTo(mousePos.x, mousePos.y);
         ctx.stroke();
         ctx.closePath();

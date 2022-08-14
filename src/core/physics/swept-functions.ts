@@ -45,13 +45,13 @@ export const rayVsRect = function (
     if (tNear.x > tFar.y || tNear.y > tFar.x) return { collision: false };
 
     const tHitNear = Math.max(tNear.x, tNear.y);
-    const tHitFar = Math.max(tNear.x, tNear.y);
+    const tHitFar = Math.min(tFar.x, tFar.y);
 
     if (tHitFar < 0) return { collision: false };
 
     contactPoint = Vector2.add(
         rayOrigin,
-        Vector2.multiply(rayDirection, tHitNear)
+        Vector2.multiplyBy(rayDirection, tHitNear)
     );
 
     if (tNear.x > tNear.y) {
@@ -73,6 +73,7 @@ export const rayVsRect = function (
  * @returns Collision information
  */
 export const dynamicRectVsRect = function (
+    ctx: CanvasRenderingContext2D,
     dynamicRect: Rect,
     target: Rect
 ): CollisionData {
@@ -82,23 +83,40 @@ export const dynamicRectVsRect = function (
 
     const expandedRect: Rect = new Rect(
         Vector2.subtract(
-            dynamicRect.position,
-            Vector2.divideBy(target.size, 2)
+            target.position,
+            Vector2.divideBy(dynamicRect.size, 2)
         ),
         Vector2.add(target.size, dynamicRect.size)
     );
 
-    const collision = this.rayVsRect(
+    // Draw expanded rect
+    ctx.fillStyle = "rgba(0, 255, 0, 0.3)";
+    ctx.fillRect(
+        expandedRect.position.x,
+        expandedRect.position.y,
+        expandedRect.size.x,
+        expandedRect.size.y
+    );
+
+    const collision = rayVsRect(
         Vector2.add(
             dynamicRect.position,
             Vector2.divideBy(dynamicRect.size, 2)
         ),
-        Vector2.multiply(dynamicRect.velocity, 1 / Settings.FPS),
+        Vector2.multiplyBy(dynamicRect.velocity, 1 / Settings.FPS),
         expandedRect
     );
 
+    if (collision.contactPoint) {
+        // Draw contact point
+        ctx.fillStyle = "rgba(0, 0, 255, 0.7)";
+        ctx.fillRect(collision.contactPoint.x, collision.contactPoint.y, 8, 8);
+    }
+
+    console.log(collision.tHitNear);
+
     if (collision.collision) {
-        if (collision.tHitNear >= 0 && collision.tHitNear < 1) {
+        if (collision.tHitNear < 1 && collision.tHitNear <= 0) {
             return collision;
         }
     }

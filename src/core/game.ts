@@ -30,7 +30,7 @@ export abstract class Game {
         // COLLISION SYSTEM SHOULD BE HERE!!!!
         this.update();
         this.draw();
-        this.physicsEngine.checkCollisions(
+        this.physicsEngine.run(
             // FIXME: JUST A TEST!!!!
             this.ctx
         );

@@ -22,23 +22,36 @@ export class Vector2 {
         return new Vector2(1, 1);
     }
 
-    /**
+    /*
      * DIRECTIONS
+     */
+
+    /**
+     * Vector2(1, 0)
      */
     public static get RIGHT(): Vector2 {
         return new Vector2(1, 0);
     }
 
+    /**
+     * Vector2(-1, 0)
+     */
     public static get LEFT(): Vector2 {
         return new Vector2(-1, 0);
     }
 
+    /**
+     * Vector2(0, 1)
+     */
     public static get UP(): Vector2 {
-        return new Vector2(0, -1);
+        return new Vector2(0, 1);
     }
 
+    /**
+     * Vector2(0, -1)
+     */
     public static get DOWN(): Vector2 {
-        return new Vector2(0, 1);
+        return new Vector2(0, -1);
     }
 
     /**
@@ -74,11 +87,20 @@ export class Vector2 {
     }
 
     /**
+     * Multiply each component of 2 vectors
+     * @returns Vector with each component multiplied
+     */
+
+    public static multiply(a: Vector2, b: Vector2): Vector2 {
+        return new Vector2(a.x * b.x, a.y * b.y);
+    }
+
+    /**
      * Multiply each component of 2 vectors by a number
      * @returns Vector with each component multiplied
      */
 
-    public static multiply(a: Vector2, n: number): Vector2 {
+    public static multiplyBy(a: Vector2, n: number): Vector2 {
         return new Vector2(a.x * n, a.y * n);
     }
 
