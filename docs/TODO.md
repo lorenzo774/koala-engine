@@ -16,8 +16,8 @@
 -   [x] Create Tilemap
 -   [ ] Physics Engine
     -   [x] Create collision detection and resolution system (Swept AABB)
-    -   [ ] Fix collision jitter
-    -   [ ] Fix swept bug (the player sometimes can move inside the collision)
+    -   [x] Fix collision jitter
+    -   [x] Fix swept bug (the player sometimes can move inside the collision)
     -   [ ] Move physics engine on a different loop
     -   [ ] Improve CollisionSystem performance (Tile based checking)
 -   [ ] Create Save/Load system for tilemap

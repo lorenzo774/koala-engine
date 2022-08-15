@@ -6,6 +6,7 @@ import { Rect } from "../utils/rect.js";
 import { MouseInput } from "../input/mouse-input.js";
 import { rayVsRect, dynamicRectVsRect } from "./swept-functions.js";
 import { TupleType } from "typescript";
+import { CollisionData } from "./collision-data.js";
 
 /**
  * Check collisions between entities with rigidbody - staticbody
@@ -116,20 +117,21 @@ export class PhysicsEngine {
         const mousePos = MouseInput.getMousePos();
         const rayDirection = Vector2.subtract(mousePos, this.player.position);
 
-        this.player.velocity = rayDirection;
+        this.player.velocity = Vector2.add(
+            this.player.velocity,
+            Vector2.multiplyBy(
+                Vector2.multiplyBy(rayDirection.normalized, 1 / Settings.FPS),
+                100
+            )
+        );
 
         this.checkCollisions(ctx);
         this.resolveCollisions(ctx); // Resolution
 
-        console.log();
-
         // Update player position
         this.player.position = Vector2.add(
             this.player.position,
-            Vector2.multiplyBy(
-                Vector2.multiplyBy(this.player.velocity.normalized, 200),
-                1 / Settings.FPS
-            )
+            Vector2.multiplyBy(this.player.velocity, 1 / Settings.FPS)
         );
 
         // DRAW RECTs

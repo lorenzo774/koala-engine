@@ -113,10 +113,8 @@ export const dynamicRectVsRect = function (
         ctx.fillRect(collision.contactPoint.x, collision.contactPoint.y, 8, 8);
     }
 
-    console.log(collision.tHitNear);
-
     if (collision.collision) {
-        if (collision.tHitNear < 1 && collision.tHitNear <= 0) {
+        if (collision.tHitNear < 1 && collision.tHitNear >= 0) {
             return collision;
         }
     }
