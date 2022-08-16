@@ -18,11 +18,13 @@
     -   [x] Create collision detection and resolution system (Swept AABB)
     -   [x] Fix collision jitter
     -   [x] Fix swept bug (the player sometimes can move inside the collision)
-    -   [ ] Move physics engine on a different loop
-    -   [ ] Improve CollisionSystem performance (Tile based checking)
+    -   [x] Move physics engine on a different loop
+    -   [x] Adapt PhysicsEngine to bodies logic
+    -   [ ] Improve PhysicsEngine performance (Tile based checking)
+    -   [ ] Create onGround method
 -   [ ] Create Save/Load system for tilemap
 -   [ ] Create sound manager
 -   [ ] Create UI manager
 -   [ ] Create Save/Load system for game (entities, components, textures path, etc...)
--   [ ] Create Game system (every game system has its own behaviors)
 -   [ ] Fix tilemap not loading at first
+-   [ ] Move settings to core, implement settings load system

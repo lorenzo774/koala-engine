@@ -28,8 +28,6 @@ export class AnimatedSpriteRenderer extends SpriteRenderer {
         this.texture = this.curAnimation.spriteSheet.texture;
     }
 
-    start() {}
-
     private findAnimation(name: string): Animation | null {
         return this.animations.find((animation) => animation.name === name);
     }
@@ -43,10 +41,12 @@ export class AnimatedSpriteRenderer extends SpriteRenderer {
         this.timeElapsed = 0;
     }
 
+    public start() {}
+
     /**
      * @param name Name of the animation
      */
-    play(name: string) {
+    public play(name: string) {
         const animationFound = this.findAnimation(name);
         if (!animationFound) return;
         if (
@@ -61,7 +61,7 @@ export class AnimatedSpriteRenderer extends SpriteRenderer {
         this.frameCounter = 0;
     }
 
-    update() {
+    public update() {
         if (this.animations.length === 0) return;
 
         if (!this.curAnimation) return;
@@ -73,7 +73,7 @@ export class AnimatedSpriteRenderer extends SpriteRenderer {
         this.timeElapsed += 1;
     }
 
-    draw(ctx: CanvasRenderingContext2D) {
+    public draw(ctx: CanvasRenderingContext2D) {
         super.draw(ctx);
     }
 }

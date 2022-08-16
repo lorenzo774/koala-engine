@@ -40,13 +40,6 @@ export class Player extends Entity {
         ];
     }
 
-    start() {
-        this.getComponent<Transform>(Transform).position = new Vector2(
-            700,
-            500
-        );
-    }
-
     private loadAnimations(): Animation[] {
         return [
             new Animation(
@@ -74,5 +67,9 @@ export class Player extends Entity {
                 15
             ),
         ];
+    }
+
+    public start() {
+        this.getComponent<Transform>(Transform).position = new Vector2(700, 0);
     }
 }

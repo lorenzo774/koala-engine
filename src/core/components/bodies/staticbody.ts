@@ -14,10 +14,10 @@ export class StaticBody extends CollisionBody {
         super(entity, collisionBox);
     }
 
-    onCollision() {}
+    public onCollision() {}
 
     // String
-    toString = (): string => {
+    public toString = (): string => {
         return `StaticBody of ${this.entity.name}`;
     };
 }

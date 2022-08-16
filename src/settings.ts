@@ -1,17 +1,21 @@
 import { Vector2 } from "./core/math/vector2.js";
 
 export class Settings {
+    // DEV
+    public static DEBUG_MODE: boolean = true;
+    public static DEBUG_COLOR: string = "rgba(155, 0, 0, 0.5)";
+
     // World attributes
-    static get SCREEN_SIZE(): Vector2 {
+    public static get SCREEN_SIZE(): Vector2 {
         return new Vector2(Settings.WIDTH, Settings.HEIGHT);
     }
-    static WIDTH: number;
-    static HEIGHT: number;
-    static TILE_SIZE: number = 20;
-    static SCALE: number = 4;
-    static TILE_SCALED = Settings.TILE_SIZE * Settings.SCALE;
-    static GRAVITY: number = 1.25;
-    static WORLD: number[][] = [
+    public static WIDTH: number;
+    public static HEIGHT: number;
+    public static TILE_SIZE: number = 20;
+    public static SCALE: number = 4;
+    public static TILE_SCALED = Settings.TILE_SIZE * Settings.SCALE;
+    public static GRAVITY: number = 290;
+    public static WORLD: number[][] = [
         [],
         [],
         [],
@@ -25,10 +29,9 @@ export class Settings {
         [-1, -1, 16, 17, 17, 17, 17, 18, -1, -1, -1],
     ];
 
-    // DEV
-    static DEBUG_MODE: boolean = true;
-    static DEBUG_COLOR: string = "rgba(155, 0, 0, 0.5)";
-
     // Rendering
-    static FPS: number = 60;
+    public static FPS: number = 60;
+
+    // Physics
+    public static PHYSICS_CYCLES_PER_SECONDS = 120;
 }

@@ -25,29 +25,34 @@ export class RigidBody extends CollisionBody {
         super(entity, collisionBox);
     }
 
-    onCollision() {}
+    public onCollision() {}
 
-    start() {
+    public start() {
         super.start();
         this.fallingFactor = Settings.GRAVITY * this.mass;
         this.velocity = Vector2.ZERO;
     }
 
-    move() {
+    public update() {
         super.update();
         if (!this.onGround) {
-            this.velocity.y += this.fallingFactor;
+            this.velocity.y +=
+                this.fallingFactor * (1 / Settings.PHYSICS_CYCLES_PER_SECONDS);
         } else if (this.velocity.y > 0) {
             this.velocity.y = 0;
         }
+    }
 
+    public physicsUpdate() {
         // Update position
-        this.transform.position.x += this.velocity.x;
-        this.transform.position.y += this.velocity.y;
+        this.transform.position.x +=
+            this.velocity.x * (1 / Settings.PHYSICS_CYCLES_PER_SECONDS);
+        this.transform.position.y +=
+            this.velocity.y * (1 / Settings.PHYSICS_CYCLES_PER_SECONDS);
     }
 
     // String
-    toString = (): string => {
+    public toString = (): string => {
         return `Rigidbody of ${this.entity.name}`;
     };
 }

@@ -36,7 +36,7 @@ export class Tilemap extends Component {
         );
     }
 
-    draw(ctx: CanvasRenderingContext2D) {
+    public draw(ctx: CanvasRenderingContext2D) {
         for (let i = 0; i < this.map.length; i++) {
             for (let j = 0; j < this.map[i].length; j++) {
                 this.drawTile(ctx, this.map[i][j], new Vector2(j, i));
@@ -44,7 +44,7 @@ export class Tilemap extends Component {
         }
     }
 
-    debugDraw(ctx: CanvasRenderingContext2D) {
+    public debugDraw(ctx: CanvasRenderingContext2D) {
         // Get max length in the map
         let maxLength = 0;
         for (let i = 0; i < this.map.length; i++) {

@@ -26,7 +26,7 @@ export class UIDebug {
         });
     }
 
-    showDebugUI() {
+    public showDebugUI() {
         document.querySelector("#ui-debug").classList.remove("hide");
     }
 

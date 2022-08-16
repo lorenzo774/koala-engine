@@ -1,157 +1,165 @@
 import { Settings } from "../../settings.js";
 import { CollisionBody } from "../components/bodies/collisionbody.js";
+import { RigidBody } from "../components/bodies/rigidbody.js";
+import { StaticBody } from "../components/bodies/staticbody.js";
 import { Entity } from "../entity.js";
 import { Vector2 } from "../math/vector2.js";
 import { Rect } from "../utils/rect.js";
-import { MouseInput } from "../input/mouse-input.js";
-import { rayVsRect, dynamicRectVsRect } from "./swept-functions.js";
-import { TupleType } from "typescript";
 import { CollisionData } from "./collision-data.js";
+import { dynamicRectVsRect } from "./swept-functions.js";
 
 /**
  * Check collisions between entities with rigidbody - staticbody
  */
 export class PhysicsEngine {
-    // FIXME: JUST A TEST!!
-    private rects: Rect[] = [
+    /*
+    * 
+    [
         new Rect(
             Vector2.divideBy(Settings.SCREEN_SIZE, 2),
             new Vector2(Settings.TILE_SCALED, Settings.TILE_SCALED)
-        ),
+            ),
         new Rect(
             new Vector2(Settings.TILE_SCALED * 4, Settings.TILE_SCALED * 4),
             new Vector2(Settings.TILE_SCALED, Settings.TILE_SCALED)
         ),
-    ];
-    private collisions: [number, number][];
-    private player: Rect;
+    ] 
+    */
 
-    constructor(private entities: Entity[]) {
-        this.player = this.rects[0];
-    }
+    /**
+     *  Every RigidBody (index) has its own collisions (staticBody index, contactTime of the collision)
+     */
+    private rigidBodiesCollisions: Map<RigidBody, CollisionData[]>;
 
-    private getCollisionBody(entity: Entity): CollisionBody | null {
+    constructor(private entities: Entity[]) {}
+
+    private getBody(entity: Entity): RigidBody | StaticBody | null {
         for (const component of entity.components) {
-            if (component instanceof CollisionBody) {
-                return component as CollisionBody;
+            if (component instanceof RigidBody) {
+                return component as RigidBody;
+            }
+            if (component instanceof StaticBody) {
+                return component as StaticBody;
             }
         }
         return null;
     }
 
-    private drawRect(
-        ctx: CanvasRenderingContext2D,
-        rect: Rect,
-        color: string = "red"
-    ) {
-        ctx.fillStyle = color;
-        ctx.fillRect(
-            rect.position.x,
-            rect.position.y,
-            rect.size.x,
-            rect.size.y
-        );
-    }
-
     /**
      * Check collisions
      */
-    private checkCollisions(ctx: CanvasRenderingContext2D) {
-        for (let i = 1; i < this.rects.length; i++) {
-            const collision = dynamicRectVsRect(
-                ctx,
-                this.player,
-                this.rects[i]
-            );
-            if (collision.collision) {
-                this.collisions.push([i, collision.tHitNear]);
+    private checkCollisions() {
+        for (const entity of this.entities) {
+            const rigidbody = this.getBody(entity);
+            if (!rigidbody) continue;
+            if (rigidbody instanceof StaticBody) continue;
+
+            const rigidBodyCollisions: CollisionData[] =
+                new Array<CollisionData>();
+
+            // The entity has a rigidbody
+            for (const otherEntity of this.entities) {
+                if (otherEntity.name === entity.name) continue;
+                const staticbody = this.getBody(otherEntity);
+                if (!staticbody) continue;
+                if (staticbody instanceof RigidBody) continue;
+
+                // The other entity has a staticbody, the 2 objects can collide
+                const collision = dynamicRectVsRect(
+                    new Rect(
+                        rigidbody.position,
+                        rigidbody.collisionBox.size,
+                        rigidbody.velocity
+                    ),
+                    new Rect(staticbody.position, staticbody.collisionBox.size)
+                );
+                if (!collision.collision) continue;
+
+                rigidBodyCollisions.push(collision);
             }
+            // Order collisions by contact time
+            this.rigidBodiesCollisions.set(
+                rigidbody,
+                rigidBodyCollisions.sort(
+                    (a, b): number => a.tHitNear - b.tHitNear
+                )
+            );
         }
-        // Order collisions by contact time
-        this.collisions.sort((a, b): number => a[1] - b[1]);
     }
 
     /**
-     * Resolve collisions
+     * Resolve collisions for every rigidBody
      */
-    private resolveCollisions(ctx: CanvasRenderingContext2D) {
-        for (const collision of this.collisions) {
-            const result = dynamicRectVsRect(
-                ctx,
-                this.player,
-                this.rects[collision[0]]
-            );
-            if (result.collision) {
-                this.player.velocity = Vector2.add(
-                    this.player.velocity,
+    private resolveCollisions() {
+        for (const [
+            rigidBody,
+            collisions,
+        ] of this.rigidBodiesCollisions.entries()) {
+            // Resolve collision for the rigidbody
+            for (const collision of collisions) {
+                rigidBody.velocity = Vector2.add(
+                    rigidBody.velocity,
                     Vector2.multiplyBy(
                         Vector2.multiply(
-                            result.contactNormal,
+                            collision.contactNormal,
                             new Vector2(
-                                Math.abs(this.player.velocity.x),
-                                Math.abs(this.player.velocity.y)
+                                Math.abs(rigidBody.velocity.x),
+                                Math.abs(rigidBody.velocity.y)
                             )
                         ),
-                        1 - result.tHitNear
+                        1 - collision.tHitNear
                     )
                 );
             }
+            // const result = dynamicRectVsRect(
+            //     this.rects[0],
+            //     this.rects[collision[0]]
+            // );
+            // if (result.collision) {
+            //     this.rects[0].velocity = Vector2.add(
+            //         this.rects[0].velocity,
+            //         Vector2.multiplyBy(
+            //             Vector2.multiply(
+            //                 result.contactNormal,
+            //                 new Vector2(
+            //                     Math.abs(this.rects[0].velocity.x),
+            //                     Math.abs(this.rects[0].velocity.y)
+            //                 )
+            //             ),
+            //             1 - result.tHitNear
+            //         )
+            //     );
+            // }
         }
     }
 
     /**
      * Check collisions between CollisionBody
      */
-    run(
-        // FIXME: JUST A TEST!!
-        ctx: CanvasRenderingContext2D
-    ) {
+    private run() {
         /*
-                    TODO: 
-                    Implement SWEPT AABB Resolution for RigidBody 
-                    (In the game we have more than )
-                    */
-        // FIXME: JUST A TEST!!
-        this.collisions = new Array<[number, number]>(); // Reset collisions
+            TODO: 
+            Implement SWEPT AABB Resolution for RigidBody 
+            (In the game we have more than )
+            */
+        this.rigidBodiesCollisions = new Map<RigidBody, CollisionData[]>(); // Reset collisions
 
-        const mousePos = MouseInput.getMousePos();
-        const rayDirection = Vector2.subtract(mousePos, this.player.position);
+        this.entities.forEach((entity) => entity.update()); // Normal update
+        this.checkCollisions();
+        this.resolveCollisions(); // Resolution
+        // Update position for dyanmic objects
+        this.entities.forEach((entity) => {
+            const rigidBody = entity.getComponent<RigidBody>(RigidBody);
+            if (rigidBody) {
+                rigidBody.physicsUpdate();
+            }
+        });
+    }
 
-        this.player.velocity = Vector2.add(
-            this.player.velocity,
-            Vector2.multiplyBy(
-                Vector2.multiplyBy(rayDirection.normalized, 1 / Settings.FPS),
-                100
-            )
+    public init() {
+        setInterval(
+            this.run.bind(this),
+            1 / Settings.PHYSICS_CYCLES_PER_SECONDS
         );
-
-        this.checkCollisions(ctx);
-        this.resolveCollisions(ctx); // Resolution
-
-        // Update player position
-        this.player.position = Vector2.add(
-            this.player.position,
-            Vector2.multiplyBy(this.player.velocity, 1 / Settings.FPS)
-        );
-
-        // DRAW RECTs
-        for (let i = 0; i < this.rects.length; i++) {
-            this.drawRect(ctx, this.rects[i]);
-        }
-
-        // DRAW RAY
-        ctx.beginPath();
-        ctx.lineWidth = 4;
-        ctx.strokeStyle = "yellow";
-        ctx.moveTo(
-            this.player.position.x + this.player.size.x / 2,
-            this.player.position.y + this.player.size.y / 2
-        );
-        ctx.lineTo(mousePos.x, mousePos.y);
-        ctx.stroke();
-        ctx.closePath();
-
-        // Reset line width
-        ctx.lineWidth = 1;
     }
 }

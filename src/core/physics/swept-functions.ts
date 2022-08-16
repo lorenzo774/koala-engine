@@ -73,7 +73,6 @@ export const rayVsRect = function (
  * @returns Collision information
  */
 export const dynamicRectVsRect = function (
-    ctx: CanvasRenderingContext2D,
     dynamicRect: Rect,
     target: Rect
 ): CollisionData {
@@ -89,29 +88,17 @@ export const dynamicRectVsRect = function (
         Vector2.add(target.size, dynamicRect.size)
     );
 
-    // Draw expanded rect
-    ctx.fillStyle = "rgba(0, 255, 0, 0.3)";
-    ctx.fillRect(
-        expandedRect.position.x,
-        expandedRect.position.y,
-        expandedRect.size.x,
-        expandedRect.size.y
-    );
-
     const collision = rayVsRect(
         Vector2.add(
             dynamicRect.position,
             Vector2.divideBy(dynamicRect.size, 2)
         ),
-        Vector2.multiplyBy(dynamicRect.velocity, 1 / Settings.FPS),
+        Vector2.multiplyBy(
+            dynamicRect.velocity,
+            1 / Settings.PHYSICS_CYCLES_PER_SECONDS
+        ),
         expandedRect
     );
-
-    if (collision.contactPoint) {
-        // Draw contact point
-        ctx.fillStyle = "rgba(0, 0, 255, 0.7)";
-        ctx.fillRect(collision.contactPoint.x, collision.contactPoint.y, 8, 8);
-    }
 
     if (collision.collision) {
         if (collision.tHitNear < 1 && collision.tHitNear >= 0) {

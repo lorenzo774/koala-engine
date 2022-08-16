@@ -5,9 +5,9 @@ import { AnimatedSpriteRenderer } from "../../core/components/sprite/animated-sp
 import { RigidBody } from "../../core/components/bodies/rigidbody.js";
 
 export class PlayerMovement extends Component {
-    private speed: number = 15;
+    private speed: number = 500;
     private canJump: boolean = true;
-    private jumpingSpeed: number = 30;
+    private jumpingSpeed: number = 500;
 
     private spriteRenderer: AnimatedSpriteRenderer;
     private rigidBody: RigidBody;
@@ -15,17 +15,16 @@ export class PlayerMovement extends Component {
     private async jump() {
         this.rigidBody.velocity.y = -this.jumpingSpeed;
         this.spriteRenderer.play("jump");
-        this.canJump = false;
     }
 
-    start() {
+    public start() {
         this.spriteRenderer = this.entity.getComponent<AnimatedSpriteRenderer>(
             AnimatedSpriteRenderer
         );
         this.rigidBody = this.entity.getComponent<RigidBody>(RigidBody);
     }
 
-    update() {
+    public update() {
         this.rigidBody.velocity.x = 0;
 
         if (Keyboard.isPressed(Key.D)) {
@@ -35,10 +34,6 @@ export class PlayerMovement extends Component {
         if (Keyboard.isPressed(Key.A)) {
             this.rigidBody.velocity.x = -1 * this.speed;
             this.spriteRenderer.flipH = false;
-        }
-
-        if (this.rigidBody.onGround) {
-            this.canJump = true;
         }
 
         if (
@@ -52,10 +47,8 @@ export class PlayerMovement extends Component {
             this.spriteRenderer.play("run");
         }
 
-        if (Keyboard.justPressed(Key.SPACE) && this.canJump) {
+        if (Keyboard.justPressed(Key.SPACE)) {
             this.jump();
         }
-
-        this.rigidBody.move();
     }
 }

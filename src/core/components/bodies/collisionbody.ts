@@ -20,7 +20,7 @@ export abstract class CollisionBody extends Component {
         this.transform = entity.getComponent<Transform>(Transform);
     }
 
-    start() {
+    public start() {
         this.position = Vector2.ZERO;
         this.position.x = this.transform.position.x;
         this.position.y = this.transform.position.y;
@@ -29,16 +29,16 @@ export abstract class CollisionBody extends Component {
     /**
      * Called when the body is in collision with another
      */
-    onCollision() {}
+    public onCollision() {}
 
-    update() {
+    public update() {
         this.position.x =
             this.transform.position.x + this.collisionBox.offset.x;
         this.position.y =
             this.transform.position.y + this.collisionBox.offset.y;
     }
 
-    debugDraw(ctx: CanvasRenderingContext2D) {
+    public debugDraw(ctx: CanvasRenderingContext2D) {
         ctx.fillStyle = Settings.DEBUG_COLOR;
         ctx.fillRect(
             this.transform.position.x + this.collisionBox.offset.x,

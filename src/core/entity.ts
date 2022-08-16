@@ -22,39 +22,38 @@ export abstract class Entity {
     private startComponents() {
         this._components.forEach((component) => component.start());
     }
-
-    /**
-     * On start or reload
-     */
-    start() {}
-
     /**
      * For initialization
      */
     protected init() {}
+
+    /**
+     * On start or reload
+     */
+    public start() {}
 
     private addComponent(newComponent: Component): Component {
         this._components.push(newComponent);
         return newComponent;
     }
 
-    getComponent<T extends Component>(component: typeof Component): T {
+    public getComponent<T extends Component>(component: typeof Component): T {
         return this._components.find((c) => c instanceof component) as T;
     }
 
-    draw(ctx: CanvasRenderingContext2D) {
+    public draw(ctx: CanvasRenderingContext2D) {
         this._components.forEach((component) => {
             component.draw(ctx);
         });
     }
 
-    debugDraw(ctx: CanvasRenderingContext2D): void {
+    public debugDraw(ctx: CanvasRenderingContext2D): void {
         this._components.forEach((component) => {
             component.debugDraw(ctx);
         });
     }
 
-    update() {
+    public update() {
         this._components.forEach((component) => {
             component.update();
         });

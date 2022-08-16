@@ -1,7 +1,7 @@
 import { SpriteSheet } from "./sprite-sheet.js";
 
 export class Animation {
-    speedFactor: number;
+    public speedFactor: number;
 
     constructor(
         public spriteSheet: SpriteSheet,

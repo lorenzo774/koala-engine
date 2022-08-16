@@ -31,10 +31,6 @@ export class SpriteRenderer extends Component {
         this.transform = entity.getComponent<Transform>(Transform);
     }
 
-    start() {}
-
-    update() {}
-
     private drawHorizontalFlip(ctx: CanvasRenderingContext2D) {
         ctx.translate(this.transform.position.x + this.size.x, 0);
         ctx.scale(-1, 1);
@@ -52,7 +48,11 @@ export class SpriteRenderer extends Component {
         ctx.setTransform(1, 0, 0, 1, 0, 0);
     }
 
-    draw(ctx: CanvasRenderingContext2D) {
+    public start() {}
+
+    public update() {}
+
+    public draw(ctx: CanvasRenderingContext2D) {
         if (!this.texture) return;
 
         if (this.flipH) {
