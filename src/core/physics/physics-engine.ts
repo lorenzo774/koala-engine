@@ -12,22 +12,8 @@ import { dynamicRectVsRect } from "./swept-functions.js";
  * Check collisions between entities with rigidbody - staticbody
  */
 export class PhysicsEngine {
-    /*
-    * 
-    [
-        new Rect(
-            Vector2.divideBy(Settings.SCREEN_SIZE, 2),
-            new Vector2(Settings.TILE_SCALED, Settings.TILE_SCALED)
-            ),
-        new Rect(
-            new Vector2(Settings.TILE_SCALED * 4, Settings.TILE_SCALED * 4),
-            new Vector2(Settings.TILE_SCALED, Settings.TILE_SCALED)
-        ),
-    ] 
-    */
-
     /**
-     *  Every RigidBody (index) has its own collisions (staticBody index, contactTime of the collision)
+     *  Every RigidBody has its own collisions (staticBody, contactTime of the collision)
      */
     private rigidBodiesCollisions: Map<RigidBody, CollisionData[]>;
 
@@ -111,25 +97,6 @@ export class PhysicsEngine {
                     )
                 );
             }
-            // const result = dynamicRectVsRect(
-            //     this.rects[0],
-            //     this.rects[collision[0]]
-            // );
-            // if (result.collision) {
-            //     this.rects[0].velocity = Vector2.add(
-            //         this.rects[0].velocity,
-            //         Vector2.multiplyBy(
-            //             Vector2.multiply(
-            //                 result.contactNormal,
-            //                 new Vector2(
-            //                     Math.abs(this.rects[0].velocity.x),
-            //                     Math.abs(this.rects[0].velocity.y)
-            //                 )
-            //             ),
-            //             1 - result.tHitNear
-            //         )
-            //     );
-            // }
         }
     }
 
@@ -137,11 +104,6 @@ export class PhysicsEngine {
      * Check collisions between CollisionBody
      */
     private run() {
-        /*
-            TODO: 
-            Implement SWEPT AABB Resolution for RigidBody 
-            (In the game we have more than )
-            */
         this.rigidBodiesCollisions = new Map<RigidBody, CollisionData[]>(); // Reset collisions
 
         this.entities.forEach((entity) => entity.update()); // Normal update
