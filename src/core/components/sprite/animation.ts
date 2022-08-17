@@ -6,7 +6,8 @@ export class Animation {
     constructor(
         public spriteSheet: SpriteSheet,
         public name: string,
-        public speed: number = 1
+        public speed: number = 1,
+        public loop: boolean = false
     ) {
         this.speedFactor = 100 / speed;
     }

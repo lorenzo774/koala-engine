@@ -48,7 +48,8 @@ export class Player extends Entity {
                     2
                 ),
                 "idle",
-                5
+                3,
+                true
             ),
             new Animation(
                 new SpriteSheet(
@@ -56,7 +57,8 @@ export class Player extends Entity {
                     4
                 ),
                 "run",
-                20
+                3,
+                true
             ),
             new Animation(
                 new SpriteSheet(
@@ -64,7 +66,7 @@ export class Player extends Entity {
                     9
                 ),
                 "jump",
-                15
+                2
             ),
         ];
     }

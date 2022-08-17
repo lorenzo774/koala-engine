@@ -34,8 +34,9 @@ export class AnimatedSpriteRenderer extends SpriteRenderer {
 
     private changeFrame() {
         this.frameCounter += 1;
-        if (this.frameCounter >= this.curAnimation.spriteSheet.frames) {
-            this.frameCounter = 0;
+        if (this.frameCounter > this.curAnimation.spriteSheet.frames - 1) {
+            if (this.curAnimation.loop) this.frameCounter = 0;
+            else return;
         }
         this.imgRect.position.x = this.imgRect.size.x * this.frameCounter;
         this.timeElapsed = 0;

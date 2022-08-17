@@ -17,7 +17,7 @@ export class Box extends Entity {
                 this,
                 new CollisionBox(
                     Vector2.ZERO,
-                    new Vector2(Settings.TILE_SCALED * 4, Settings.TILE_SCALED)
+                    new Vector2(Settings.TILE_SCALED * 10, Settings.TILE_SCALED)
                 )
             ),
         ];
