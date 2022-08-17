@@ -1,3 +1,4 @@
+import { AudioManager } from "./core/audio/audio-manager.js";
 import { Game } from "./core/game.js";
 import { Background } from "./objects/background.js";
 import { Box } from "./objects/box.js";
@@ -13,6 +14,8 @@ export class Platform extends Game {
             new Player(),
             new Box(),
             new RigidBox(),
-        ];
+        ];  
+        AudioManager.load("./assets/audio/jump.wav", "jump", false, 1);
+        AudioManager.load("./assets/audio/walk.wav", "walk",  true, 1, 2.3);
     }
 }

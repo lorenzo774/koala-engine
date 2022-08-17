@@ -3,18 +3,30 @@ import { Keyboard } from "../../core/input/keyboard-input.js";
 import { Key } from "../../core/input/key.js";
 import { AnimatedSpriteRenderer } from "../../core/components/sprite/animated-sprite-renderer.js";
 import { RigidBody } from "../../core/components/bodies/rigidbody.js";
+import { AudioManager } from "../../core/audio/audio-manager.js";
 
 export class PlayerMovement extends Component {
     private speed: number = 500;
-    private canJump: boolean = true;
     private jumpingSpeed: number = 500;
 
     private spriteRenderer: AnimatedSpriteRenderer;
     private rigidBody: RigidBody;
 
-    private async jump() {
+    private jump() {
         this.rigidBody.velocity.y = -this.jumpingSpeed;
         this.spriteRenderer.play("jump");
+        AudioManager.play("jump");
+        AudioManager.pause("walk");
+    }
+    
+    private walk() {
+        this.spriteRenderer.play("run");
+        AudioManager.play("walk");
+    }
+
+    private idle() {
+        this.spriteRenderer.play("idle");
+        AudioManager.pause("walk");
     }
 
     public start() {
@@ -36,17 +48,17 @@ export class PlayerMovement extends Component {
             this.spriteRenderer.flipH = false;
         }
 
+        // "States"
         if (
             this.rigidBody.velocity.x === 0 &&
             this.rigidBody.velocity.y === 0 &&
             this.rigidBody.onGround
         ) {
-            this.spriteRenderer.play("idle");
+            this.idle();
         }
         if (this.rigidBody.velocity.x !== 0 && this.rigidBody.onGround) {
-            this.spriteRenderer.play("run");
+            this.walk();
         }
-
         if (Keyboard.justPressed(Key.SPACE) && this.rigidBody.onGround) {
             this.jump();
         }

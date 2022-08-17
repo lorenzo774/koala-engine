@@ -16,7 +16,7 @@
     -   [x] Improve Jump in Player movement
     -   [x] Add fixed FPS
     -   [x] Create Tilemap
-    -   [ ] Create sound manager
+    -   [x] Create sound manager
     -   [ ] Create UI manager
     -   [ ] Fix tilemap not loading at first
     -   [ ] Move settings to core, implement settings load system
