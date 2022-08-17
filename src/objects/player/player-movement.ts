@@ -43,11 +43,8 @@ export class PlayerMovement extends Component {
         ) {
             this.spriteRenderer.play("idle");
         }
-        if (this.rigidBody.velocity.x !== 0 && this.rigidBody.onGround) {
-            this.spriteRenderer.play("run");
-        }
 
-        if (Keyboard.justPressed(Key.SPACE)) {
+        if (Keyboard.justPressed(Key.SPACE) && this.rigidBody.onGround) {
             this.jump();
         }
     }

@@ -1,5 +1,4 @@
 import { Settings } from "../../settings.js";
-import { CollisionBody } from "../components/bodies/collisionbody.js";
 import { RigidBody } from "../components/bodies/rigidbody.js";
 import { StaticBody } from "../components/bodies/staticbody.js";
 import { Entity } from "../entity.js";
@@ -59,8 +58,12 @@ export class PhysicsEngine {
                     ),
                     new Rect(staticbody.position, staticbody.collisionBox.size)
                 );
-                if (!collision.collision) continue;
+                if (!collision.collision) {
+                    rigidbody.lastContactNormal = Vector2.ZERO; // No contact normal
+                    continue;
+                }
 
+                rigidbody.lastContactNormal = collision.contactNormal; // onGround if y is -1
                 rigidBodyCollisions.push(collision);
             }
             // Order collisions by contact time

@@ -10,9 +10,11 @@ import { CollisionBody } from "./collisionbody.js";
 export class RigidBody extends CollisionBody {
     private fallingFactor: number;
     public velocity: Vector2 = Vector2.ZERO;
+    public lastContactNormal: Vector2 = Vector2.ZERO;
 
-    public onGround: boolean = false;
-    public leftRightCollision: boolean = false;
+    public get onGround(): boolean {
+        return this.lastContactNormal.y === -1;
+    }
 
     constructor(
         entity: Entity,
@@ -35,12 +37,8 @@ export class RigidBody extends CollisionBody {
 
     public update() {
         super.update();
-        if (!this.onGround) {
-            this.velocity.y +=
-                this.fallingFactor * (1 / Settings.PHYSICS_CYCLES_PER_SECONDS);
-        } else if (this.velocity.y > 0) {
-            this.velocity.y = 0;
-        }
+        this.velocity.y +=
+            this.fallingFactor * (1 / Settings.PHYSICS_CYCLES_PER_SECONDS);
     }
 
     public physicsUpdate() {

@@ -20,8 +20,9 @@
     -   [x] Fix swept bug (the player sometimes can move inside the collision)
     -   [x] Move physics engine on a different loop
     -   [x] Adapt PhysicsEngine to bodies logic
+    -   [x] Add onGround method
     -   [ ] Improve PhysicsEngine performance (Tile based checking)
-    -   [ ] Create onGround method
+-   [ ] Create Collision system for Tilemap
 -   [ ] Create Save/Load system for tilemap
 -   [ ] Create sound manager
 -   [ ] Create UI manager
