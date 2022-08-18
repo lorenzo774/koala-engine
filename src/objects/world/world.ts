@@ -10,17 +10,23 @@ export class World extends Entity {
         super("world");
     }
 
-    protected init() {
+    private loadTilemap(texture: HTMLImageElement) {
         this.components = [
             new Tilemap(
                 this,
                 new Tileset(
-                    loadImage("./assets/BGandTiles/Grass.png"),
+                    texture,
                     new Vector2(16, 16),
                     new Vector2(Settings.TILE_SCALED, Settings.TILE_SCALED)
                 ),
                 Settings.WORLD
             ),
         ];
+        texture.removeEventListener("load", this.loadTilemap.bind(this));
+    }
+
+    protected init() {
+        const img = loadImage("./assets/BGandTiles/Grass.png");
+        img.addEventListener("load", this.loadTilemap.bind(this, img));
     }
 }

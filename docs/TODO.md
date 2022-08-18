@@ -18,7 +18,7 @@
     -   [x] Create Tilemap
     -   [x] Create sound manager
     -   [ ] Create UI manager
-    -   [ ] Fix tilemap not loading at first
+    -   [x] Fix tilemap not loading at first
     -   [ ] Move settings to core, implement settings load system
 
 -   [ ] Physics
