@@ -5,9 +5,13 @@ import { ImageRect } from "./image-rect.js";
 import { SpriteRenderer } from "./sprite-renderer.js";
 
 export class AnimatedSpriteRenderer extends SpriteRenderer {
+    /**
+     * Save frameCounter of every animation
+     */
+    private animationsFrameCounter: Map<string, number>;
     private curAnimation: Animation;
-    private frameCounter: number;
     private timeElapsed: number;
+    private isPlaying: boolean;
 
     /**
      * SpriteRenderer constructor with animations
@@ -20,29 +24,60 @@ export class AnimatedSpriteRenderer extends SpriteRenderer {
         public animations: Animation[] = []
     ) {
         super(entity, null, imgRect, size, offset);
-        this.frameCounter = 0;
         this.timeElapsed = 0;
 
         if (animations.length === 0) return;
-        this.curAnimation = animations[0];
-        this.texture = this.curAnimation.spriteSheet.texture;
+
+        this.setAnimationsFrameCounter();
+        this.isPlaying = true;
+        this.play(animations[0].name);
+        this.stop();
+    }
+
+    private setAnimationsFrameCounter() {
+        this.animationsFrameCounter = new Map<string, number>(
+            this.animations.map((animation: Animation) => {
+                return [animation.name, 0];
+            })
+        );
     }
 
     private findAnimation(name: string): Animation | null {
         return this.animations.find((animation) => animation.name === name);
     }
 
-    private changeFrame() {
-        this.frameCounter += 1;
-        if (this.frameCounter > this.curAnimation.spriteSheet.frames - 1) {
-            if (this.curAnimation.loop) this.frameCounter = 0;
-            else return;
-        }
-        this.imgRect.position.x = this.imgRect.size.x * this.frameCounter;
-        this.timeElapsed = 0;
+    /*
+        Frame counter methods
+    */
+
+    private getFrameCounter(): number {
+        return this.animationsFrameCounter[this.curAnimation.name];
     }
 
-    public start() {}
+    private updateFrameCounter(value: number) {
+        this.animationsFrameCounter[this.curAnimation.name] += value;
+    }
+
+    private setFrameCounter(newValue: number) {
+        this.animationsFrameCounter[this.curAnimation.name] = newValue;
+    }
+
+    /*
+        Animations functionality
+    */
+
+    private changeFrame() {
+        this.updateFrameCounter(this.isPlaying ? 1 : 0);
+        if (this.getFrameCounter() > this.curAnimation.spriteSheet.frames - 1) {
+            if (this.curAnimation.loop) this.setFrameCounter(0);
+            else {
+                this.setFrameCounter(0);
+                return;
+            }
+        }
+        this.imgRect.position.x = this.imgRect.size.x * this.getFrameCounter();
+        this.timeElapsed = 0;
+    }
 
     /**
      * @param name Name of the animation
@@ -59,22 +94,38 @@ export class AnimatedSpriteRenderer extends SpriteRenderer {
         this.imgRect.position.x = 0;
         this.texture = this.curAnimation.spriteSheet.texture;
         this.timeElapsed = 0;
-        this.frameCounter = 0;
+        this.isPlaying = true;
+        this.setFrameCounter(0);
+    }
+
+    /**
+     * Stop current animation
+     */
+    public stop() {
+        if (!this.curAnimation) return;
+
+        this.timeElapsed = 0;
+        this.setFrameCounter(0);
+        this.isPlaying = false;
+    }
+
+    /**
+     * pause current animation
+     */
+    public pause() {
+        if (!this.curAnimation) return;
+
+        this.timeElapsed = 0;
+        this.isPlaying = false;
     }
 
     public update() {
         if (this.animations.length === 0) return;
-
         if (!this.curAnimation) return;
 
         if (this.timeElapsed > this.curAnimation.speedFactor) {
             this.changeFrame();
         }
-
         this.timeElapsed += 1;
-    }
-
-    public draw(ctx: CanvasRenderingContext2D) {
-        super.draw(ctx);
     }
 }
