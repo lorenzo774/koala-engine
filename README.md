@@ -13,7 +13,7 @@ Game engine made with HTML5 + Typescript.
 
 ```
 git clone https://github.com/<your-github-username>/game-engine
-cd platform
+cd game-engine
 ```
 
 2. Install npm dependencies
