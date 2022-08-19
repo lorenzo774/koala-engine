@@ -18,7 +18,8 @@
     -   [x] Create Tilemap
     -   [x] Create sound manager
     -   [x] Fix tilemap not loading at first
-    -   [ ] Create camera component
+    -   [x] Create camera component
+    -   [ ] Move tilemap debug grid with Camera
     -   [ ] Create UI manager
     -   [ ] Move settings to core, implement settings load system
 
@@ -30,6 +31,7 @@
     -   [x] Move physics engine on a different loop
     -   [x] Adapt PhysicsEngine to bodies logic
     -   [x] Add onGround method
+    -   [ ] Fix physics to work with Camera system
     -   [ ] Improve PhysicsEngine performance (Tile based checking)
     -   [ ] Create Collision system for Tilemap
 

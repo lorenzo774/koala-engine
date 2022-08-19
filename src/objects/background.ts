@@ -16,6 +16,7 @@ export class Background extends Entity {
             new SpriteRenderer(
                 this,
                 loadImage("../assets/BGandTiles/BG-export.png"),
+                true,
                 new ImageRect(Vector2.ZERO, new Vector2(400, 304)),
                 Settings.SCREEN_SIZE
             ),

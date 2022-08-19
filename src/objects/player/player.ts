@@ -10,6 +10,7 @@ import { PlayerMovement } from "./player-movement.js";
 import { Transform } from "../../core/components/transform.js";
 import { RigidBody } from "../../core/components/bodies/rigidbody.js";
 import { CollisionBox } from "../../core/components/bodies/collision-box.js";
+import { Camera } from "../../core/components/camera.js";
 
 export class Player extends Entity {
     constructor() {
@@ -21,7 +22,12 @@ export class Player extends Entity {
             Settings.TILE_SCALED * 1.9,
             Settings.TILE_SCALED * 2.3,
         ];
+        const camera = new Camera(
+            this,
+            this.getComponent<Transform>(Transform)
+        );
         this.components = [
+            camera,
             new AnimatedSpriteRenderer(
                 this,
                 new ImageRect(Vector2.ZERO, new Vector2(19, 23)),
@@ -38,6 +44,7 @@ export class Player extends Entity {
                 )
             ),
         ];
+        Camera.setMainCamera(camera);
     }
 
     private loadAnimations(): Animation[] {

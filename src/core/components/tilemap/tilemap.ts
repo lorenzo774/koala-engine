@@ -2,6 +2,7 @@ import { Settings } from "../../../settings.js";
 import { Component } from "../../component.js";
 import { Entity } from "../../entity.js";
 import { Vector2 } from "../../math/vector2.js";
+import { Camera } from "../camera.js";
 import { Tileset } from "./tileset.js";
 
 export class Tilemap extends Component {
@@ -45,8 +46,8 @@ export class Tilemap extends Component {
             this.tileset.tileSize.y * rectPos.y,
             this.tileset.tileSize.x,
             this.tileset.tileSize.y,
-            this.tileset.worldSize.x * tilePos.x,
-            this.tileset.worldSize.y * tilePos.y,
+            this.tileset.worldSize.x * tilePos.x - Camera.main.position.x,
+            this.tileset.worldSize.y * tilePos.y - Camera.main.position.y,
             this.tileset.worldSize.x,
             this.tileset.worldSize.y
         );

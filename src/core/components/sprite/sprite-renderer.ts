@@ -3,6 +3,7 @@ import { Component } from "../../component.js";
 import { Entity } from "../../entity.js";
 import { ImageRect } from "./image-rect.js";
 import { Transform } from "../transform.js";
+import { Camera } from "../camera.js";
 
 export class SpriteRenderer extends Component {
     private transform: Transform;
@@ -14,6 +15,10 @@ export class SpriteRenderer extends Component {
     constructor(
         entity: Entity,
         public texture: HTMLImageElement | null = null,
+        /**
+         * Sprite position fixed on the screen
+         */
+        public fixedPosition: boolean = false,
         /**
          * Rendering a rect inside image source
          */
@@ -64,8 +69,12 @@ export class SpriteRenderer extends Component {
                 this.imgRect.position.y,
                 this.imgRect.size.x,
                 this.imgRect.size.y,
-                this.transform.position.x + this.offset.x,
-                this.transform.position.y + this.offset.y,
+                this.transform.position.x +
+                    this.offset.x -
+                    (this.fixedPosition ? 0 : Camera.main.position.x),
+                this.transform.position.y -
+                    this.offset.y -
+                    (this.fixedPosition ? 0 : Camera.main.position.y),
                 this.size.x,
                 this.size.y
             );

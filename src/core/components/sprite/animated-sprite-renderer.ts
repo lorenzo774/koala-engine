@@ -23,7 +23,7 @@ export class AnimatedSpriteRenderer extends SpriteRenderer {
         offset: Vector2 = Vector2.ZERO,
         public animations: Animation[] = []
     ) {
-        super(entity, null, imgRect, size, offset);
+        super(entity, null, false, imgRect, size, offset);
         this.timeElapsed = 0;
 
         if (animations.length === 0) return;
