@@ -26,7 +26,7 @@ export class World extends Entity {
     }
 
     protected init() {
-        const img = loadImage("./assets/BGandTiles/Grass.png");
+        const img = loadImage("../assets/BGandTiles/Grass.png");
         img.addEventListener("load", this.loadTilemap.bind(this, img));
     }
 }

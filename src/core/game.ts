@@ -4,12 +4,23 @@ import { PhysicsEngine } from "./physics/physics-engine.js";
 import { UIDebug } from "./display/ui-debug.js";
 import { Renderer } from "./display/renderer.js";
 
-export abstract class Game {
+export class Game {
     private renderer: Renderer;
     private physicsEngine: PhysicsEngine;
-
     protected entities: Entity[] = [];
 
+    private runLoop() {
+        this.renderer.run();
+    }
+
+    /**
+     *  Virtual method, this method will be called on children to initialize entities
+     */
+    protected init() {}
+
+    /**
+     * Start game
+     */
     constructor(ctx: CanvasRenderingContext2D) {
         this.init();
         this.renderer = new Renderer(ctx, this.entities);
@@ -23,16 +34,16 @@ export abstract class Game {
         this.runLoop();
     }
 
-    private runLoop() {
-        this.renderer.run();
+    public reload() {
+        this.entities.forEach((entity) => entity.start());
     }
 
     /**
-     *  Virtual method, this method will be called on children to initialize entities
+     * Find an entity by its name
      */
-    protected init() {}
-
-    public reload() {
-        this.entities.forEach((entity) => entity.start());
+    public findEntity<T extends Entity>(name: string): T {
+        return this.entities.find(
+            (entity: Entity) => entity.name === name
+        ) as T;
     }
 }

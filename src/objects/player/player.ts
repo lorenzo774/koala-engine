@@ -44,7 +44,7 @@ export class Player extends Entity {
         return [
             new Animation(
                 new SpriteSheet(
-                    loadImage("./assets/Player/Shroom-Sheet-Idle.png"),
+                    loadImage("../assets/Player/Shroom-Sheet-Idle.png"),
                     2
                 ),
                 "idle",
@@ -53,7 +53,7 @@ export class Player extends Entity {
             ),
             new Animation(
                 new SpriteSheet(
-                    loadImage("./assets/Player/Shroom-Sheet-Run.png"),
+                    loadImage("../assets/Player/Shroom-Sheet-Run.png"),
                     4
                 ),
                 "run",
@@ -62,7 +62,7 @@ export class Player extends Entity {
             ),
             new Animation(
                 new SpriteSheet(
-                    loadImage("./assets/Player/Shroom-Sheet-Jump.png"),
+                    loadImage("../assets/Player/Shroom-Sheet-Jump.png"),
                     9
                 ),
                 "jump",

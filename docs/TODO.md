@@ -1,6 +1,6 @@
 # TODO
 
--   [ ] Core
+-   Core
 
     -   [x] Create a way to get a component from the entity inside a component
     -   [x] Create SpriteRenderer component
@@ -17,11 +17,12 @@
     -   [x] Add fixed FPS
     -   [x] Create Tilemap
     -   [x] Create sound manager
-    -   [ ] Create UI manager
     -   [x] Fix tilemap not loading at first
+    -   [ ] Create camera component
+    -   [ ] Create UI manager
     -   [ ] Move settings to core, implement settings load system
 
--   [ ] Physics
+-   Physics
 
     -   [x] Create collision detection and resolution system (Swept AABB)
     -   [x] Fix collision jitter
@@ -32,10 +33,17 @@
     -   [ ] Improve PhysicsEngine performance (Tile based checking)
     -   [ ] Create Collision system for Tilemap
 
--   [ ] Editor
+-   Editor
 
+    -   [x] Create HTTP server with 2 routes for html view
     -   [ ] Create editor page (HTML)
     -   [ ] Create Save/Load system for tilemap
     -   [ ] Create Save/Load system for game (entities, components, textures path, etc...)
     -   [ ] Create UI to handle entities and components
     -   [ ] Create game engine menu
+
+-   Utils
+
+    -   [ ] Improve _loadImage_ to wait the loading
+
+-   CLI ?

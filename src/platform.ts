@@ -14,8 +14,8 @@ export class Platform extends Game {
             new Player(),
             new Box(),
             new RigidBox(),
-        ];  
-        AudioManager.load("./assets/audio/jump.wav", "jump", false, 1);
-        AudioManager.load("./assets/audio/walk.wav", "walk",  true, 1, 2.3);
+        ];
+        AudioManager.load("../assets/audio/jump.wav", "jump", false, 1);
+        AudioManager.load("../assets/audio/walk.wav", "walk", true, 1, 2.3);
     }
 }

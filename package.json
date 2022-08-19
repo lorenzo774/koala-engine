@@ -4,15 +4,14 @@
     "description": "",
     "main": "index.js",
     "scripts": {
-        "dev": "tsc-watch --onsuccess \"serve ./public\"",
+        "dev": "tsc-watch --onsuccess \"node server/index.js\"",
         "build": "tsc",
-        "start": "serve ./public"
+        "start": "node server/index.js"
     },
     "keywords": [],
     "author": "",
     "license": "ISC",
     "dependencies": {
-        "serve": "^14.0.1",
         "tsc-watch": "^5.0.3",
         "typescript": "^4.7.4"
     }

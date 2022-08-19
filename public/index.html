@@ -5,10 +5,12 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>GAME</title>
-        <link rel="stylesheet" href="style.css" />
-        <script type="module" src="scripts/index.js" defer></script>
+        <script type="module" src="./scripts/index.js" defer></script>
         <!-- ICON -->
         <link rel="shortcut icon" href="favicon.png" type="image/png" />
+        <!-- STYLE -->
+        <link rel="stylesheet" href="./style/global.css" />
+        <link rel="stylesheet" href="./style/index.css" />
     </head>
     <body>
         <!-- AUDIOs -->
@@ -16,8 +18,12 @@
         <!-- APP -->
         <div id="app">
             <canvas id="canvas"></canvas>
-            <!-- DEBUG UI -->
-            <div class="ui hide" id="ui-debug">
+            <!-- GO TO EDITOR -->
+            <div class="ui hide ui-debug" id="goto-editor">
+                <a href="./editor">EDITOR</a>
+            </div>
+            <!-- ENTITIES DEBUG -->
+            <div class="ui hide ui-debug" id="debug-entities">
                 <!-- TOGGLE DEBUG MODE -->
                 <button id="toggle-debug-mode" class="ui on">ON</button>
                 <h2>Debug</h2>

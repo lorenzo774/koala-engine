@@ -5,12 +5,28 @@ import { Vector2 } from "../../math/vector2.js";
 import { Tileset } from "./tileset.js";
 
 export class Tilemap extends Component {
+    private maxColumnLength: number;
+
     constructor(
         entity: Entity,
         private tileset: Tileset = null,
         private map: number[][] = [[]]
     ) {
         super(entity);
+        this.maxColumnLength = this.getMaxLength();
+    }
+
+    /**
+     * @returns Max columns length in the tileset
+     */
+    private getMaxLength(): number {
+        let maxLength = -1;
+        for (let i = 0; i < this.map.length; i++) {
+            if (this.map[i].length > maxLength) {
+                maxLength = this.map[i].length;
+            }
+        }
+        return maxLength;
     }
 
     // Draw single tile
@@ -45,13 +61,6 @@ export class Tilemap extends Component {
     }
 
     public debugDraw(ctx: CanvasRenderingContext2D) {
-        // Get max length in the map
-        let maxLength = 0;
-        for (let i = 0; i < this.map.length; i++) {
-            if (this.map[i].length > maxLength) {
-                maxLength = this.map[i].length;
-            }
-        }
         // Draw rows
         for (let i = 0; i <= this.map.length; i++) {
             ctx.beginPath();
@@ -62,7 +71,7 @@ export class Tilemap extends Component {
             ctx.closePath();
         }
         // Draw columns
-        for (let i = 0; i <= maxLength; i++) {
+        for (let i = 0; i <= this.maxColumnLength; i++) {
             ctx.beginPath();
             ctx.strokeStyle = Settings.DEBUG_COLOR;
             ctx.moveTo(i * this.tileset.worldSize.x, 0);

@@ -19,4 +19,5 @@ window.onresize = setSize;
 Keyboard.listen();
 MouseInput.listen();
 
+// START
 new Platform(context);

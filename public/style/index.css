@@ -1,0 +1,41 @@
+#goto-editor {
+    background-color: var(--box-bg);
+    top: 10px;
+    left: 10px;
+    padding: 20px 20px 20px 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#goto-editor a {
+    color: white;
+    font-weight: bold;
+    text-decoration: none;
+}
+#goto-editor a:hover {
+    color: var(--true);
+}
+
+#debug-entities {
+    background-color: var(--box-bg);
+    border: 2px solid var(--border);
+    top: 10px;
+    right: 10px;
+    width: 20%;
+    padding: 15px 15px 5px 15px;
+    color: whitesmoke;
+}
+#toggle-debug-mode {
+    top: 10px;
+    right: 10px;
+    width: 80px;
+    height: 40px;
+    color: white;
+}
+
+.debug-section {
+    padding: 15px;
+    margin: 10px;
+    border: 2px solid var(--border);
+    background-color: var(--box-bg);
+}

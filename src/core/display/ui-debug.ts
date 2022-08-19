@@ -27,7 +27,9 @@ export class UIDebug {
     }
 
     public showDebugUI() {
-        document.querySelector("#ui-debug").classList.remove("hide");
+        document.querySelectorAll(".ui-debug").forEach((el) => {
+            el.classList.remove("hide");
+        });
     }
 
     public run(entities: Entity[], fps: number) {
