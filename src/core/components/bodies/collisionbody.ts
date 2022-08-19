@@ -4,6 +4,7 @@ import { Component } from "../../component.js";
 import { Entity } from "../../entity.js";
 import { Vector2 } from "../../math/vector2.js";
 import { Transform } from "./../transform.js";
+import { Camera } from "../camera.js";
 
 export abstract class CollisionBody extends Component {
     protected transform: Transform;
@@ -41,8 +42,12 @@ export abstract class CollisionBody extends Component {
     public debugDraw(ctx: CanvasRenderingContext2D) {
         ctx.fillStyle = Settings.DEBUG_COLOR;
         ctx.fillRect(
-            this.transform.position.x + this.collisionBox.offset.x,
-            this.transform.position.y + this.collisionBox.offset.y,
+            this.transform.position.x +
+                this.collisionBox.offset.x -
+                Camera.main.position.x,
+            this.transform.position.y +
+                this.collisionBox.offset.y -
+                Camera.main.position.y,
             this.collisionBox.size.x,
             this.collisionBox.size.y
         );

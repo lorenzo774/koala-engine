@@ -66,8 +66,14 @@ export class Tilemap extends Component {
         for (let i = 0; i <= this.map.length; i++) {
             ctx.beginPath();
             ctx.strokeStyle = Settings.DEBUG_COLOR;
-            ctx.moveTo(0, i * this.tileset.worldSize.y);
-            ctx.lineTo(Settings.WIDTH, i * this.tileset.worldSize.y);
+            ctx.moveTo(
+                0,
+                i * this.tileset.worldSize.y - Camera.main.position.y
+            );
+            ctx.lineTo(
+                Settings.WIDTH,
+                i * this.tileset.worldSize.y - Camera.main.position.y
+            );
             ctx.stroke();
             ctx.closePath();
         }
@@ -75,8 +81,14 @@ export class Tilemap extends Component {
         for (let i = 0; i <= this.maxColumnLength; i++) {
             ctx.beginPath();
             ctx.strokeStyle = Settings.DEBUG_COLOR;
-            ctx.moveTo(i * this.tileset.worldSize.x, 0);
-            ctx.lineTo(i * this.tileset.worldSize.x, Settings.HEIGHT);
+            ctx.moveTo(
+                i * this.tileset.worldSize.x - Camera.main.position.x,
+                0
+            );
+            ctx.lineTo(
+                i * this.tileset.worldSize.x - Camera.main.position.x,
+                Settings.HEIGHT
+            );
             ctx.stroke();
             ctx.closePath();
         }

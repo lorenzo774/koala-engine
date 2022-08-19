@@ -45,8 +45,8 @@ export class SpriteRenderer extends Component {
             this.imgRect.position.y,
             this.imgRect.size.x,
             this.imgRect.size.y,
-            0,
-            this.transform.position.y + this.offset.y,
+            Camera.main.position.x,
+            this.transform.position.y + this.offset.y - Camera.main.position.y,
             this.size.x,
             this.size.y
         );

@@ -19,7 +19,7 @@
     -   [x] Create sound manager
     -   [x] Fix tilemap not loading at first
     -   [x] Create camera component
-    -   [ ] Move tilemap debug grid with Camera
+    -   [x] Move tilemap debug grid with Camera
     -   [ ] Create UI manager
     -   [ ] Move settings to core, implement settings load system
 

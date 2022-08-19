@@ -27,5 +27,5 @@ const requestListener = function (req, res) {
 };
 
 http.createServer(requestListener).listen(PORT, "localhost", () => {
-    console.log(`Server is running on PORT: ${PORT}`);
+    console.log(`\nServer is running http://localhost:${PORT}\n`);
 });
