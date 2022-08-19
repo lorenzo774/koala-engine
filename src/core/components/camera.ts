@@ -31,6 +31,5 @@ export class Camera extends Component {
             this.transformToFollow.position,
             Vector2.divideBy(Settings.SCREEN_SIZE, 2)
         );
-        console.log(this.position);
     }
 }
