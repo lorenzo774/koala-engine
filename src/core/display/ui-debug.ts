@@ -33,7 +33,7 @@ export class UIDebug {
     }
 
     public run(entities: Entity[], fps: number) {
-        this.fpsLbl.textContent = `FPS: ${fps}`;
+        this.fpsLbl.textContent = `FPS: ${fps.toFixed(0)}`;
         this.entityList.innerHTML = entities
             .map((entity) => `<li> - ${entity.name}</li>`)
             .join("");

@@ -33,7 +33,7 @@ export class Settings {
     ];
 
     // Rendering
-    public static FPS: number = 60;
+    public static FPS: number = 80;
 
     // Physics
     public static PHYSICS_CYCLES_PER_SECONDS = 120;

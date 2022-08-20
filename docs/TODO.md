@@ -20,7 +20,7 @@
     -   [x] Fix tilemap not loading at first
     -   [x] Create camera component
     -   [x] Move tilemap debug grid with Camera
-    -   [ ] Improve FPS and UPS handler (no setInterval)
+    -   [x] Improve FPS handler (no setInterval)
     -   [ ] Create UI manager
     -   [ ] Move settings to core, implement settings load system
 

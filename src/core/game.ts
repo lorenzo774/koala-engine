@@ -30,7 +30,9 @@ export class Game {
         if (Settings.DEBUG_MODE) {
             UIDebug.I.showDebugUI();
         }
-        setInterval(this.runLoop.bind(this), 1000 / Settings.FPS);
+
+        // setInterval(this.runLoop.bind(this), 1000 / Settings.FPS);
+
         this.runLoop();
     }
 
