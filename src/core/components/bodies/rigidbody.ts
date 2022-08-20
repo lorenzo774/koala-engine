@@ -22,6 +22,7 @@ export class RigidBody extends CollisionBody {
             Vector2.ZERO,
             new Vector2(100, 100)
         ),
+        public gravity: boolean = true,
         private mass: number = 1
     ) {
         super(entity, collisionBox);
@@ -31,7 +32,7 @@ export class RigidBody extends CollisionBody {
 
     public start() {
         super.start();
-        this.fallingFactor = Settings.GRAVITY * this.mass;
+        this.fallingFactor = this.gravity ? Settings.GRAVITY * this.mass : 0;
         this.velocity = Vector2.ZERO;
     }
 

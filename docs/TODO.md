@@ -21,7 +21,6 @@
     -   [x] Create camera component
     -   [x] Move tilemap debug grid with Camera
     -   [x] Improve FPS handler (no setInterval)
-    -   [ ] Create UI manager
     -   [ ] Move settings to core, implement settings load system
 
 -   Physics
