@@ -23,6 +23,7 @@
     -   [x] Improve FPS handler (no setInterval)
     -   [ ] Create tilemap algorithm to find tiles chunks
     -   [ ] Move settings to core, implement settings load system
+    -   [ ] Create action input system (GodotLike)
 
 -   Physics
 
@@ -48,5 +49,9 @@
 -   Utils
 
     -   [ ] Improve _loadImage_ to wait the loading
+
+-   DEMO
+
+    -   [ ] Make player movement frame independent
 
 -   CLI ?

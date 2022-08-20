@@ -2,6 +2,7 @@ import { Settings } from "../../../settings.js";
 import { Component } from "../../component.js";
 import { Entity } from "../../entity.js";
 import { Vector2 } from "../../math/vector2.js";
+import { Rect } from "../../utils/rect.js";
 import { Camera } from "../camera.js";
 import { Tileset } from "./tileset.js";
 
@@ -28,6 +29,14 @@ export class Tilemap extends Component {
             }
         }
         return maxLength;
+    }
+
+    /**
+     * Algorithm to get individual rects in the map
+     * @returns Array of individual Rects
+     */
+    private getIndividualRects(): Rect[] {
+        return new Array<Rect>();
     }
 
     // Draw single tile
