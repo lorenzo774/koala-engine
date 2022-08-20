@@ -21,6 +21,7 @@
     -   [x] Create camera component
     -   [x] Move tilemap debug grid with Camera
     -   [x] Improve FPS handler (no setInterval)
+    -   [ ] Create tilemap algorithm to find tiles chunks
     -   [ ] Move settings to core, implement settings load system
 
 -   Physics
@@ -31,7 +32,7 @@
     -   [x] Move physics engine on a different loop
     -   [x] Adapt PhysicsEngine to bodies logic
     -   [x] Add onGround method
-    -   [ ] Fix physics to work with Camera system
+    -   [x] Fix physics to work with Camera system
     -   [ ] Improve PhysicsEngine performance (Tile based checking)
     -   [ ] Create Collision system for Tilemap
 
