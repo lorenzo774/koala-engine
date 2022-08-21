@@ -23,6 +23,7 @@ export abstract class Entity {
     private startComponents() {
         this._components.forEach((component) => component.start());
     }
+
     /**
      * For initialization
      */

@@ -22,6 +22,9 @@ export class PhysicsEngine {
         entity: Entity
     ): RigidBody | StaticBody | TilemapBody | null {
         for (const component of entity.components) {
+            if ("HELLO" === "HELLO") {
+                console.log(true);
+            }
             if (component instanceof RigidBody) {
                 return component as RigidBody;
             }
@@ -40,11 +43,11 @@ export class PhysicsEngine {
      */
     private checkCollisions() {
         for (const entity of this.entities) {
-            let rigidbody = this.getBody(entity);
-            if (!rigidbody) continue;
-            if (rigidbody instanceof StaticBody) continue;
-            if (rigidbody instanceof TilemapBody) continue;
-            rigidbody = rigidbody as RigidBody;
+            let body = this.getBody(entity);
+            if (!body) continue;
+            if (body instanceof StaticBody) continue;
+            if (body instanceof TilemapBody) continue;
+            body = body as RigidBody;
 
             const rigidBodyCollisions: CollisionData[] =
                 new Array<CollisionData>();
@@ -59,10 +62,10 @@ export class PhysicsEngine {
                 // The other entity has a staticbody or tilemapbody, the 2 objects can collide
                 for (const rect of otherBody.getCollisions()) {
                     let collision: CollisionData = { collision: false };
-                    for (const rigidBodyCol of rigidbody.getCollisions()) {
+                    for (const rigidBodyCol of body.getCollisions()) {
                         collision = dynamicRectVsRect(rigidBodyCol, rect);
                         if (!collision.collision) {
-                            rigidbody.lastContactNormal = Vector2.ZERO; // No contact normal
+                            body.lastContactNormal = Vector2.ZERO; // No contact normal
                             continue;
                         }
                         rigidBodyCollisions.push(collision);
@@ -71,7 +74,7 @@ export class PhysicsEngine {
             }
             // Order collisions by contact time
             this.rigidBodiesCollisions.set(
-                rigidbody,
+                body,
                 rigidBodyCollisions.sort(
                     (a, b): number => a.tHitNear - b.tHitNear
                 )
