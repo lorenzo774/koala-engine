@@ -1,5 +1,6 @@
 import { Transform } from "./components/transform.js";
 import { Component } from "./component.js";
+import { CollisionBody } from "./components/bodies/collisionbody.js";
 
 export abstract class Entity {
     public get components() {
@@ -41,6 +42,12 @@ export abstract class Entity {
         return this._components.find((c) => c instanceof component) as T;
     }
 
+    public getBody<T extends CollisionBody>(
+        component: typeof CollisionBody
+    ): T {
+        return this._components.find((c) => c instanceof CollisionBody) as T;
+    }
+
     public draw(ctx: CanvasRenderingContext2D) {
         this._components.forEach((component) => {
             component.draw(ctx);
@@ -56,6 +63,12 @@ export abstract class Entity {
     public update() {
         this._components.forEach((component) => {
             component.update();
+        });
+    }
+
+    public physicsUpdate() {
+        this._components.forEach((component) => {
+            component.physicsUpdate();
         });
     }
 }

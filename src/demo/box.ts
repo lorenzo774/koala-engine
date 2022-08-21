@@ -1,9 +1,9 @@
 import { Entity } from "../core/entity.js";
 import { Vector2 } from "../core/math/vector2.js";
 import { StaticBody } from "../core/components/bodies/staticbody.js";
-import { CollisionBox } from "../core/components/bodies/collision-box.js";
 import { Settings } from "../settings.js";
 import { Transform } from "../core/components/transform.js";
+import { Rect } from "../core/utils/rect.js";
 
 export class Box extends Entity {
     constructor() {
@@ -15,7 +15,7 @@ export class Box extends Entity {
         this.components = [
             new StaticBody(
                 this,
-                new CollisionBox(
+                new Rect(
                     Vector2.ZERO,
                     new Vector2(Settings.TILE_SCALED * 16, Settings.TILE_SCALED)
                 )

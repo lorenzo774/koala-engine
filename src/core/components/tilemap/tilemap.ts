@@ -1,21 +1,25 @@
-import { Settings } from "../../../settings.js";
 import { Component } from "../../component.js";
 import { Entity } from "../../entity.js";
 import { Vector2 } from "../../math/vector2.js";
+import { rectVsRect } from "../../physics/swept-functions.js";
 import { Rect } from "../../utils/rect.js";
-import { Camera } from "../camera.js";
+import { TilemapBody } from "../bodies/tilemapbody.js";
+import { TilemapDrawer } from "./tilemap-drawer.js";
+import { TilemapNodePool } from "./tilemap-node-pool.js";
 import { Tileset } from "./tileset.js";
 
 export class Tilemap extends Component {
-    private maxColumnLength: number;
+    private tilemapDrawer: TilemapDrawer;
+    public maxRowLength: number;
 
     constructor(
         entity: Entity,
-        private tileset: Tileset = null,
-        private map: number[][] = [[]]
+        public tileset: Tileset = null,
+        public map: number[][] = [[]]
     ) {
         super(entity);
-        this.maxColumnLength = this.getMaxLength();
+        this.maxRowLength = this.getMaxLength();
+        this.tilemapDrawer = new TilemapDrawer(this);
     }
 
     /**
@@ -35,71 +39,98 @@ export class Tilemap extends Component {
      * Algorithm to get individual rects in the map
      * @returns Array of individual Rects
      */
-    private getIndividualRects(): Rect[] {
-        return new Array<Rect>();
+    public getIndividualRects(): Rect[] {
+        let rects = new Array<Rect>();
+
+        for (let i = 0; i < this.map[0].length; i += 1) {
+            for (let j = 0; j < this.map.length; j += 1) {
+                // Check indexes collision with other rects
+                let collision = false;
+                for (const rect of rects) {
+                    if (
+                        rectVsRect(
+                            new Rect(new Vector2(i, j), Vector2.ONE),
+                            rect
+                        )
+                    ) {
+                        collision = true;
+                    }
+                }
+                if (collision) {
+                    continue;
+                }
+                // Start finding node pool
+                if (this.map[j][i] !== -1) {
+                    const nodePool: TilemapNodePool = this.getNodePool(
+                        new Vector2(i, j),
+                        rects
+                    );
+                    const rect = nodePool.getRect();
+                    rects.push(rect);
+                }
+            }
+        }
+        return rects;
     }
 
-    // Draw single tile
-    private drawTile(
-        ctx: CanvasRenderingContext2D,
-        tile: number,
-        tilePos: Vector2
-    ) {
-        const rectPos: Vector2 = new Vector2(
-            tile % this.tileset.columns,
-            Math.floor(tile / this.tileset.columns)
-        );
-        ctx.drawImage(
-            this.tileset.texture,
-            this.tileset.tileSize.x * rectPos.x,
-            this.tileset.tileSize.y * rectPos.y,
-            this.tileset.tileSize.x,
-            this.tileset.tileSize.y,
-            this.tileset.worldSize.x * tilePos.x - Camera.main.position.x,
-            this.tileset.worldSize.y * tilePos.y - Camera.main.position.y,
-            this.tileset.worldSize.x,
-            this.tileset.worldSize.y
-        );
+    /**
+     * Algorithm used by getIndividualRects to find an array of nodes
+     * @returns Array of node
+     */
+    private getNodePool(startPos: Vector2, rects: Rect[]): TilemapNodePool {
+        let yCount = 0;
+        let nodePool: TilemapNodePool = new TilemapNodePool();
+
+        for (let i = startPos.x; i < this.map[0].length; i += 1) {
+            const tile = this.map[startPos.y + yCount][i];
+
+            if (tile === -1) {
+                i = startPos.x;
+                yCount += 1;
+                if (startPos.y + yCount >= this.map.length) {
+                    return nodePool;
+                }
+
+                // Check indexes collision with other rects
+                let collision = false;
+                for (const rect of rects) {
+                    if (
+                        rectVsRect(
+                            new Rect(
+                                new Vector2(i, startPos.y + yCount),
+                                Vector2.ONE
+                            ),
+                            rect
+                        )
+                    ) {
+                        collision = true;
+                    }
+                }
+                if (collision) {
+                    break;
+                    console.log(collision);
+                    continue;
+                }
+
+                if (this.map[startPos.y + yCount][i] === -1) {
+                    return nodePool;
+                }
+            }
+
+            nodePool.addNode(new Vector2(i, startPos.y + yCount));
+        }
+
+        return nodePool;
     }
 
     public draw(ctx: CanvasRenderingContext2D) {
-        for (let i = 0; i < this.map.length; i++) {
-            for (let j = 0; j < this.map[i].length; j++) {
-                this.drawTile(ctx, this.map[i][j], new Vector2(j, i));
-            }
-        }
+        this.tilemapDrawer.draw(ctx);
     }
 
     public debugDraw(ctx: CanvasRenderingContext2D) {
-        // Draw rows
-        for (let i = 0; i <= this.map.length; i++) {
-            ctx.beginPath();
-            ctx.strokeStyle = Settings.DEBUG_COLOR;
-            ctx.moveTo(
-                0,
-                i * this.tileset.worldSize.y - Camera.main.position.y
-            );
-            ctx.lineTo(
-                Settings.WIDTH,
-                i * this.tileset.worldSize.y - Camera.main.position.y
-            );
-            ctx.stroke();
-            ctx.closePath();
-        }
-        // Draw columns
-        for (let i = 0; i <= this.maxColumnLength; i++) {
-            ctx.beginPath();
-            ctx.strokeStyle = Settings.DEBUG_COLOR;
-            ctx.moveTo(
-                i * this.tileset.worldSize.x - Camera.main.position.x,
-                0
-            );
-            ctx.lineTo(
-                i * this.tileset.worldSize.x - Camera.main.position.x,
-                Settings.HEIGHT
-            );
-            ctx.stroke();
-            ctx.closePath();
-        }
+        this.tilemapDrawer.debugDraw(
+            ctx,
+            this.entity.getBody<TilemapBody>(TilemapBody)
+        );
     }
 }

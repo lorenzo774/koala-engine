@@ -7,4 +7,5 @@ export abstract class Component {
     public draw(ctx: CanvasRenderingContext2D) {}
     public debugDraw(ctx: CanvasRenderingContext2D) {}
     public update() {}
+    public physicsUpdate() {}
 }

@@ -1,8 +1,9 @@
 import { Settings } from "../../../settings.js";
-import { CollisionBox } from "./collision-box.js";
 import { Entity } from "../../entity.js";
 import { Vector2 } from "../../math/vector2.js";
 import { CollisionBody } from "./collisionbody.js";
+import { Rect } from "../../utils/rect.js";
+import { Camera } from "../camera.js";
 
 /**
  * Dyamic body, this body has a velocity and it moves
@@ -16,28 +17,35 @@ export class RigidBody extends CollisionBody {
         return this.lastContactNormal.y === -1;
     }
 
+
     constructor(
         entity: Entity,
-        collisionBox: CollisionBox = new CollisionBox(
+        public collisionBox: Rect = new Rect(
             Vector2.ZERO,
             new Vector2(100, 100)
         ),
         public gravity: boolean = true,
         private mass: number = 1
     ) {
-        super(entity, collisionBox);
+        super(entity);
     }
 
     public onCollision() {}
 
     public start() {
-        super.start();
         this.fallingFactor = this.gravity ? Settings.GRAVITY * this.mass : 0;
         this.velocity = Vector2.ZERO;
     }
 
+    public *getCollisions(): IterableIterator<Rect> {
+        yield new Rect(
+            Vector2.add(this.transform.position, this.collisionBox.position),
+            this.collisionBox.size,
+            this.velocity
+        );
+    }
+
     public update() {
-        super.update();
         this.velocity.y +=
             this.fallingFactor * (1 / Settings.PHYSICS_CYCLES_PER_SECONDS);
     }
@@ -48,6 +56,20 @@ export class RigidBody extends CollisionBody {
             this.velocity.x * (1 / Settings.PHYSICS_CYCLES_PER_SECONDS);
         this.transform.position.y +=
             this.velocity.y * (1 / Settings.PHYSICS_CYCLES_PER_SECONDS);
+    }
+
+    public debugDraw(ctx: CanvasRenderingContext2D) {
+        ctx.fillStyle = Settings.DEBUG_COLOR;
+        ctx.fillRect(
+            this.transform.position.x +
+                this.collisionBox.position.x -
+                Camera.main.position.x,
+            this.transform.position.y +
+                this.collisionBox.position.y -
+                Camera.main.position.y,
+            this.collisionBox.size.x,
+            this.collisionBox.size.y
+        );
     }
 
     // String

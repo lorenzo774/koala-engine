@@ -3,6 +3,15 @@ import { Vector2 } from "../math/vector2.js";
 import { Rect } from "../utils/rect.js";
 import { CollisionData } from "./collision-data.js";
 
+export const rectVsRect = function (a: Rect, b: Rect): boolean {
+    return (
+        a.position.x + a.size.x > b.position.x &&
+        a.position.x < b.position.x + b.size.x &&
+        a.position.y + a.size.y > b.position.y &&
+        a.position.y < b.position.y + b.size.y
+    );
+};
+
 /**
  * Check if a ray has collide with a rect
  * @returns Collision information

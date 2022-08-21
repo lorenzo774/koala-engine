@@ -9,8 +9,8 @@ import { loadImage } from "../../core/utils/helper.js";
 import { PlayerMovement } from "./player-movement.js";
 import { Transform } from "../../core/components/transform.js";
 import { RigidBody } from "../../core/components/bodies/rigidbody.js";
-import { CollisionBox } from "../../core/components/bodies/collision-box.js";
 import { Camera } from "../../core/components/camera.js";
+import { Rect } from "../../core/utils/rect.js";
 
 export class Player extends Entity {
     constructor() {
@@ -38,10 +38,7 @@ export class Player extends Entity {
             new PlayerMovement(this),
             new RigidBody(
                 this,
-                new CollisionBox(
-                    new Vector2(0, 50),
-                    new Vector2(width, height - 50)
-                )
+                new Rect(new Vector2(0, 50), new Vector2(width, height - 50))
             ),
         ];
         Camera.setMainCamera(camera);

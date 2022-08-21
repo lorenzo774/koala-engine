@@ -66,6 +66,9 @@ export class PlayerMovement extends Component {
         ) {
             this.idle();
         }
+    }
+
+    public physicsUpdate() {
         if (this.rigidBody.velocity.x !== 0 && this.rigidBody.onGround) {
             this.walk();
         }

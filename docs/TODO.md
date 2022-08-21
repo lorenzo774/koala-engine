@@ -21,9 +21,13 @@
     -   [x] Create camera component
     -   [x] Move tilemap debug grid with Camera
     -   [x] Improve FPS handler (no setInterval)
-    -   [ ] Create tilemap algorithm to find tiles chunks
+    -   [x] Create tilemap algorithm to find tiles chunks
+    -   [ ] Fix tilemap algorithm
+    -   [ ] Change tilemap map to fixed size 2D array
+    -   [ ] Change algorithm to use max tile pixel (perfect collision)
     -   [ ] Move settings to core, implement settings load system
     -   [ ] Create action input system (GodotLike)
+    -   [ ] Make rigidbody movement scale independent
 
 -   Physics
 
@@ -34,8 +38,8 @@
     -   [x] Adapt PhysicsEngine to bodies logic
     -   [x] Add onGround method
     -   [x] Fix physics to work with Camera system
+    -   [x] Create Collision system for Tilemap
     -   [ ] Improve PhysicsEngine performance (Tile based checking)
-    -   [ ] Create Collision system for Tilemap
 
 -   Editor
 

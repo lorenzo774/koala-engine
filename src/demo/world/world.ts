@@ -4,6 +4,7 @@ import { Vector2 } from "../../core/math/vector2.js";
 import { Tileset } from "../../core/components/tilemap/tileset.js";
 import { loadImage } from "../../core/utils/helper.js";
 import { Settings } from "../../settings.js";
+import { TilemapBody } from "../../core/components/bodies/tilemapbody.js";
 
 export class World extends Entity {
     constructor() {
@@ -22,6 +23,8 @@ export class World extends Entity {
                 Settings.WORLD
             ),
         ];
+        const tilemap = this.getComponent<Tilemap>(Tilemap);
+        this.components.push(new TilemapBody(this, tilemap));
         texture.removeEventListener("load", this.loadTilemap.bind(this));
     }
 

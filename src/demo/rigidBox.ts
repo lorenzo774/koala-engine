@@ -3,7 +3,7 @@ import { Vector2 } from "../core/math/vector2.js";
 import { Settings } from "../settings.js";
 import { Transform } from "../core/components/transform.js";
 import { RigidBody } from "../core/components/bodies/rigidbody.js";
-import { CollisionBox } from "../core/components/bodies/collision-box.js";
+import { Rect } from "../core/utils/rect.js";
 
 export class RigidBox extends Entity {
     constructor() {
@@ -18,10 +18,7 @@ export class RigidBox extends Entity {
         this.components = [
             new RigidBody(
                 this,
-                new CollisionBox(
-                    new Vector2(0, 50),
-                    new Vector2(width, height - 50)
-                )
+                new Rect(new Vector2(0, 50), new Vector2(width, height - 50))
             ),
         ];
     }
