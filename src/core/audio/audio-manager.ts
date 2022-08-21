@@ -1,5 +1,6 @@
 export class AudioManager {
-    private static audiosList: HTMLDivElement = document.querySelector("#audios"); 
+    private static audiosList: HTMLDivElement =
+        document.querySelector("#audios");
 
     private static findAudio(name: string): HTMLAudioElement | null {
         for (const element of Array.from(AudioManager.audiosList.children)) {
@@ -11,7 +12,13 @@ export class AudioManager {
         return null;
     }
 
-    public static load(src: string, name: string, loop: boolean = false, volume: number = 1, speed: number = 1) {
+    public static load(
+        src: string,
+        name: string,
+        loop: boolean = false,
+        volume: number = 1,
+        speed: number = 1
+    ) {
         const htmlAudio: HTMLAudioElement = new Audio(src);
         htmlAudio.loop = loop;
         htmlAudio.volume = volume;
@@ -19,7 +26,7 @@ export class AudioManager {
         htmlAudio.playbackRate = speed;
         AudioManager.audiosList.appendChild(htmlAudio);
     }
-    
+
     public static play(name: string) {
         const audio = AudioManager.findAudio(name);
         if (!audio) return;

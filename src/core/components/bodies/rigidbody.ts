@@ -17,7 +17,6 @@ export class RigidBody extends CollisionBody {
         return this.lastContactNormal.y === -1;
     }
 
-
     constructor(
         entity: Entity,
         public collisionBox: Rect = new Rect(
