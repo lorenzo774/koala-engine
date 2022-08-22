@@ -1,6 +1,6 @@
 import { Entity } from "../core/entity.js";
 import { Vector2 } from "../core/math/vector2.js";
-import { Settings } from "../settings.js";
+import { Settings } from "../core/settings/settings.js";
 import { Transform } from "../core/components/transform.js";
 import { RigidBody } from "../core/components/bodies/rigidbody.js";
 import { Rect } from "../core/utils/rect.js";
@@ -12,8 +12,8 @@ export class RigidBox extends Entity {
 
     protected init() {
         const [width, height] = [
-            Settings.TILE_SCALED * 1.9,
-            Settings.TILE_SCALED * 2.3,
+            Settings.main.TILE_SCALED * 1.9,
+            Settings.main.TILE_SCALED * 2.3,
         ];
         this.components = [
             new RigidBody(

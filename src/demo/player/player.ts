@@ -4,7 +4,7 @@ import { Entity } from "../../core/entity.js";
 import { ImageRect } from "../../core/components/sprite/image-rect.js";
 import { SpriteSheet } from "../../core/components/sprite/sprite-sheet.js";
 import { Vector2 } from "../../core/math/vector2.js";
-import { Settings } from "../../settings.js";
+import { Settings } from "../../core/settings/settings.js";
 import { loadImage } from "../../core/utils/helper.js";
 import { PlayerMovement } from "./player-movement.js";
 import { Transform } from "../../core/components/transform.js";
@@ -19,12 +19,13 @@ export class Player extends Entity {
 
     protected init() {
         const [width, height] = [
-            Settings.TILE_SCALED * 1.9,
-            Settings.TILE_SCALED * 2.3,
+            Settings.main.TILE_SCALED * 1.9,
+            Settings.main.TILE_SCALED * 2.3
         ];
         const camera = new Camera(
             this,
-            this.getComponent<Transform>(Transform)
+            this.getComponent<Transform>(Transform),
+            new Vector2(0, 500)
         );
         this.components = [
             camera,
@@ -39,9 +40,9 @@ export class Player extends Entity {
             new RigidBody(
                 this,
                 new Rect(new Vector2(0, 50), new Vector2(width, height - 50))
-            ),
+            )
         ];
-        Camera.setMainCamera(camera);
+        Camera.main = camera;
     }
 
     private loadAnimations(): Animation[] {
@@ -71,7 +72,7 @@ export class Player extends Entity {
                 ),
                 "jump",
                 2
-            ),
+            )
         ];
     }
 

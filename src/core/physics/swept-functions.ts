@@ -1,4 +1,4 @@
-import { Settings } from "../../settings.js";
+import { Settings } from "../settings/settings.js";
 import { Vector2 } from "../math/vector2.js";
 import { Rect } from "../utils/rect.js";
 import { CollisionData } from "./collision-data.js";
@@ -104,7 +104,7 @@ export const dynamicRectVsRect = function (
         ),
         Vector2.multiplyBy(
             dynamicRect.velocity,
-            1 / Settings.PHYSICS_CYCLES_PER_SECONDS
+            1 / Settings.main.PHYSICS_CYCLES_PER_SECONDS
         ),
         expandedRect
     );

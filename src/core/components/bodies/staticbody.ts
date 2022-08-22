@@ -2,7 +2,7 @@ import { Entity } from "../../entity.js";
 import { Vector2 } from "../../math/vector2.js";
 import { CollisionBody } from "./collisionbody.js";
 import { Rect } from "../../utils/rect.js";
-import { Settings } from "../../../settings.js";
+import { Settings } from "../../settings/settings.js";
 import { Camera } from "../camera.js";
 
 export class StaticBody extends CollisionBody {
@@ -33,7 +33,7 @@ export class StaticBody extends CollisionBody {
     }
 
     public debugDraw(ctx: CanvasRenderingContext2D) {
-        ctx.fillStyle = Settings.DEBUG_COLOR;
+        ctx.fillStyle = Settings.main.DEBUG_COLOR;
         ctx.fillRect(
             this.transform.position.x +
                 this.collisionBox.position.x -

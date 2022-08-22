@@ -1,4 +1,4 @@
-import { Settings } from "../../settings.js";
+import { Settings } from "../settings/settings.js";
 import { Entity } from "../entity.js";
 import { Time } from "../utils/time.js";
 import { UIDebug } from "./ui-debug.js";
@@ -17,10 +17,10 @@ export class Renderer {
         // Frame handler
         const now: number = Date.now();
         const delta: number = (now - this.before) / 1000;
-        if (delta >= 1 / Settings.FPS) {
+        if (delta >= 1 / Settings.main.FPS) {
             Time.deltaTime = delta;
             this.draw();
-            if (Settings.DEBUG_MODE) {
+            if (Settings.main.DEBUG_MODE) {
                 this.debugger();
             }
             this.before = now;
@@ -34,7 +34,7 @@ export class Renderer {
     }
 
     private draw() {
-        this.ctx.clearRect(0, 0, Settings.WIDTH, Settings.HEIGHT);
+        this.ctx.clearRect(0, 0, Settings.main.WIDTH, Settings.main.HEIGHT);
         this.entities.forEach((entity) => entity.draw(this.ctx));
     }
 }

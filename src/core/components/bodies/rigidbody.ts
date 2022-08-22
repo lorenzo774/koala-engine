@@ -1,4 +1,4 @@
-import { Settings } from "../../../settings.js";
+import { Settings } from "../../settings/settings.js";
 import { Entity } from "../../entity.js";
 import { Vector2 } from "../../math/vector2.js";
 import { CollisionBody } from "./collisionbody.js";
@@ -32,7 +32,7 @@ export class RigidBody extends CollisionBody {
     public onCollision() {}
 
     public start() {
-        this.fallingFactor = this.gravity ? Settings.GRAVITY * this.mass : 0;
+        this.fallingFactor = this.gravity ? Settings.main.GRAVITY * this.mass : 0;
         this.velocity = Vector2.ZERO;
     }
 
@@ -46,19 +46,19 @@ export class RigidBody extends CollisionBody {
 
     public update() {
         this.velocity.y +=
-            this.fallingFactor * (1 / Settings.PHYSICS_CYCLES_PER_SECONDS);
+            this.fallingFactor * (1 / Settings.main.PHYSICS_CYCLES_PER_SECONDS);
     }
 
     public physicsUpdate() {
         // Update position
         this.transform.position.x +=
-            this.velocity.x * (1 / Settings.PHYSICS_CYCLES_PER_SECONDS);
+            this.velocity.x * (1 / Settings.main.PHYSICS_CYCLES_PER_SECONDS);
         this.transform.position.y +=
-            this.velocity.y * (1 / Settings.PHYSICS_CYCLES_PER_SECONDS);
+            this.velocity.y * (1 / Settings.main.PHYSICS_CYCLES_PER_SECONDS);
     }
 
     public debugDraw(ctx: CanvasRenderingContext2D) {
-        ctx.fillStyle = Settings.DEBUG_COLOR;
+        ctx.fillStyle = Settings.main.DEBUG_COLOR;
         ctx.fillRect(
             this.transform.position.x +
                 this.collisionBox.position.x -

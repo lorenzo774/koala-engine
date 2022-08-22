@@ -1,4 +1,4 @@
-import { Settings } from "../../settings.js";
+import { Settings } from "../settings/settings.js";
 import { RigidBody } from "../components/bodies/rigidbody.js";
 import { StaticBody } from "../components/bodies/staticbody.js";
 import { TilemapBody } from "../components/bodies/tilemapbody.js";
@@ -125,7 +125,7 @@ export class PhysicsEngine {
     public init() {
         setInterval(
             this.run.bind(this),
-            1 / Settings.PHYSICS_CYCLES_PER_SECONDS
+            1 / Settings.main.PHYSICS_CYCLES_PER_SECONDS
         );
     }
 }

@@ -1,4 +1,4 @@
-import { Settings } from "../../settings.js";
+import { Settings } from "../settings/settings.js";
 import { Entity } from "../entity.js";
 
 export class UIDebug {
@@ -19,8 +19,8 @@ export class UIDebug {
     constructor() {
         if (!this.toggleDebugUI) return;
         this.toggleDebugUI.addEventListener("click", (_) => {
-            Settings.DEBUG_MODE = !Settings.DEBUG_MODE;
-            this.toggleDebugUI.textContent = Settings.DEBUG_MODE ? "ON" : "OFF";
+            Settings.main.DEBUG_MODE = !Settings.main.DEBUG_MODE;
+            this.toggleDebugUI.textContent = Settings.main.DEBUG_MODE ? "ON" : "OFF";
             this.toggleDebugUI.classList.toggle("on");
             this.toggleDebugUI.classList.toggle("off");
         });

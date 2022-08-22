@@ -3,7 +3,7 @@ import { Entity } from "../core/entity.js";
 import { ImageRect } from "../core/components/sprite/image-rect.js";
 import { Vector2 } from "../core/math/vector2.js";
 import { loadImage } from "../core/utils/helper.js";
-import { Settings } from "../settings.js";
+import { Settings } from "../core/settings/settings.js";
 
 export class Background extends Entity {
     constructor() {
@@ -18,7 +18,7 @@ export class Background extends Entity {
                 loadImage("../assets/BGandTiles/BG-export.png"),
                 true,
                 new ImageRect(Vector2.ZERO, new Vector2(400, 304)),
-                Settings.SCREEN_SIZE
+                Settings.main.SCREEN_SIZE
             ),
         ];
     }

@@ -1,4 +1,4 @@
-import { Settings } from "../../../settings.js";
+import { Settings } from "../../settings/settings.js";
 import { Vector2 } from "../../math/vector2.js";
 import { TilemapBody } from "../bodies/tilemapbody.js";
 import { Camera } from "../camera.js";
@@ -39,7 +39,7 @@ export class TilemapDrawer {
         if (!tilemapBody) return;
 
         for (const collision of tilemapBody.getCollisions()) {
-            ctx.fillStyle = Settings.DEBUG_COLOR;
+            ctx.fillStyle = Settings.main.DEBUG_COLOR;
             ctx.fillRect(
                 collision.position.x - Camera.main.position.x,
                 collision.position.y - Camera.main.position.y,
@@ -61,13 +61,13 @@ export class TilemapDrawer {
         // Draw rows
         for (let i = 0; i <= this.tilemap.map.length; i++) {
             ctx.beginPath();
-            ctx.strokeStyle = Settings.DEBUG_COLOR;
+            ctx.strokeStyle = Settings.main.DEBUG_COLOR;
             ctx.moveTo(
                 0,
                 i * this.tilemap.tileset.worldSize.y - Camera.main.position.y
             );
             ctx.lineTo(
-                Settings.WIDTH,
+                Settings.main.WIDTH,
                 i * this.tilemap.tileset.worldSize.y - Camera.main.position.y
             );
             ctx.stroke();
@@ -76,14 +76,14 @@ export class TilemapDrawer {
         // Draw columns
         for (let i = 0; i <= this.tilemap.maxRowLength; i++) {
             ctx.beginPath();
-            ctx.strokeStyle = Settings.DEBUG_COLOR;
+            ctx.strokeStyle = Settings.main.DEBUG_COLOR;
             ctx.moveTo(
                 i * this.tilemap.tileset.worldSize.x - Camera.main.position.x,
                 0
             );
             ctx.lineTo(
                 i * this.tilemap.tileset.worldSize.x - Camera.main.position.x,
-                Settings.HEIGHT
+                Settings.main.HEIGHT
             );
             ctx.stroke();
             ctx.closePath();

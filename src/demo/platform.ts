@@ -1,9 +1,9 @@
-import { AudioManager } from "./core/audio/audio-manager.js";
-import { Game } from "./core/game.js";
-import { Background } from "./demo/background.js";
-import { Player } from "./demo/player/player.js";
-import { RigidBox } from "./demo/rigidBox.js";
-import { World } from "./demo/world/world.js";
+import { AudioManager } from "../core/audio/audio-manager.js";
+import { Game } from "../core/game.js";
+import { Background } from "./background.js";
+import { Player } from "./player/player.js";
+import { RigidBox } from "./rigidBox.js";
+import { World } from "./world/world.js";
 
 export class Platform extends Game {
     protected init() {

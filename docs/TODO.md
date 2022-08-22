@@ -23,9 +23,9 @@
     -   [x] Improve FPS handler (no setInterval)
     -   [x] Create tilemap algorithm to find tiles chunks
     -   [x] Fix tilemap algorithm
+    -   [x] Move settings to core, implement settings load system
     -   [ ] Change tilemap map to fixed size 2D array
     -   [ ] Change algorithm to use max tile pixel (perfect collision)
-    -   [ ] Move settings to core, implement settings load system
     -   [ ] Create action input system (GodotLike)
     -   [ ] Make rigidbody movement scale independent
 
