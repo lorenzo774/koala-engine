@@ -25,6 +25,7 @@
     -   [x] Fix tilemap algorithm
     -   [x] Move settings to core, implement settings load system
     -   [ ] Change tilemap map to fixed size 2D array
+    -   [ ] Create tilemap system to change tilemapbody
     -   [ ] Change algorithm to use max tile pixel (perfect collision)
     -   [ ] Create action input system (GodotLike)
     -   [ ] Make rigidbody movement scale independent
