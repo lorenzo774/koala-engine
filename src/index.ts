@@ -4,7 +4,7 @@ import { Platform } from "./platform.js";
 import { Settings } from "./settings.js";
 
 const canvas = document.querySelector("#canvas") as HTMLCanvasElement;
-export const context = canvas.getContext("2d");
+const context = canvas.getContext("2d");
 
 // Set canvas size
 const setSize = function () {

@@ -50,14 +50,16 @@ export class PlayerMovement extends Component {
         this.rigidBody.velocity.x = 0;
 
         if (Keyboard.isPressed(Key.D)) {
-            this.rigidBody.velocity.x = 1 * this.speed;
+            this.rigidBody.velocity.x = this.speed;
             this.animationRenderer.flipH = true;
         }
         if (Keyboard.isPressed(Key.A)) {
-            this.rigidBody.velocity.x = -1 * this.speed;
+            this.rigidBody.velocity.x = this.speed * -1;
             this.animationRenderer.flipH = false;
         }
+    }
 
+    public physicsUpdate() {
         // "States conditions"
         if (
             this.rigidBody.velocity.x === 0 &&
@@ -66,14 +68,10 @@ export class PlayerMovement extends Component {
         ) {
             this.idle();
         }
-    }
-
-    public physicsUpdate() {
         if (this.rigidBody.velocity.x !== 0 && this.rigidBody.onGround) {
             this.walk();
         }
         if (this.rigidBody.velocity.x !== 0 && !this.rigidBody.onGround) {
-            // Falling
             this.falling();
         }
         if (Keyboard.justPressed(Key.SPACE) && this.rigidBody.onGround) {
