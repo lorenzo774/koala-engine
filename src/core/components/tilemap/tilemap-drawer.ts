@@ -21,8 +21,8 @@ export class TilemapDrawer {
             this.tilemap.tileset.texture,
             this.tilemap.tileset.tileSize.x * rectPos.x,
             this.tilemap.tileset.tileSize.y * rectPos.y,
-            this.tilemap.tileset.tileSize.x,
-            this.tilemap.tileset.tileSize.y,
+            this.tilemap.tileset.tileSize.x - 0.1,
+            this.tilemap.tileset.tileSize.y - 0.1,
             this.tilemap.tileset.worldSize.x * tilePos.x -
                 Camera.main.position.x,
             this.tilemap.tileset.worldSize.y * tilePos.y -

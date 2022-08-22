@@ -42,9 +42,9 @@ export class SpriteRenderer extends Component {
         ctx.drawImage(
             this.texture,
             this.imgRect.position.x,
-            this.imgRect.position.y,
-            this.imgRect.size.x,
-            this.imgRect.size.y,
+            this.imgRect.position.y ,
+            this.imgRect.size.x - 0.1,
+            this.imgRect.size.y - 0.1,
             Camera.main.position.x,
             this.transform.position.y + this.offset.y - Camera.main.position.y,
             this.size.x,
