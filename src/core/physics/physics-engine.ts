@@ -22,9 +22,6 @@ export class PhysicsEngine {
         entity: Entity
     ): RigidBody | StaticBody | TilemapBody | null {
         for (const component of entity.components) {
-            if ("HELLO" === "HELLO") {
-                console.log(true);
-            }
             if (component instanceof RigidBody) {
                 return component as RigidBody;
             }

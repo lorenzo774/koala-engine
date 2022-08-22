@@ -22,7 +22,7 @@
     -   [x] Move tilemap debug grid with Camera
     -   [x] Improve FPS handler (no setInterval)
     -   [x] Create tilemap algorithm to find tiles chunks
-    -   [ ] Fix tilemap algorithm
+    -   [x] Fix tilemap algorithm
     -   [ ] Change tilemap map to fixed size 2D array
     -   [ ] Change algorithm to use max tile pixel (perfect collision)
     -   [ ] Move settings to core, implement settings load system

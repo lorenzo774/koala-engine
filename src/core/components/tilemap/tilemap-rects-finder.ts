@@ -85,6 +85,7 @@ export class TilemapRectsFinder {
                 if (this.tilemap.map[startPos.y + yCount][i] === -1) {
                     return nodePool;
                 }
+                nodePool.addRow();
             }
             nodePool.addNode(new Vector2(i, startPos.y + yCount));
         }
