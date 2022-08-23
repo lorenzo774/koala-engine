@@ -1,1 +1,2 @@
-1. COLLISION DETECTION & RESOLUTION: https://youtu.be/8JJ-4JgR7Dg
+- COLLISION DETECTION & RESOLUTION: https://youtu.be/8JJ-4JgR7Dg
+- FIGMA EDITOR DESIGN: https://www.figma.com/file/pwvSPXmTxwXcl5nNKDDTRy/Editor?node-id=0%3A1
