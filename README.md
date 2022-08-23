@@ -12,8 +12,8 @@ Game engine made with HTML5 + Typescript.
 1. Clone the repo after the fork
 
 ```
-git clone https://github.com/<your-github-username>/game-engine
-cd game-engine
+git clone https://github.com/<your-github-username>/koala-engine
+cd koala-engine
 ```
 
 2. Install npm dependencies
