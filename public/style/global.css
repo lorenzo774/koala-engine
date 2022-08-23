@@ -1,14 +1,27 @@
+/* By Paul D. Hunt, https://github.com/adobe-fonts/source-code-pro  */
+@font-face {
+    font-family: "Source Code Pro";
+    src: url("../assets/fonts/SourceCodePro-Medium.otf.woff");
+}
+
+/* By Paul D. Hunt, https://github.com/adobe-fonts/source-code-pro  */
+@font-face {
+    font-family: "Source Code Pro Bold";
+    src: url("../assets/fonts/SourceCodePro-Bold.otf.woff");
+}
+
 :root {
     --true: rgb(0, 153, 255);
     --false: rgb(255, 133, 133);
-    --box-bg: rgba(30, 30, 30);
+    --box-bg: rgb(30, 30, 30);
+    --tab-bg: rgb(35, 35, 35);
+    --inspector-entity-name: rgb(184, 255, 172);
     --border: black;
 }
 
 * {
     margin: 0;
     padding: 0;
-    font-family: Helvetica;
 }
 
 .ui {

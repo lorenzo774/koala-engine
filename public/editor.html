@@ -5,10 +5,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>EDITOR</title>
+    <script type="module" src="./scripts/editor/index.js" defer></script>
+    <!-- STYLE -->
     <link rel="stylesheet" href="./style/global.css" />
     <link rel="stylesheet" href="./style/editor.css" />
     <!-- ICON -->
     <link rel="shortcut icon" href="logo.png" type="image/png" />
+
 </head>
 <body>
 <!-- APP -->
@@ -28,12 +31,30 @@
     </menu>
     <!-- INSPECTOR -->
     <div class="panel" id="inspector">
+        <div class="tab">
+            <span>
+                Inspector for
+            </span>
+            <span id="inspector-entity-name">
+                Player
+            </span>
+        </div>
     </div>
     <!-- HIERARCHY -->
     <div class="panel" id="hierarchy">
+        <div class="tab">
+            <p>
+                Hierarchy
+            </p>
+        </div>
     </div>
     <!-- CONSOLE -->
     <div class="panel" id="console">
+        <div class="tab">
+            <p>
+                Console
+            </p>
+        </div>
     </div>
     <!-- CANVAS -->
     <canvas id="canvas"></canvas>

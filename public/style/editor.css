@@ -24,8 +24,13 @@ menu {
     height: 100%;
 }
 
+/* INSPECTOR */
 #inspector {
     grid-area: inspector;
+}
+#inspector-entity-name {
+    color: var(--inspector-entity-name);
+    margin: 20px;
 }
 
 #hierarchy {
@@ -38,4 +43,11 @@ menu {
 
 .panel {
     background: var(--box-bg);
+}
+
+.tab {
+    background: var(--tab-bg);
+    padding: 1rem;
+    font-family: "Source Code Pro Bold", "Comic Sans MS";
+    color: white;
 }

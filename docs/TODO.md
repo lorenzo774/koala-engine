@@ -49,7 +49,7 @@
     -   [x] Create HTTP server with 2 routes for html view
     -   [x] Design Editor Layout
     -   [x] Create editor layout page (HTML)
-    -   [ ] Finish editor page (HTML)
+    -   [x] Finish editor page (HTML)
     -   [ ] Create Save/Load system for tilemap
     -   [ ] Create Save/Load system for game (entities, components, textures path, etc...)
     -   [ ] Create UI to handle entities and components

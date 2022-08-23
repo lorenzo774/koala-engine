@@ -22,10 +22,13 @@ const requestListener = function (req, res) {
         .catch((error) => {
             res.writeHead(500);
             res.end(error);
-            return;
         });
 };
 
 http.createServer(requestListener).listen(PORT, "localhost", () => {
-    console.log(`\nServer is running http://localhost:${PORT}\n`);
+    console.log(`
+Server is running on port ${PORT}
+
+    GAME:\t http://localhost:${PORT}
+    EDITOR:\t http://localhost:${PORT}/editor`);
 });
