@@ -1,3 +1,15 @@
+#canvas {
+    background-color: white;
+    width: 100vw;
+    height: 100vh;
+}
+
+#app {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 #goto-editor {
     background-color: var(--box-bg);
     top: 10px;

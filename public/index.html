@@ -1,38 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>GAME</title>
-        <script type="module" src="./scripts/demo/index.js" defer></script>
-        <!-- ICON -->
-        <link rel="shortcut icon" href="favicon.png" type="image/png" />
-        <!-- STYLE -->
-        <link rel="stylesheet" href="./style/global.css" />
-        <link rel="stylesheet" href="./style/index.css" />
-    </head>
-    <body>
-        <!-- AUDIOs -->
-        <div id="audios"></div>
-        <!-- APP -->
-        <div id="app">
-            <canvas id="canvas"></canvas>
-            <!-- GO TO EDITOR -->
-            <div class="ui hide ui-debug" id="goto-editor">
-                <a href="./editor">EDITOR</a>
-            </div>
-            <!-- ENTITIES DEBUG -->
-            <div class="ui hide ui-debug" id="debug-entities">
-                <!-- TOGGLE DEBUG MODE -->
-                <button id="toggle-debug-mode" class="ui on">ON</button>
-                <h2>Debug</h2>
-                <h3 id="fps">FPS:</h3>
-                <div class="debug-section">
-                    <h3>Entities</h3>
-                    <ul class="list" id="ui-entity"></ul>
-                </div>
-            </div>
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GAME</title>
+    <script type="module" src="./scripts/demo/index.js" defer></script>
+    <!-- ICON -->
+    <link rel="shortcut icon" href="favicon.png" type="image/png" />
+    <!-- STYLE -->
+    <link rel="stylesheet" href="./style/global.css" />
+    <link rel="stylesheet" href="./style/index.css" />
+</head>
+<body>
+<!-- AUDIOs -->
+<div id="audios"></div>
+<!-- APP -->
+<div id="app">
+    <canvas id="canvas"></canvas>
+    <!-- GO TO EDITOR -->
+    <div class="ui hide ui-debug" id="goto-editor">
+        <a href="./editor">EDITOR</a>
+    </div>
+    <!-- ENTITIES DEBUG -->
+    <div class="ui hide ui-debug" id="debug-entities">
+        <!-- TOGGLE DEBUG MODE -->
+        <button id="toggle-debug-mode" class="ui on">ON</button>
+        <h2>Debug</h2>
+        <h3 id="fps">FPS:</h3>
+        <div class="debug-section">
+            <h3>Entities</h3>
+            <ul class="list" id="ui-entity"></ul>
         </div>
-    </body>
+    </div>
+</div>
+</body>
 </html>

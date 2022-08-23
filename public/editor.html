@@ -1,17 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>EDITOR</title>
-        <link rel="stylesheet" href="./style/global.css" />
-        <!-- ICON -->
-        <link rel="shortcut icon" href="favicon.png" type="image/png" />
-    </head>
-    <body>
-        <!-- APP -->
-        <div id="app">
-            <canvas id="canvas"></canvas>
-    </body>
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>EDITOR</title>
+    <link rel="stylesheet" href="./style/global.css" />
+    <link rel="stylesheet" href="./style/editor.css" />
+    <!-- ICON -->
+    <link rel="shortcut icon" href="favicon.png" type="image/png" />
+</head>
+<body>
+<!-- APP -->
+<div id="app">
+    <menu>
+        <!-- PLAY BUTTON -->
+        <a href="/">
+            <svg width="36" height="38" viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path
+                    d="M30.5 13.6699C33.8333 15.5944 33.8333 20.4056 30.5 22.3301L8 35.3205C4.66667 37.245 0.500002 34.8394 0.500002 30.9904L0.500003 5.00962C0.500003 1.16062 4.66667 -1.24501 8 0.679492L30.5 13.6699Z"
+                    fill="#04CB00" />
+                <path
+                    d="M30.5 13.6699C33.8333 15.5944 33.8333 20.4056 30.5 22.3301L8 35.3205C4.66667 37.245 0.500002 34.8394 0.500002 30.9904L0.500003 5.00962C0.500003 1.16062 4.66667 -1.24501 8 0.679492L30.5 13.6699Z"
+                    stroke="black" />
+            </svg>
+        </a>
+    </menu>
+    <!-- INSPECTOR -->
+    <div class="panel" id="inspector">
+    </div>
+    <!-- HIERARCHY -->
+    <div class="panel" id="hierarchy">
+    </div>
+    <!-- CONSOLE -->
+    <div class="panel" id="console">
+    </div>
+    <!-- CANVAS -->
+    <canvas id="canvas"></canvas>
+</div>
+</body>
 </html>

@@ -22,7 +22,7 @@ export class TilemapNodePool {
      * @returns Rect with position and size of the pool (Tilemap UNITS)
      */
     public getRect(): Rect {
-        const position: Vector2 = this.nodes[0][0].position; // Position in tilemap units
+        let position: Vector2 = this.nodes[0][0].position; // Position in tilemap units
 
         let maxX: number = -1;
         let maxY: number = -1;

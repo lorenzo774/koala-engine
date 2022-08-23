@@ -1,0 +1,41 @@
+#app {
+    height: 100vh;
+    display: grid;
+    grid-template-rows: 70px 2.5fr 1fr;
+    grid-template-columns: 1fr 4fr 1fr;
+    grid-template-areas:
+        "menu menu menu"
+        "hierarchy canvas inspector"
+        "hierarchy console inspector";
+}
+
+menu {
+    grid-area: menu;
+    padding: 15px 0 15px 0;
+    background: var(--box-bg);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#canvas {
+    grid-area: canvas;
+    width: 100%;
+    height: 100%;
+}
+
+#inspector {
+    grid-area: inspector;
+}
+
+#hierarchy {
+    grid-area: hierarchy;
+}
+
+#console {
+    grid-area: console;
+}
+
+.panel {
+    background: var(--box-bg);
+}

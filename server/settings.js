@@ -9,5 +9,6 @@ module.exports.contentTypes = {
     ".css": "text/css",
     ".js": "text/javascript",
     ".png": "image/png",
+    ".svg": "image/svg",
     ".wav": "audio/wav",
 };

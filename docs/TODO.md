@@ -40,6 +40,7 @@
     -   [x] Add onGround method
     -   [x] Fix physics to work with Camera system
     -   [x] Create Collision system for Tilemap
+    -   [ ] Fix Collisions of TilemapBody
     -   [ ] Create trigger system for bodies (UnityLike)
     -   [ ] Improve PhysicsEngine performance (Tile based checking)
 
@@ -47,7 +48,8 @@
 
     -   [x] Create HTTP server with 2 routes for html view
     -   [x] Design Editor Layout
-    -   [ ] Create editor page (HTML)
+    -   [x] Create editor layout page (HTML)
+    -   [ ] Finish editor page (HTML)
     -   [ ] Create Save/Load system for tilemap
     -   [ ] Create Save/Load system for game (entities, components, textures path, etc...)
     -   [ ] Create UI to handle entities and components

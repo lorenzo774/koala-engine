@@ -11,18 +11,6 @@
     font-family: Helvetica;
 }
 
-#app {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-#canvas {
-    background-color: white;
-    width: 100vw;
-    height: 100vh;
-}
-
 .ui {
     position: absolute;
 }

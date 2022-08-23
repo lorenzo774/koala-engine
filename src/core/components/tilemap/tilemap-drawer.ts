@@ -3,6 +3,7 @@ import { Vector2 } from "../../math/vector2.js";
 import { TilemapBody } from "../bodies/tilemapbody.js";
 import { Camera } from "../camera.js";
 import { Tilemap } from "./tilemap.js";
+import { DRAW_FIX_VALUE, TILEMAP_RENDERING_VALUE } from "../../const.js";
 
 export class TilemapDrawer {
     constructor(private tilemap: Tilemap) {}
@@ -21,11 +22,11 @@ export class TilemapDrawer {
             this.tilemap.tileset.texture,
             this.tilemap.tileset.tileSize.x * rectPos.x,
             this.tilemap.tileset.tileSize.y * rectPos.y,
-            this.tilemap.tileset.tileSize.x - 0.02,
-            this.tilemap.tileset.tileSize.y - 0.02,
-            this.tilemap.tileset.worldSize.x * tilePos.x -
+            this.tilemap.tileset.tileSize.x * DRAW_FIX_VALUE,
+            this.tilemap.tileset.tileSize.y * DRAW_FIX_VALUE,
+            this.tilemap.tileset.worldSize.x * TILEMAP_RENDERING_VALUE * tilePos.x -
                 Camera.main.position.x,
-            this.tilemap.tileset.worldSize.y * tilePos.y -
+            this.tilemap.tileset.worldSize.y * TILEMAP_RENDERING_VALUE * tilePos.y -
                 Camera.main.position.y,
             this.tilemap.tileset.worldSize.x,
             this.tilemap.tileset.worldSize.y
@@ -64,11 +65,11 @@ export class TilemapDrawer {
             ctx.strokeStyle = Settings.main.DEBUG_COLOR;
             ctx.moveTo(
                 0,
-                i * this.tilemap.tileset.worldSize.y - Camera.main.position.y
+                i * this.tilemap.tileset.worldSize.y * TILEMAP_RENDERING_VALUE - Camera.main.position.y
             );
             ctx.lineTo(
                 Settings.main.WIDTH,
-                i * this.tilemap.tileset.worldSize.y - Camera.main.position.y
+                i * this.tilemap.tileset.worldSize.y * TILEMAP_RENDERING_VALUE  - Camera.main.position.y
             );
             ctx.stroke();
             ctx.closePath();
@@ -78,11 +79,11 @@ export class TilemapDrawer {
             ctx.beginPath();
             ctx.strokeStyle = Settings.main.DEBUG_COLOR;
             ctx.moveTo(
-                i * this.tilemap.tileset.worldSize.x - Camera.main.position.x,
+                i * this.tilemap.tileset.worldSize.x * TILEMAP_RENDERING_VALUE - Camera.main.position.x,
                 0
             );
             ctx.lineTo(
-                i * this.tilemap.tileset.worldSize.x - Camera.main.position.x,
+                i * this.tilemap.tileset.worldSize.x  * TILEMAP_RENDERING_VALUE  - Camera.main.position.x,
                 Settings.main.HEIGHT
             );
             ctx.stroke();
