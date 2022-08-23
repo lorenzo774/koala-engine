@@ -1,11 +1,15 @@
-# koala-engine
+# koala-engine 
+
 
 <img witdh="40" height="40" src="https://github.com/devicons/devicon/blob/master/icons/html5/html5-original.svg" />&nbsp;
 <img witdh="40" height="40" src="https://github.com/devicons/devicon/blob/master/icons/typescript/typescript-original.svg" />&nbsp;
 
-![img](https://i.imgur.com/rSzYMCo.png)
-
+<p align="center">
+<img width="300" style="margin:50px"  src="https://i.imgur.com/WcnOxOg.png" />
+</p>
+<p align="center">
 Game engine made with HTML5 + Typescript.
+</p>
 
 ## Installation
 
@@ -29,3 +33,8 @@ npm run dev
 ```
 
 (Use vscode chrome debugger to use breakpoints while debugging)
+
+
+## Example 
+
+![img](https://i.imgur.com/rSzYMCo.png)
