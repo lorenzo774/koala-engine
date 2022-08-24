@@ -19,8 +19,8 @@ export class TilemapDrawer {
         );
         ctx.drawImage(
             this.tilemap.tileset.texture,
-            (this.tilemap.tileset.tileSize.x ) * rectPos.x,
-            (this.tilemap.tileset.tileSize.y  )* rectPos.y,
+            this.tilemap.tileset.tileSize.x * rectPos.x,
+            this.tilemap.tileset.tileSize.y * rectPos.y,
             this.tilemap.tileset.tileSize.x - 0.1,
             this.tilemap.tileset.tileSize.y - 0.1,
             this.tilemap.tileset.worldSize.x  * tilePos.x -
