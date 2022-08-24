@@ -1,5 +1,6 @@
 import { Settings } from "../settings/settings.js";
 import { Entity } from "../entity.js";
+import { Scene } from "../scene.js";
 
 export class UIDebug {
     // Singleton
@@ -12,6 +13,7 @@ export class UIDebug {
     }
 
     private entityList: HTMLUListElement = document.querySelector("#ui-entity");
+    private sceneLbl: HTMLElement = document.querySelector("#debug-scene-name");
     private fpsLbl: HTMLElement = document.querySelector("#fps");
     private toggleDebugUI: HTMLButtonElement =
         document.querySelector("#toggle-debug-mode");
@@ -33,6 +35,7 @@ export class UIDebug {
     }
 
     public run(entities: Entity[], fps: number) {
+        this.sceneLbl.textContent = `Scene: ${Scene.main.name}`;
         this.fpsLbl.textContent = `FPS: ${fps.toFixed(0)}`;
         this.entityList.innerHTML = entities
             .map((entity) => `<li> - ${entity.name}</li>`)

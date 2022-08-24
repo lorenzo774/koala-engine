@@ -6,20 +6,38 @@ import { Renderer } from "./display/renderer.js";
 import { Keyboard } from "./input/keyboard-input.js";
 import { MouseInput } from "./input/mouse-input.js";
 import { Vector2 } from "./math/vector2.js";
+import { Scene } from "./scene.js";
 
 export class Game {
     private renderer: Renderer;
     private physicsEngine: PhysicsEngine;
     protected entities: Entity[] = [];
 
+    /**
+     * Start game
+     */
+    constructor(canvas: HTMLCanvasElement, ctx: CanvasRenderingContext2D) {
+        this.listenWindowEvents(canvas, ctx);
+        this.init();
+        // The game could not start without scenes
+        if(Scene.scenes.length === 0) {
+            alert("You need to create a scene!");
+            return;
+        }
+        this.loadScene();
+        this.initEntities();
+        this.renderer = new Renderer(ctx, this.entities);
+        this.physicsEngine = new PhysicsEngine(this.entities);
+        this.physicsEngine.init();
+        if (Settings.main.DEBUG_MODE) {
+            UIDebug.I.showDebugUI();
+        }
+        this.runLoop();
+    }
+
     private runLoop() {
         this.renderer.run();
     }
-
-    /**
-     *  Virtual method, this method will be called on children to initialize entities
-     */
-    protected init() {}
 
     /**
      * Listen to input and window events
@@ -39,20 +57,19 @@ export class Game {
         MouseInput.listen();
     }
 
-    /**
-     * Start game
-     */
-    constructor(canvas: HTMLCanvasElement, ctx: CanvasRenderingContext2D) {
-        this.listenWindowEvents(canvas, ctx);
-        this.init();
-        this.renderer = new Renderer(ctx, this.entities);
-        this.physicsEngine = new PhysicsEngine(this.entities);
-        this.physicsEngine.init();
-        if (Settings.main.DEBUG_MODE) {
-            UIDebug.I.showDebugUI();
-        }
-        this.runLoop();
+    private loadScene() {
+        this.entities = Scene.main.entities;
     }
+
+    private initEntities() {
+        this.entities.forEach(entity => entity.load());
+    }
+
+    /**
+     *  Virtual method, this method will be called on children to initialize scenes and entities
+     */
+    protected init() {}
+
 
     public reload() {
         this.entities.forEach((entity) => entity.start());

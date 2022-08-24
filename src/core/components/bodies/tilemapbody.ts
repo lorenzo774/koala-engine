@@ -3,7 +3,6 @@ import { CollisionBody } from "./collisionbody.js";
 import { Tilemap } from "../tilemap/tilemap.js";
 import { Rect } from "../../utils/rect.js";
 import { Vector2 } from "../../math/vector2.js";
-import { TILEMAP_RENDERING_VALUE } from "../../const.js";
 
 export class TilemapBody extends CollisionBody {
     private collisions: Rect[];
@@ -21,9 +20,9 @@ export class TilemapBody extends CollisionBody {
                         Vector2.multiply(
                             rect.position,
                             Vector2.multiplyBy(
-                            tilemap.tileset.worldSize, TILEMAP_RENDERING_VALUE)
+                            tilemap.tileset.worldSize, 1)
                         ),
-                        Vector2.multiplyBy(Vector2.multiply(rect.size, tilemap.tileset.worldSize), TILEMAP_RENDERING_VALUE)
+                        Vector2.multiplyBy(Vector2.multiply(rect.size, tilemap.tileset.worldSize), 1)
                     )
             );
     }

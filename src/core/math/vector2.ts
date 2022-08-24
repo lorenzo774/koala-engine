@@ -80,6 +80,14 @@ export class Vector2 {
     }
 
     /**
+     * Subtract each component of 2 vectors by a number
+     * @returns Vector with each component subtracted
+     */
+    public static subtractBy(a: Vector2, n: number): Vector2 {
+        return new Vector2(a.x - n, a.y - n);
+    }
+
+    /**
      * Add each component of 2 vectors
      * @returns Vector with each component added
      */

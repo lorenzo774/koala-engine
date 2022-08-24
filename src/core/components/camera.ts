@@ -16,7 +16,11 @@ export class Camera extends Component {
         Camera._main = camera;
     }
 
-    public position: Vector2;
+    private _position: Vector2;
+
+    public static get position(): Vector2 {
+        return Camera._main ? Camera._main._position : Vector2.ZERO;
+    }
 
     /**
      * Create a new camera component
@@ -28,7 +32,7 @@ export class Camera extends Component {
         private followY: boolean = false
     ) {
         super(entity);
-        this.position = this.getCameraPosition();
+        this._position = this.getCameraPosition();
     }
 
     private getCameraPosition(): Vector2 {
@@ -39,7 +43,7 @@ export class Camera extends Component {
     }
 
     public update() {
-        this.position = Vector2.subtract(
+        this._position = Vector2.subtract(
             this.getCameraPosition(),
             Vector2.divideBy(Settings.main.SCREEN_SIZE, 2)
         );

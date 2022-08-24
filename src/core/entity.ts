@@ -14,13 +14,12 @@ export abstract class Entity {
 
     constructor(public name: string, private _components: Component[] = []) {
         this.addComponent(new Transform(this));
-        this.init();
-        this.start();
-        this._components.forEach((component) => component.start());
-        this.startComponents();
+
     }
 
-    private startComponents() {
+    public load() {
+        this.init();
+        this.start();
         this._components.forEach((component) => component.start());
     }
 

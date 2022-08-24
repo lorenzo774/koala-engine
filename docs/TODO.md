@@ -9,7 +9,7 @@
     -   [x] Add gravity
     -   [x] Create Debugger
     -   [x] Create Rigidbody
-    -   [x] Create CollisionBox component
+    -   [x] Create CollisionBox component1
     -   [x] Create CollisionSystem
     -   [x] Check collision in CollisionBody
     -   [x] Add debugger UI
@@ -24,6 +24,7 @@
     -   [x] Create tilemap algorithm to find tiles chunks
     -   [x] Fix tilemap algorithm
     -   [x] Move settings to core, implement settings load system
+    -   [x] Create scene system
     -   [ ] Change tilemap map to fixed size 2D array
     -   [ ] Create tilemap system to change tilemapbody
     -   [ ] Change algorithm to use max tile pixel (perfect collision)
@@ -40,7 +41,7 @@
     -   [x] Add onGround method
     -   [x] Fix physics to work with Camera system
     -   [x] Create Collision system for Tilemap
-    -   [ ] Fix Collisions of TilemapBody
+    -   [x] Fix Collisions of TilemapBody
     -   [ ] Create trigger system for bodies (UnityLike)
     -   [ ] Improve PhysicsEngine performance (Tile based checking)
 

@@ -45,8 +45,7 @@ export class RigidBody extends CollisionBody {
     }
 
     public update() {
-        this.velocity.y +=
-            this.fallingFactor * (1 / Settings.main.PHYSICS_CYCLES_PER_SECONDS);
+        this.velocity.y += this.fallingFactor * (1 / Settings.main.PHYSICS_CYCLES_PER_SECONDS);
     }
 
     public physicsUpdate() {
@@ -54,7 +53,7 @@ export class RigidBody extends CollisionBody {
         this.transform.position.x +=
             this.velocity.x * (1 / Settings.main.PHYSICS_CYCLES_PER_SECONDS);
         this.transform.position.y +=
-            this.velocity.y * (1 / Settings.main.PHYSICS_CYCLES_PER_SECONDS);
+            this.velocity.y * (1 / Settings.main.PHYSICS_CYCLES_PER_SECONDS)
     }
 
     public debugDraw(ctx: CanvasRenderingContext2D) {
@@ -62,10 +61,10 @@ export class RigidBody extends CollisionBody {
         ctx.fillRect(
             this.transform.position.x +
                 this.collisionBox.position.x -
-                Camera.main.position.x,
+                Camera.position.x,
             this.transform.position.y +
                 this.collisionBox.position.y -
-                Camera.main.position.y,
+                Camera.position.y,
             this.collisionBox.size.x,
             this.collisionBox.size.y
         );

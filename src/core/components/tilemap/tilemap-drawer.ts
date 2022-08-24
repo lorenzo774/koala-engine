@@ -3,7 +3,6 @@ import { Vector2 } from "../../math/vector2.js";
 import { TilemapBody } from "../bodies/tilemapbody.js";
 import { Camera } from "../camera.js";
 import { Tilemap } from "./tilemap.js";
-import { DRAW_FIX_VALUE, TILEMAP_RENDERING_VALUE } from "../../const.js";
 
 export class TilemapDrawer {
     constructor(private tilemap: Tilemap) {}
@@ -20,14 +19,14 @@ export class TilemapDrawer {
         );
         ctx.drawImage(
             this.tilemap.tileset.texture,
-            this.tilemap.tileset.tileSize.x * rectPos.x,
-            this.tilemap.tileset.tileSize.y * rectPos.y,
-            this.tilemap.tileset.tileSize.x * DRAW_FIX_VALUE,
-            this.tilemap.tileset.tileSize.y * DRAW_FIX_VALUE,
-            this.tilemap.tileset.worldSize.x * TILEMAP_RENDERING_VALUE * tilePos.x -
-                Camera.main.position.x,
-            this.tilemap.tileset.worldSize.y * TILEMAP_RENDERING_VALUE * tilePos.y -
-                Camera.main.position.y,
+            (this.tilemap.tileset.tileSize.x ) * rectPos.x,
+            (this.tilemap.tileset.tileSize.y  )* rectPos.y,
+            this.tilemap.tileset.tileSize.x - 0.1,
+            this.tilemap.tileset.tileSize.y - 0.1,
+            this.tilemap.tileset.worldSize.x  * tilePos.x -
+                Camera.position.x,
+            this.tilemap.tileset.worldSize.y  * tilePos.y -
+                Camera.position.y,
             this.tilemap.tileset.worldSize.x,
             this.tilemap.tileset.worldSize.y
         );
@@ -42,8 +41,8 @@ export class TilemapDrawer {
         for (const collision of tilemapBody.getCollisions()) {
             ctx.fillStyle = Settings.main.DEBUG_COLOR;
             ctx.fillRect(
-                collision.position.x - Camera.main.position.x,
-                collision.position.y - Camera.main.position.y,
+                collision.position.x - Camera.position.x,
+                collision.position.y - Camera.position.y,
                 collision.size.x,
                 collision.size.y
             );
@@ -65,11 +64,11 @@ export class TilemapDrawer {
             ctx.strokeStyle = Settings.main.DEBUG_COLOR;
             ctx.moveTo(
                 0,
-                i * this.tilemap.tileset.worldSize.y * TILEMAP_RENDERING_VALUE - Camera.main.position.y
+                i * this.tilemap.tileset.worldSize.y - Camera.position.y
             );
             ctx.lineTo(
                 Settings.main.WIDTH,
-                i * this.tilemap.tileset.worldSize.y * TILEMAP_RENDERING_VALUE  - Camera.main.position.y
+                i * this.tilemap.tileset.worldSize.y  - Camera.position.y
             );
             ctx.stroke();
             ctx.closePath();
@@ -79,11 +78,11 @@ export class TilemapDrawer {
             ctx.beginPath();
             ctx.strokeStyle = Settings.main.DEBUG_COLOR;
             ctx.moveTo(
-                i * this.tilemap.tileset.worldSize.x * TILEMAP_RENDERING_VALUE - Camera.main.position.x,
+                i * this.tilemap.tileset.worldSize.x - Camera.position.x,
                 0
             );
             ctx.lineTo(
-                i * this.tilemap.tileset.worldSize.x  * TILEMAP_RENDERING_VALUE  - Camera.main.position.x,
+                i * this.tilemap.tileset.worldSize.x   - Camera.position.x,
                 Settings.main.HEIGHT
             );
             ctx.stroke();

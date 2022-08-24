@@ -37,10 +37,10 @@ export class StaticBody extends CollisionBody {
         ctx.fillRect(
             this.transform.position.x +
                 this.collisionBox.position.x -
-                Camera.main.position.x,
+                Camera.position.x,
             this.transform.position.y +
                 this.collisionBox.position.y -
-                Camera.main.position.y,
+                Camera.position.y,
             this.collisionBox.size.x,
             this.collisionBox.size.y
         );
