@@ -17,7 +17,7 @@ export class Platform extends Game {
         Scene.add(new Scene([new Background(), new World()], "bg-world"));
 
         // LOAD SCENE
-        Scene.load("bg-world");
+        Scene.load("main");
 
         // AUDIO
         AudioManager.load("../assets/audio/jump.wav", "jump", false, 1);
