@@ -42,7 +42,7 @@
     -   [x] Fix physics to work with Camera system
     -   [x] Create Collision system for Tilemap
     -   [x] Fix Collisions of TilemapBody
-    -   [ ] Create trigger system for bodies (UnityLike)
+    -   [x] Create trigger system for bodies (UnityLike)
     -   [ ] Improve PhysicsEngine performance (Tile based checking)
 
 -   Editor

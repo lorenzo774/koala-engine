@@ -65,6 +65,15 @@ export class PhysicsEngine {
                             body.lastContactNormal = Vector2.ZERO; // No contact normal
                             continue;
                         }
+                        collision.body = otherBody;
+                        if(otherBody.solid) {
+                            body.onCollision(otherBody);
+                            otherBody.onCollision(body);
+                        }
+                        else {
+                            body.onTrigger(otherBody);
+                            otherBody.onTrigger(body);
+                        }
                         rigidBodyCollisions.push(collision);
                     }
                 }
@@ -89,6 +98,8 @@ export class PhysicsEngine {
         ] of this.rigidBodiesCollisions.entries()) {
             // Resolve collision for the rigidbody
             for (const collision of collisions) {
+                if(!collision.body.solid) continue; // Not resolving collision if the body is not solid
+
                 rigidBody.lastContactNormal = collision.contactNormal;
                 rigidBody.velocity = Vector2.add(
                     rigidBody.velocity,

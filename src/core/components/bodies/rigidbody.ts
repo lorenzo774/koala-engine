@@ -29,8 +29,6 @@ export class RigidBody extends CollisionBody {
         super(entity);
     }
 
-    public onCollision() {}
-
     public start() {
         this.fallingFactor = this.gravity ? Settings.main.GRAVITY * this.mass : 0;
         this.velocity = Vector2.ZERO;

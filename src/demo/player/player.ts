@@ -11,6 +11,7 @@ import { Transform } from "../../core/components/transform.js";
 import { RigidBody } from "../../core/components/bodies/rigidbody.js";
 import { Camera } from "../../core/components/camera.js";
 import { Rect } from "../../core/utils/rect.js";
+import { PlayerCollision } from "./player-collision.js";
 
 export class Player extends Entity {
     constructor() {
@@ -40,7 +41,8 @@ export class Player extends Entity {
             new RigidBody(
                 this,
                 new Rect(new Vector2(0, 50), new Vector2(width, height - 50))
-            )
+            ),
+            new PlayerCollision(this)
         ];
         Camera.main = camera;
     }

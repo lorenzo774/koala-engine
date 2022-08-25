@@ -5,13 +5,14 @@ import { Rect } from "../../utils/rect.js";
 import { Vector2 } from "../../math/vector2.js";
 
 export class TilemapBody extends CollisionBody {
-    private collisions: Rect[];
+    private readonly collisions: Rect[];
 
     constructor(
         entity: Entity,
-        private tilemap: Tilemap = new Tilemap(entity)
+        solid: boolean = true,
+        private tilemap: Tilemap = new Tilemap(entity),
     ) {
-        super(entity);
+        super(entity, solid);
         this.collisions = this.tilemap
             .getIndividualRects()
             .map(
@@ -20,14 +21,12 @@ export class TilemapBody extends CollisionBody {
                         Vector2.multiply(
                             rect.position,
                             Vector2.multiplyBy(
-                            tilemap.tileset.worldSize, 1)
+                                tilemap.tileset.worldSize, 1)
                         ),
                         Vector2.multiplyBy(Vector2.multiply(rect.size, tilemap.tileset.worldSize), 1)
                     )
             );
     }
-
-    public onCollision() {}
 
     public *getCollisions(): IterableIterator<Rect> {
         for (const rect of this.collisions) {

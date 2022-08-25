@@ -11,9 +11,10 @@ export class StaticBody extends CollisionBody {
         private collisionBox: Rect = new Rect(
             Vector2.ZERO,
             new Vector2(100, 100)
-        )
+        ),
+        solid: boolean = true
     ) {
-        super(entity);
+        super(entity, solid);
     }
 
     public *getCollisions(): IterableIterator<Rect> {
@@ -22,8 +23,6 @@ export class StaticBody extends CollisionBody {
             this.collisionBox.size
         );
     }
-
-    public onCollision() {}
 
     public update() {
         this.position.x =

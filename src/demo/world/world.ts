@@ -24,7 +24,7 @@ export class World extends Entity {
             ),
         ];
         const tilemap = this.getComponent<Tilemap>(Tilemap);
-        this.components.push(new TilemapBody(this, tilemap));
+        this.components.push(new TilemapBody(this, true, tilemap));
         texture.removeEventListener("load", this.loadTilemap.bind(this));
     }
 

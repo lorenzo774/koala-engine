@@ -1,14 +1,25 @@
 import { Component } from "../../component.js";
 import { Entity } from "../../entity.js";
 import { Vector2 } from "../../math/vector2.js";
-import { Transform } from "./../transform.js";
+import { Transform } from "../transform.js";
 import { Rect } from "../../utils/rect.js";
 
 export abstract class CollisionBody extends Component {
+    private _collisionEventHandler: (CollisionBody) => void;
+    private _triggerEventHandler: (CollisionBody) => void;
+
     protected transform: Transform;
+
     public position: Vector2;
 
-    constructor(entity: Entity) {
+    public set CollisionEventHandler(callback: (CollisionBody) => void) {
+        this._collisionEventHandler = callback;
+    }
+    public set TriggerEventHandler(callback: (CollisionBody) => void) {
+        this._triggerEventHandler = callback;
+    }
+
+    constructor(entity: Entity, public solid: boolean = true) {
         super(entity);
         this.transform = entity.getComponent<Transform>(Transform);
     }
@@ -21,7 +32,19 @@ export abstract class CollisionBody extends Component {
     }
 
     /**
-     * Called when the body is in collision with another
+     * Called when the body is in collision with a solid body
      */
-    public onCollision() {}
+    public onCollision(otherBody: CollisionBody) {
+        if(!this._collisionEventHandler) return;
+        this._collisionEventHandler(otherBody);
+    }
+
+    /**
+     * Called when the body is in collision with a not solid body
+     */
+    public onTrigger(otherBody: CollisionBody) {
+        if(!this._triggerEventHandler) return;
+        this._triggerEventHandler(otherBody);
+    }
 }
+
