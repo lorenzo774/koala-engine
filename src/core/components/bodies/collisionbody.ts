@@ -12,10 +12,17 @@ export abstract class CollisionBody extends Component {
 
     public position: Vector2;
 
-    public set CollisionEventHandler(callback: (CollisionBody) => void) {
+    /**
+     * @param callback Called on solid collision
+     */
+    public set collisionEventHandler(callback: (CollisionBody) => void) {
         this._collisionEventHandler = callback;
     }
-    public set TriggerEventHandler(callback: (CollisionBody) => void) {
+
+    /**
+     * @param callback Called on not solid collision
+     */
+    public set triggerEventHandler(callback: (CollisionBody) => void) {
         this._triggerEventHandler = callback;
     }
 

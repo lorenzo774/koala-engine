@@ -1,3 +1,7 @@
+const fs = require('fs');
+const path = require("path");
+const {serverDir } = require('./utils');
+
 // Routes
 module.exports.routes = new Map([
     ["/", "index.html"],
@@ -16,3 +20,8 @@ module.exports.contentTypes = {
     // Font
     ".woff": "application/x-font-woff"
 };
+
+module.exports.options = {
+    key: fs.readFileSync(path.join(serverDir, "key.pem")),
+    cert: fs.readFileSync(path.join(serverDir, "cert.pem")),
+}

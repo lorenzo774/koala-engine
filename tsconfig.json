@@ -6,6 +6,6 @@
         "module": "ES6",
         "target": "ESNext",
         "moduleResolution": "node",
-        "removeComments": true
+        "removeComments": true,
     }
 }

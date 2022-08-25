@@ -6,7 +6,7 @@ import { Rect } from "../../utils/rect.js";
 import { Camera } from "../camera.js";
 
 /**
- * Dyamic body, this body has a velocity and it moves
+ * Dynamic body, this body has a velocity, and it moves
  */
 export class RigidBody extends CollisionBody {
     private fallingFactor: number;

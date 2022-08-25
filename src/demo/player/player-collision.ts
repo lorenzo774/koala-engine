@@ -15,8 +15,8 @@ export class PlayerCollision extends Component {
 
     public start() {
         this.rigidBody = this.entity.getComponent<RigidBody>(RigidBody);
-        this.rigidBody.TriggerEventHandler = this.onTrigger.bind(this);
-        this.rigidBody.CollisionEventHandler = this.onCollision.bind(this);
+        this.rigidBody.triggerEventHandler = this.onTrigger.bind(this);
+        this.rigidBody.collisionEventHandler = this.onCollision.bind(this);
     }
 
 }

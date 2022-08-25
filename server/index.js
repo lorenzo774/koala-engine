@@ -1,10 +1,10 @@
-const http = require("http");
+const https = require("https");
 const fs = require("fs").promises;
 const path = require("path");
-const { contentTypes, routes } = require("./settings");
+const { contentTypes, routes, options } = require("./settings");
+const { publicDir } = require("./utils");
 
 const PORT = 3000;
-const dir = path.join(path.dirname(path.basename(__filename)), "public");
 
 // Serve static html
 const requestListener = function (req, res) {
@@ -13,7 +13,7 @@ const requestListener = function (req, res) {
     if (!routes.get(req.url) && ext === "") return;
     const pathToResource = ext === "" ? `/${routes.get(req.url)}` : req.url;
     // CURRENT REQUEST
-    fs.readFile(`${dir}${pathToResource}`)
+    fs.readFile(`${publicDir}${pathToResource}`)
         .then((resource) => {
             res.setHeader("Content-Type", contentTypes[ext]);
             res.writeHead(200);
@@ -25,10 +25,10 @@ const requestListener = function (req, res) {
         });
 };
 
-http.createServer(requestListener).listen(PORT, "localhost", () => {
+https.createServer(options, requestListener).listen(PORT, "localhost", () => {
     console.log(`
 Server is running on port ${PORT}
 
-    GAME:\t http://localhost:${PORT}
-    EDITOR:\t http://localhost:${PORT}/editor`);
+    GAME:\t https://localhost:${PORT}
+    EDITOR:\t https://localhost:${PORT}/editor`);
 });

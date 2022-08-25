@@ -26,7 +26,17 @@ cd koala-engine
 npm install
 ```
 
-3. Run the project using npm scripts
+3. Install openssl
+```
+scoop install openssl
+```
+
+4. Generate SSL certificate using openssl 
+```
+openssl req -new -newkey rsa:4096 -days 365 -nodes -x509 -subj "/C=US/ST=Denial/L=Springfield/O=Dis/CN=www.example.com" -keyout server/key.pem -out server/cert.pem
+```
+
+5. Run the project using npm scripts
 
 ```
 npm run dev
@@ -37,4 +47,10 @@ npm run dev
 
 ## Example 
 
-![img](https://i.imgur.com/rSzYMCo.png)
+<img alt="FIGMA" src="https://i.imgur.com/BsXHdmL.png" />
+<p align="center">Figma, yet to be develop</p>
+
+---
+
+![img](https://i.imgur.com/2mUgLmN.png)
+<p align="center">demo</p>
