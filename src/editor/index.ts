@@ -1,13 +1,14 @@
-import { Settings } from "../core/settings/settings.js";
-import { getEditorSettings } from "./editor-settings.js";
 import { Editor } from "./editor.js";
+import { loadProject } from "../loader/load-project.js";
+import { loadJson } from "./IO/load-json.js";
 
 const canvas = document.querySelector("#canvas") as HTMLCanvasElement;
 const context = canvas.getContext("2d");
 
-// Load settings
-const editorSettings = getEditorSettings(canvas);
-Settings.loadSettings(editorSettings);
-
-// START
-new Editor(canvas, context);
+// File System Access API works on user input
+canvas.addEventListener('click', async _ => {
+    const settingsBlob: string = await loadJson();
+    loadProject(settingsBlob, "", "", "");
+    // START
+    new Editor(canvas, context);
+})
