@@ -23,15 +23,6 @@
     justify-content: center;
     align-items: center;
 }
-#goto-editor a {
-    color: white;
-    font-weight: bold;
-    text-decoration: none;
-}
-#goto-editor a:hover {
-    color: var(--true);
-}
-
 #debug-entities {
     background-color: var(--box-bg);
     border: 2px solid var(--border);

@@ -17,6 +17,48 @@ menu {
     justify-content: center;
     align-items: center;
 }
+/* MENU ITEMS */
+.menu-items {
+    position: absolute;
+    top: 70px;
+    left: 0;
+}
+.menu-item {
+    color: white;
+    position: absolute;
+    top: 0;
+    left: 0;
+    font-family: "Source Code Pro";
+    background: var(--menu-item-bg);
+    font-size: 20px;
+    padding: 20px;
+}
+.item {
+    margin: 10px 10px 15px 5px;
+}
+.item:hover {
+    cursor: pointer;
+}
+
+/* MENU ITEMS TEXT */
+.menu-item-buttons {
+    width: 100%;
+    line-height: 100%;
+    display: flex;
+}
+.menu-item-button {
+    color: white;
+    font-family: "Source Code Pro";
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 130px;
+    height: 70px;
+    cursor: pointer;
+}
+.menu-item-button:hover {
+    text-decoration: underline;
+}
 
 #canvas {
     grid-area: canvas;
@@ -30,15 +72,25 @@ menu {
 }
 #inspector-entity-name {
     color: var(--inspector-entity-name);
-    margin: 20px;
+    margin-right: 50px;
 }
 
+/* HIERARCHY */
 #hierarchy {
     grid-area: hierarchy;
+}
+#hierarchy-scene-name {
+    color: var(--hierarchy-scene-name);
+    margin-right: 50px;
 }
 
 #console {
     grid-area: console;
+}
+
+
+.placeholder {
+    width: 100%;
 }
 
 .panel {
@@ -50,4 +102,6 @@ menu {
     padding: 1rem;
     font-family: "Source Code Pro Bold", "Comic Sans MS";
     color: white;
+    display: flex;
+    justify-content: space-between;
 }

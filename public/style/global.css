@@ -15,13 +15,25 @@
     --false: rgb(255, 133, 133);
     --box-bg: rgb(30, 30, 30);
     --tab-bg: rgb(35, 35, 35);
-    --inspector-entity-name: rgb(184, 255, 172);
+    --menu-item-bg: rgb(5, 5, 5);
     --border: black;
+    --inspector-entity-name: rgb(184, 255, 172);
+    --hierarchy-scene-name: rgb(0, 153, 255);
 }
 
 * {
     margin: 0;
     padding: 0;
+}
+
+/* LINKS */
+a {
+    color: white;
+    font-weight: bold;
+    text-decoration: none;
+}
+a:hover {
+    color: var(--true);
 }
 
 .ui {
@@ -43,4 +55,5 @@
 
 .hide {
     opacity: 0;
+    pointer-events: none;
 }

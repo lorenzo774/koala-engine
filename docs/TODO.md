@@ -51,7 +51,7 @@
     -   [x] Design Editor Layout in figma
     -   [x] Create editor layout page (HTML)
     -   [x] Finish editor page (HTML)
-    -   [ ] Design editor menu in figma (File > (New Project | Save As | Save)
+    -   [x] Design editor menu in figma (File > (New Project | Save As | Save)
     -   [ ] Create Save/Load system for tilemap
     -   [ ] Create Save/Load system for game (entities, components, textures path, etc...)
     -   [ ] Create UI to handle entities and components
