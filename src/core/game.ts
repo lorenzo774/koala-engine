@@ -9,9 +9,14 @@ import { Vector2 } from "./math/vector2.js";
 import { Scene } from "./scene.js";
 
 export class Game {
+    private _updateEventCallback: () => void;
     private renderer: Renderer;
     private physicsEngine: PhysicsEngine;
     protected entities: Entity[] = [];
+
+    public set updateEventCallback(call: () => void) {
+        this._updateEventCallback = call;
+    }
 
     /**
      * Start game
@@ -32,11 +37,14 @@ export class Game {
         if (Settings.main.DEBUG_MODE) {
             UIDebug.I.showDebugUI();
         }
-        this.runLoop();
+        this.update();
     }
 
-    private runLoop() {
+    private update() {
+        console.log(this);
         this.renderer.run();
+        if(!this._updateEventCallback) return;
+        this._updateEventCallback();
     }
 
     /**
@@ -83,4 +91,5 @@ export class Game {
             (entity: Entity) => entity.name === name
         ) as T;
     }
+
 }
