@@ -19,6 +19,7 @@
     --border: black;
     --inspector-entity-name: rgb(184, 255, 172);
     --hierarchy-scene-name: rgb(0, 153, 255);
+    --entity-name: rgb(184, 255, 172);
 }
 
 * {

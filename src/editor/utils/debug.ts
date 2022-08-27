@@ -10,10 +10,6 @@ export class Debug {
     }
 
     public static write(msg: string) {
-        Debug.debugEl.innerHTML += msg;
-    }
-
-    public static writeLine(msg: string) {
         Debug.debugEl.innerHTML += `${msg}<br />`;
     }
 }

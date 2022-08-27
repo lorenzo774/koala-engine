@@ -14,7 +14,6 @@ export abstract class Entity {
 
     constructor(public name: string, private _components: Component[] = []) {
         this.addComponent(new Transform(this));
-
     }
 
     public load() {
@@ -70,5 +69,13 @@ export abstract class Entity {
         this._components.forEach((component) => {
             component.physicsUpdate();
         });
+    }
+
+    public toHTML(): string {
+        return `
+            <div class="entity" id="entity-id-${this.name}">
+                <p>${this.constructor.name}</p>
+            </div>
+        `;
     }
 }

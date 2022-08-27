@@ -37,6 +37,7 @@ menu {
     margin: 10px 10px 15px 5px;
 }
 .item:hover {
+    text-decoration: underline;
     cursor: pointer;
 }
 
@@ -94,6 +95,16 @@ menu {
     font-size: 18px;
     color: white;
     height: 160px;
+}
+
+.entity {
+    margin: 15px 0px 0 100px;
+    font-family: "Source Code Pro";
+    color: var(--entity-name);
+    font-size: 18px;
+}
+
+.scroll {
     overflow: auto;
 }
 
@@ -103,6 +114,8 @@ menu {
 
 .panel {
     background: var(--box-bg);
+    display: flex;
+    flex-direction: column;
 }
 
 .tab {

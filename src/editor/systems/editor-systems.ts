@@ -1,5 +1,6 @@
 import { Entity } from "../../core/entity.js";
 import { EditorManager } from "./editor-manager.js";
+import { UIManager } from "./ui-manager.js";
 
 export class EditorSystems extends Entity {
     constructor() {
@@ -8,7 +9,8 @@ export class EditorSystems extends Entity {
 
     protected init() {
         this.components = [
-            new EditorManager(this)
+            new EditorManager(this),
+            new UIManager(this)
         ]
     }
 }
