@@ -75,6 +75,10 @@ menu {
     color: var(--inspector-entity-name);
     margin-right: 50px;
 }
+.inspector-component {
+    font-family: "Source Code Pro";
+    color: white;
+}
 
 /* HIERARCHY */
 #hierarchy {

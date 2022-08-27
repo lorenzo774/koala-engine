@@ -10,12 +10,17 @@ export class EditorManager extends Component {
 
     private sceneSelection() {
         this.uiManager.clearHierarchy();
+        this.uiManager.clearInspector();
+        this.uiManager.addComponent(Scene.main.entities[0].components[0]);
         Scene.main.entities.forEach(
-            entity => this.uiManager.addEntity(entity)
+            entity => {
+                this.uiManager.addEntity(entity)
+            }
         );
     }
 
-    private entitySelection() {}
+    private entitySelection() {
+    }
 
     private componentSelection() {}
 
