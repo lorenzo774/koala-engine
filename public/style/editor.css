@@ -73,11 +73,22 @@ menu {
 }
 #inspector-entity-name {
     color: var(--inspector-entity-name);
-    margin-right: 50px;
+    margin-right: 10px;
+}
+.inspector-entity-selected {
+    color: var(--inspector-entity-selected);
 }
 .inspector-component {
+    background: var(--inspector-component-bg);
+    padding: 20px;
     font-family: "Source Code Pro";
     color: white;
+    border-bottom: 10px solid var(--box-bg);
+}
+.component-name {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 10px;
 }
 
 /* HIERARCHY */
@@ -86,7 +97,6 @@ menu {
 }
 #hierarchy-scene-name {
     color: var(--hierarchy-scene-name);
-    margin-right: 50px;
 }
 
 /* CONSOLE */

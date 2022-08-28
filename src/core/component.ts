@@ -18,7 +18,7 @@ export abstract class Component {
         return `
             <div class="inspector-component">
                 <!-- Component name -->
-                <h2>${this.constructor.name}</h2>
+                <p class="component-name">${this.constructor.name}</p>
                 <!-- List of properties -->
                 ${Object.keys(this)
                     .map((key) => {

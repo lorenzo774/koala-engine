@@ -73,7 +73,7 @@ export abstract class Entity {
 
     public toHTML(): string {
         return `
-            <div class="entity" id="entity-id-${this.name}">
+            <div class="entity" data-entity-name="${this.name}">
                 <p>${this.constructor.name}</p>
             </div>
         `;

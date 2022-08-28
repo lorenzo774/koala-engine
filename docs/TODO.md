@@ -53,15 +53,14 @@
     -   [x] Finish editor page (HTML)
     -   [x] Design editor menu in figma (File > (New Project | Save As | Save)
     -   [x] Create utils method for names (INPUT => camelCase/or-like-this, OUTPUT => PascalCase/OrLikeThis)
-    -   [ ] Make Scene Label selectable
-    -   [ ] Make entities Label selectable
+    -   [x] Make Scene Label selectable
+    -   [x] Make entities Label selectable
     -   [ ] Components selectable
     -   [ ] Create UI for components properties (see FIGMA)
     -   [ ] Create compiler that converts JSON and typescript in JS compiled (Play Button)
     -   [ ] Create Save/Load system for tilemap
     -   [ ] Create Save/Load system for game (entities, components, textures path, etc...)
     -   [ ] Create UI to handle entities and components
-    -   [ ] Create game engine menu
 
 -   Utils
 

@@ -15,10 +15,12 @@
     --false: rgb(255, 133, 133);
     --box-bg: rgb(30, 30, 30);
     --tab-bg: rgb(35, 35, 35);
+    --inspector-component-bg: rgb(15, 15, 15);
+    --hierarchy-scene-name: rgb(0, 153, 255);
     --menu-item-bg: rgb(5, 5, 5);
     --border: black;
     --inspector-entity-name: rgb(184, 255, 172);
-    --hierarchy-scene-name: rgb(0, 153, 255);
+    --inspector-entity-selected: rgba(36, 255, 0, 1);
     --entity-name: rgb(184, 255, 172);
 }
 
@@ -33,8 +35,23 @@ a {
     font-weight: bold;
     text-decoration: none;
 }
+
 a:hover {
     color: var(--true);
+}
+
+select {
+    background: transparent;
+    font-size: 20px;
+    font-family: "Source Code Pro";
+    margin-right: 50px;
+    outline: none;
+    border: none;
+}
+
+option {
+    background: var(--box-bg);
+    font-weight: bold;
 }
 
 .ui {

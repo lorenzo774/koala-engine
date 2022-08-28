@@ -2,8 +2,9 @@ import { Component } from "../../core/component.js";
 import { Entity } from "../../core/entity.js";
 
 export class UIManager extends Component {
-    private readonly hierarchyList = document.querySelector("#hierarchy-list");
-    private readonly inspectorList = document.querySelector("#inspector-list");
+    private readonly inspectorEntityName = document.querySelector("#inspector-entity-name");
+    public readonly hierarchyList = document.querySelector("#hierarchy-list");
+    public readonly inspectorList = document.querySelector("#inspector-list");
 
     /*
         HIERARCHY
@@ -25,5 +26,9 @@ export class UIManager extends Component {
 
     public addComponent(newComponent: Component) {
         this.inspectorList.innerHTML += newComponent.toHTML();
+    }
+
+    public setSelectedEntityName(name: string) {
+        this.inspectorEntityName.textContent = name;
     }
 }

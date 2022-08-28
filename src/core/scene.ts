@@ -46,4 +46,13 @@ export class Scene {
 
         Scene._main = scene;
     }
+
+    /**
+     * Find an entity by its name
+     */
+    public static findEntity(name: string): Entity {
+        return Scene.main.entities.find(
+            (entity: Entity) => entity.name === name
+        );
+    }
 }

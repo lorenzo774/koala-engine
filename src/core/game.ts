@@ -83,13 +83,6 @@ export class Game {
         this.entities.forEach((entity) => entity.start());
     }
 
-    /**
-     * Find an entity by its name
-     */
-    public findEntity<T extends Entity>(name: string): T {
-        return this.entities.find(
-            (entity: Entity) => entity.name === name
-        ) as T;
-    }
+
 
 }
