@@ -52,7 +52,7 @@
     -   [x] Create editor layout page (HTML)
     -   [x] Finish editor page (HTML)
     -   [x] Design editor menu in figma (File > (New Project | Save As | Save)
-    -   [ ] Create utils method for names (INPUT => camelCase/or-like-this, OUTPUT => PascalCase/OrLikeThis)
+    -   [x] Create utils method for names (INPUT => camelCase/or-like-this, OUTPUT => PascalCase/OrLikeThis)
     -   [ ] Make Scene Label selectable
     -   [ ] Make entities Label selectable
     -   [ ] Components selectable

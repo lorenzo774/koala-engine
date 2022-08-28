@@ -1,4 +1,5 @@
 import { Entity } from "./entity.js";
+import { toPascalCase } from "./utils/helper.js";
 
 export abstract class Component {
     constructor(public entity: Entity) {}
@@ -23,7 +24,7 @@ export abstract class Component {
                     .map((key) => {
                         if (key !== "entity") {
                             return `
-                            <span>${key}: </span>
+                            <span>${toPascalCase(key)}: </span>
                             <span>${this[key]}</span>
                             <br />
                         `;
