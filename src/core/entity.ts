@@ -70,12 +70,4 @@ export abstract class Entity {
             component.physicsUpdate();
         });
     }
-
-    public toHTML(): string {
-        return `
-            <div class="entity" data-entity-name="${this.name}">
-                <p>${this.constructor.name}</p>
-            </div>
-        `;
-    }
 }

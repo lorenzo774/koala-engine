@@ -7,39 +7,15 @@ import { Entity } from "../../core/entity.js";
 import { EditorStateFactory } from "./FSM/editor-state-factory.js";
 
 export class EditorManager extends Component {
-    // DATA
+    /*
+        DATA
+    */
+
     public uiManager: UIManager;
     public entitySelected: Entity;
 
     public currentState: EditorState;
     private editorStateFactory: EditorStateFactory;
-
-    /*
-        STATES
-    */
-
-    // private sceneSelection() {
-    //     this.uiManager.clearHierarchy();
-    //     Scene.main.entities.forEach((entity) => {
-    //         this.uiManager.addEntity(entity);
-    //     });
-    // }
-    //
-    // private entitySelection() {
-    //     this.uiManager.clearInspector();
-    //     this.uiManager.setSelectedEntityName(toPascalCase(this.entitySelected.name));
-    //     this.entitySelected.components.forEach((component) =>
-    //         this.uiManager.addComponent(component)
-    //     );
-    // }
-    //
-    // private componentSelection() {}
-    //
-    // private changeState(newState: EditorState) {
-    //     if(newState === this.editorState) return;
-    //     Debug.write("Changing state...");
-    //     this.editorState = newState;
-    // }
 
     /*
         EVENTS
@@ -53,13 +29,7 @@ export class EditorManager extends Component {
         }
         const { entityName } = target.dataset;
         if (!entityName) return;
-
         this.entitySelected = Scene.findEntity(entityName);
-
-        // TODO: Set entity label style
-        // // Set target style
-        // target.classList.add("inspector-entity-selected");
-        // target.textContent = `> ${toPascalCase(this.entitySelected.name)} <`;
     }
 
     public start() {
@@ -78,17 +48,5 @@ export class EditorManager extends Component {
     // Update States
     public update() {
         this.currentState.update();
-
-        // switch (this.editorState) {
-        //     case EditorState.SceneSelection:
-        //         this.sceneSelection();
-        //         break;
-        //     case EditorState.EntitySelection:
-        //         this.entitySelection();
-        //         break;
-        //     case EditorState.ComponentSelection:
-        //         this.componentSelection();
-        //         break;
-        // }
     }
 }

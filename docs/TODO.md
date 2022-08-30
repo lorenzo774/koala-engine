@@ -56,7 +56,7 @@
     -   [x] Make Scene Label selectable
     -   [x] Make entities Label selectable
     -   [x] Create UI for components properties (see FIGMA)
-    -   [ ] Move toHTML to HTMLGenerator class
+    -   [x] Move toHTML to HTMLGenerator class
     -   [ ] Improve components style
     -   [ ] Components selectable
     -   [ ] Load entities from project.json

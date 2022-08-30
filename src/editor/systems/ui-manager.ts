@@ -1,5 +1,7 @@
 import { Component } from "../../core/component.js";
 import { Entity } from "../../core/entity.js";
+import { HTMLComponent } from "../HTML/HTMLComponent.js";
+import { HTMLEntity } from "../HTML/HTMLEntity.js";
 
 export class UIManager extends Component {
     private readonly inspectorEntityName = document.querySelector("#inspector-entity-name");
@@ -14,7 +16,7 @@ export class UIManager extends Component {
     }
 
     public addEntity(newEntity: Entity) {
-        this.hierarchyList.innerHTML += newEntity.toHTML();
+        this.hierarchyList.innerHTML += HTMLEntity.create(newEntity);
     }
 
     /*
@@ -25,7 +27,7 @@ export class UIManager extends Component {
     }
 
     public addComponent(newComponent: Component) {
-        this.inspectorList.innerHTML += newComponent.toHTML();
+        this.inspectorList.innerHTML += HTMLComponent.create(newComponent);
     }
 
     public setSelectedEntityName(name: string) {
