@@ -1,42 +1,45 @@
 import { Component } from "../../core/component.js";
-import { EditorState } from "./editor-state.js";
+import { EditorState } from "./FSM/editor-state.js";
 import { Debug } from "../utils/debug.js";
 import { UIManager } from "./ui-manager.js";
 import { Scene } from "../../core/scene.js";
 import { Entity } from "../../core/entity.js";
-import { toPascalCase } from "../../core/utils/helper.js";
+import { EditorStateFactory } from "./FSM/editor-state-factory.js";
 
 export class EditorManager extends Component {
-    private editorState: EditorState = EditorState.SceneSelection;
-    private uiManager: UIManager;
-    private entitySelected: Entity;
+    // DATA
+    public uiManager: UIManager;
+    public entitySelected: Entity;
+
+    public currentState: EditorState;
+    private editorStateFactory: EditorStateFactory;
 
     /*
         STATES
     */
 
-    private sceneSelection() {
-        this.uiManager.clearHierarchy();
-        Scene.main.entities.forEach((entity) => {
-            this.uiManager.addEntity(entity);
-        });
-    }
-
-    private entitySelection() {
-        this.uiManager.clearInspector();
-        this.uiManager.setSelectedEntityName(toPascalCase(this.entitySelected.name));
-        this.entitySelected.components.forEach((component) =>
-            this.uiManager.addComponent(component)
-        );
-    }
-
-    private componentSelection() {}
-
-    private changeState(newState: EditorState) {
-        if(newState === this.editorState) return;
-        Debug.write("Changing state...");
-        this.editorState = newState;
-    }
+    // private sceneSelection() {
+    //     this.uiManager.clearHierarchy();
+    //     Scene.main.entities.forEach((entity) => {
+    //         this.uiManager.addEntity(entity);
+    //     });
+    // }
+    //
+    // private entitySelection() {
+    //     this.uiManager.clearInspector();
+    //     this.uiManager.setSelectedEntityName(toPascalCase(this.entitySelected.name));
+    //     this.entitySelected.components.forEach((component) =>
+    //         this.uiManager.addComponent(component)
+    //     );
+    // }
+    //
+    // private componentSelection() {}
+    //
+    // private changeState(newState: EditorState) {
+    //     if(newState === this.editorState) return;
+    //     Debug.write("Changing state...");
+    //     this.editorState = newState;
+    // }
 
     /*
         EVENTS
@@ -51,7 +54,6 @@ export class EditorManager extends Component {
         const { entityName } = target.dataset;
         if (!entityName) return;
 
-        this.changeState(EditorState.EntitySelection);
         this.entitySelected = Scene.findEntity(entityName);
 
         // TODO: Set entity label style
@@ -62,25 +64,31 @@ export class EditorManager extends Component {
 
     public start() {
         Debug.write("Start");
+        // Init data
         this.uiManager = this.entity.getComponent<UIManager>(UIManager);
         this.uiManager.hierarchyList.addEventListener(
-            "mouseover",
+            "click",
             this.onEntitySelected.bind(this)
         );
+        // Init state system
+        this.editorStateFactory = new EditorStateFactory(this);
+        this.currentState = this.editorStateFactory.selectScene();
     }
 
     // Update States
     public update() {
-        switch (this.editorState) {
-            case EditorState.SceneSelection:
-                this.sceneSelection();
-                break;
-            case EditorState.EntitySelection:
-                this.entitySelection();
-                break;
-            case EditorState.ComponentSelection:
-                this.componentSelection();
-                break;
-        }
+        this.currentState.update();
+
+        // switch (this.editorState) {
+        //     case EditorState.SceneSelection:
+        //         this.sceneSelection();
+        //         break;
+        //     case EditorState.EntitySelection:
+        //         this.entitySelection();
+        //         break;
+        //     case EditorState.ComponentSelection:
+        //         this.componentSelection();
+        //         break;
+        // }
     }
 }

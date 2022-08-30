@@ -1,0 +1,10 @@
+/* CONSOLE */
+#console {
+    grid-area: console;
+}
+#debug {
+    padding: 1rem;
+    font-size: 18px;
+    color: white;
+    height: 160px;
+}

@@ -27,6 +27,7 @@
 * {
     margin: 0;
     padding: 0;
+    font-family: "Source Code Pro Bold", "Comic Sans MS";
 }
 
 /* LINKS */
@@ -69,6 +70,10 @@ option {
 .list {
     list-style: none;
     padding: 10px;
+}
+
+.scroll {
+    overflow: auto;
 }
 
 .hide {

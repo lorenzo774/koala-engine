@@ -1,7 +1,4 @@
-* {
-    font-family: "Source Code Pro", "Comic Sans MS";
-}
-
+/* GAME */
 #app {
     display: flex;
     justify-content: center;

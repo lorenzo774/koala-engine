@@ -55,8 +55,11 @@
     -   [x] Create utils method for names (INPUT => camelCase/or-like-this, OUTPUT => PascalCase/OrLikeThis)
     -   [x] Make Scene Label selectable
     -   [x] Make entities Label selectable
+    -   [x] Create UI for components properties (see FIGMA)
+    -   [ ] Move toHTML to HTMLGenerator class
+    -   [ ] Improve components style
     -   [ ] Components selectable
-    -   [ ] Create UI for components properties (see FIGMA)
+    -   [ ] Load entities from project.json
     -   [ ] Create compiler that converts JSON and typescript in JS compiled (Play Button)
     -   [ ] Create Save/Load system for tilemap
     -   [ ] Create Save/Load system for game (entities, components, textures path, etc...)
