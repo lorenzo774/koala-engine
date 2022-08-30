@@ -2,28 +2,27 @@ import { HTMLGenerator } from "./HTMLGenerator.js";
 import { Component } from "../../core/component.js";
 import { Vector2 } from "../../core/math/vector2.js";
 import { toPascalCase } from "../../core/utils/helper.js";
+import { booleanField, genericField, numberField, vector2Field } from "./HTMLFields.js";
 
 export class HTMLComponent extends HTMLGenerator {
+
     private static HTMLField(component: Component, key: string): string {
         let htmlField = "";
         // Simple types
         if (typeof component[key] === "boolean") {
-            htmlField = `<input id="${component.constructor.name}-${key}" type="checkbox" />`;
+            htmlField = booleanField(component, key);
         }
         if (typeof component[key] === "number") {
-            htmlField = `<input id="${component.constructor.name}-${key}" value="${component[key]}" class="number-field" type="number" />`;
+            htmlField = numberField(component, key);
         }
         // Objects
         if (component[key] instanceof Vector2) {
-            htmlField = `
-                    X: <input id="${component.constructor.name}-${key}" value="${component[key].x}" class="number-field" type="number" /> 
-                    Y: <input id="${component.constructor.name}-${key}" value="${component[key].x}" class="number-field" type="number" />`;
+            htmlField = vector2Field(component, key);
         }
         // Generic object
         if (htmlField === ""){
-            htmlField = `<input id="${component.constructor.name}-${key}" class="object-field" />`
+            htmlField = genericField(component, key);
         }
-
         return htmlField;
     }
 
@@ -37,10 +36,11 @@ export class HTMLComponent extends HTMLGenerator {
             .map((key) => {
                 if (key !== "entity") {
                     return `
+                        <div class="field">
                             <span>${toPascalCase(key)}: </span>
                             ${HTMLComponent.HTMLField(component, key)}
-                            <br />
-                        `;
+                        </div>
+                    `;
                 }
                 return ``;
             })

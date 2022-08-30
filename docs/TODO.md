@@ -57,7 +57,7 @@
     -   [x] Make entities Label selectable
     -   [x] Create UI for components properties (see FIGMA)
     -   [x] Move toHTML to HTMLGenerator class
-    -   [ ] Improve components style
+    -   [x] Improve components style
     -   [ ] Components selectable
     -   [ ] Load entities from project.json
     -   [ ] Create compiler that converts JSON and typescript in JS compiled (Play Button)

@@ -14,7 +14,7 @@
     --true: rgb(0, 153, 255);
     --false: rgb(255, 133, 133);
     --box-bg: rgb(30, 30, 30);
-    --tab-bg: rgb(35, 35, 35);
+    --light-bg: rgb(45, 45, 45);
     --inspector-component-bg: rgb(15, 15, 15);
     --hierarchy-scene-name: rgb(0, 153, 255);
     --menu-item-bg: rgb(5, 5, 5);
@@ -41,13 +41,28 @@ a:hover {
     color: var(--true);
 }
 
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+input {
+    padding: 4px;
+    outline: none;
+    border-radius: 4px;
+    border: 0;
+    color: white;
+    background: var(--light-bg);
+    text-align: center;
+}
+
 select {
     background: transparent;
     font-size: 20px;
     font-family: "Source Code Pro";
     margin-right: 50px;
-    outline: none;
     border: none;
+    outline: none;
 }
 
 option {
@@ -72,7 +87,7 @@ option {
     padding: 10px;
 }
 
-.scroll {
+.scrollable {
     overflow: auto;
 }
 

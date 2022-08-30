@@ -8,7 +8,7 @@
     height: 100vh;
     display: grid;
     grid-template-rows: 70px 2.5fr 1fr;
-    grid-template-columns: 1fr 4fr 1fr;
+    grid-template-columns: 1fr 4fr 22%;
     grid-template-areas:
         "menu menu menu"
         "hierarchy canvas inspector"
@@ -32,7 +32,7 @@
 }
 
 .tab {
-    background: var(--tab-bg);
+    background: var(--light-bg);
     padding: 1rem;
     color: white;
     display: flex;

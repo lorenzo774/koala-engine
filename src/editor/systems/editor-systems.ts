@@ -10,7 +10,7 @@ export class EditorSystems extends Entity {
     protected init() {
         this.components = [
             new EditorManager(this),
-            new UIManager(this)
+            new UIManager(this),
         ]
     }
 }
