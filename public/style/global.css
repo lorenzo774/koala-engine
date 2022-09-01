@@ -19,6 +19,8 @@
     --hierarchy-scene-name: rgb(0, 153, 255);
     --menu-item-bg: rgb(5, 5, 5);
     --border: black;
+    --text-button-color: rgb(170, 90, 90);
+    --text-button-color-hover: rgb(220, 90, 90);
     --inspector-entity-name: rgb(184, 255, 172);
     --inspector-entity-selected: rgba(36, 255, 0, 1);
     --entity-name: rgb(184, 255, 172);
@@ -94,4 +96,10 @@ option {
 .hide {
     opacity: 0;
     pointer-events: none;
+}
+
+.horizontal {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }

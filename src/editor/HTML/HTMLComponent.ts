@@ -29,8 +29,12 @@ export class HTMLComponent extends HTMLGenerator {
     public static override create(component: Component): string {
         return `
             <div class="inspector-component">
-                <!-- Component name -->
-                <p class="component-name">${component.constructor.name}</p>
+                <div class="horizontal">
+                    <!-- Component name -->
+                    <p class="component-name">${component.constructor.name}</p>
+                    <!-- Remove button -->
+                    <button class="remove-button">x</button>
+                </div>
                 <!-- List of properties -->
                 ${Object.keys(component)
             .map((key) => {

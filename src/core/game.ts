@@ -77,12 +77,4 @@ export class Game {
      *  Virtual method, this method will be called on children to initialize scenes and entities
      */
     protected init() {}
-
-
-    public reload() {
-        this.entities.forEach((entity) => entity.start());
-    }
-
-
-
 }

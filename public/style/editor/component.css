@@ -61,3 +61,14 @@
     top: 4px;
     right: 4px;
 }
+
+/* REMOVE BUTTOn */
+.remove-button {
+    font-size: 22px;
+    background: transparent;
+    color: var(--text-button-color);
+    cursor: pointer;
+}
+.remove-button:hover {
+    color: var(--text-button-color-hover);
+}
