@@ -1,0 +1,13 @@
+{
+    "name": "koala-engine-core",
+    "version": "0.1.0-alpha.3",
+    "description": "",
+    "keywords": [
+        "game-engine"
+    ],
+    "author": "Lorenzo774",
+    "license": "MIT",
+    "dependencies": {
+        "typescript": "^4.7.4"
+    }
+}

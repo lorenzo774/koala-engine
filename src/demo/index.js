@@ -1,0 +1,11 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const platform_js_1 = require("./platform.js");
+const settings_js_1 = require("../core/settings/settings.js");
+const platform_settings_js_1 = require("./platform-settings.js");
+const canvas = document.querySelector("#canvas");
+const context = canvas.getContext("2d");
+context.imageSmoothingEnabled = true;
+const platformSettings = (0, platform_settings_js_1.getPlatformSettings)(canvas);
+settings_js_1.Settings.loadSettings(platformSettings);
+new platform_js_1.Platform(canvas, context);

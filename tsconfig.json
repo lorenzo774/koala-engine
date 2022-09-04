@@ -1,11 +1,10 @@
 {
     "compilerOptions": {
         "rootDir": "src",
-        "outDir": "public/scripts",
         "lib": ["Es2016", "dom"],
-        "module": "ES6",
+        "module": "CommonJS",
         "target": "ESNext",
         "moduleResolution": "node",
-        "removeComments": true,
+        "removeComments": true
     }
 }
