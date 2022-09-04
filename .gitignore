@@ -4,3 +4,4 @@ public/scripts
 .idea
 *.pem
 *.png~
+src/*.js
