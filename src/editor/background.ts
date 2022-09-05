@@ -1,9 +1,9 @@
-import { SpriteRenderer } from "../core/components/sprite/sprite-renderer.js";
-import { Entity } from "../core/entity.js";
-import { ImageRect } from "../core/components/sprite/image-rect.js";
-import { Vector2 } from "../core/math/vector2.js";
-import { loadImage } from "../core/utils/helper.js";
-import { Settings } from "../core/settings/settings.js";
+import { SpriteRenderer } from "@koala-engine/core/components/sprite/sprite-renderer.js";
+import { Entity } from "@koala-engine/core/entity.js";
+import { ImageRect } from "@koala-engine/core/components/sprite/image-rect.js";
+import { Vector2 } from "@koala-engine/core/math/vector2.js";
+import { loadImage } from "@koala-engine/core/utils/helper.js";
+import { Settings } from "@koala-engine/core/settings/settings.js";
 
 export class Background extends Entity {
     constructor() {

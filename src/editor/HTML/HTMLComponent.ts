@@ -1,11 +1,15 @@
 import { HTMLGenerator } from "./HTMLGenerator.js";
-import { Component } from "../../core/component.js";
-import { Vector2 } from "../../core/math/vector2.js";
-import { toPascalCase } from "../../core/utils/helper.js";
-import { booleanField, genericField, numberField, vector2Field } from "./HTMLFields.js";
+import { Component } from "@koala-engine/core/component.js";
+import { Vector2 } from "@koala-engine/core/math/vector2.js";
+import { toPascalCase } from "@koala-engine/core/utils/helper.js";
+import {
+    booleanField,
+    genericField,
+    numberField,
+    vector2Field,
+} from "./HTMLFields.js";
 
 export class HTMLComponent extends HTMLGenerator {
-
     private static HTMLField(component: Component, key: string): string {
         let htmlField = "";
         // Simple types
@@ -20,7 +24,7 @@ export class HTMLComponent extends HTMLGenerator {
             htmlField = vector2Field(component, key);
         }
         // Generic object
-        if (htmlField === ""){
+        if (htmlField === "") {
             htmlField = genericField(component, key);
         }
         return htmlField;
@@ -37,18 +41,18 @@ export class HTMLComponent extends HTMLGenerator {
                 </div>
                 <!-- List of properties -->
                 ${Object.keys(component)
-            .map((key) => {
-                if (key !== "entity") {
-                    return `
+                    .map((key) => {
+                        if (key !== "entity") {
+                            return `
                         <div class="field">
                             <span>${toPascalCase(key)}: </span>
                             ${HTMLComponent.HTMLField(component, key)}
                         </div>
                     `;
-                }
-                return ``;
-            })
-            .join("")}
+                        }
+                        return ``;
+                    })
+                    .join("")}
             </div>
         `;
     }

@@ -1,5 +1,5 @@
 import { Editor } from "./editor.js";
-import { loadProject } from "../loader/load-project.js";
+import { loadProject } from "@koala-engine/core/loader/load-project.js";
 import { loadJson } from "./IO/load-json.js";
 
 const canvas = document.querySelector("#canvas") as HTMLCanvasElement;

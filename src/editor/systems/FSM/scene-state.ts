@@ -1,5 +1,5 @@
 import { EditorState } from "./editor-state.js";
-import { Scene } from "../../../core/scene.js";
+import { Scene } from "@koala-engine/core/scene.js";
 
 export class SceneState extends EditorState {
     public onStart() {
@@ -14,7 +14,7 @@ export class SceneState extends EditorState {
     }
 
     public update() {
-        if(this.context.entitySelected) {
+        if (this.context.entitySelected) {
             this.changeState(this.stateFactory.selectEntity());
         }
     }

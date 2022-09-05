@@ -1,9 +1,9 @@
-import { Component } from "../../core/component.js";
+import { Component } from "@koala-engine/core/component.js";
 import { EditorState } from "./FSM/editor-state.js";
 import { Debug } from "../utils/debug.js";
 import { UIManager } from "./ui-manager.js";
-import { Scene } from "../../core/scene.js";
-import { Entity } from "../../core/entity.js";
+import { Scene } from "@koala-engine/core/scene.js";
+import { Entity } from "@koala-engine/core/entity.js";
 import { EditorStateFactory } from "./FSM/editor-state-factory.js";
 
 export class EditorManager extends Component {
@@ -23,8 +23,8 @@ export class EditorManager extends Component {
 
     private onEntitySelected(e) {
         let { target } = e;
-        if(target.id === "hierarchy-list") return;
-        if(!target.classList.contains("entity")) {
+        if (target.id === "hierarchy-list") return;
+        if (!target.classList.contains("entity")) {
             target = target.parentNode;
         }
         const { entityName } = target.dataset;

@@ -1,4 +1,4 @@
-import { Component } from "../../core/component.js";
+import { Component } from "@koala-engine/core/component.js";
 
 export const booleanField = (component: Component, key: string): string => `
     <div class="checkbox-field">
