@@ -1,0 +1,16 @@
+{
+    "name": "@koala-engine/editor",
+    "version": "0.1.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "MIT",
+    "dependencies": {
+        "@koala-engine/core": "0.1.0-alpha.3",
+        "typescript": "^4.7.4"
+    }
+}

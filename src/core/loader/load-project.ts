@@ -1,5 +1,5 @@
-import { GameSettings } from "../core/settings/game-settings.js";
-import { Settings } from "../core/settings/settings.js";
+import { GameSettings } from "../settings/game-settings.js";
+import { Settings } from "../settings/settings.js";
 
 export function loadProject(
     settingsBlob: string,

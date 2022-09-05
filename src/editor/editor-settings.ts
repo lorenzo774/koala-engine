@@ -1,5 +1,5 @@
-import { GameSettings } from "../core/settings/game-settings.js";
-import { Vector2 } from "../core/math/vector2.js";
+import { GameSettings } from "@koala-engine/core/settings/game-settings.js";
+import { Vector2 } from "@koala-engine/core/math/vector2.js";
 
 export const getEditorSettings = function (
     canvas: HTMLCanvasElement

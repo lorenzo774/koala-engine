@@ -1,6 +1,6 @@
 {
     "name": "koala-engine",
-    "version": "1.0.0",
+    "version": "0.1.0",
     "description": "",
     "main": "index.js",
     "scripts": {
@@ -8,6 +8,10 @@
         "build": "tsc",
         "start": "node server/index.js"
     },
+    "workspaces": [
+        "src/core",
+        "src/editor"
+    ],
     "keywords": [],
     "author": "Lorenzo774",
     "license": "MIT",

@@ -1,6 +1,6 @@
 import { EditorState } from "./editor-state.js";
-import { Entity } from "../../../core/entity.js";
-import { toPascalCase } from "../../../core/utils/helper.js";
+import { Entity } from "@koala-engine/core/entity.js";
+import { toPascalCase } from "@koala-engine/core/utils/helper.js";
 
 export class EntityState extends EditorState {
     private lastEntitySelected: Entity;
@@ -14,7 +14,9 @@ export class EntityState extends EditorState {
         );
         console.log(target);
         target.classList.add("inspector-entity-selected");
-        this.context.uiManager.setSelectedEntityName(toPascalCase(this.context.entitySelected.name));
+        this.context.uiManager.setSelectedEntityName(
+            toPascalCase(this.context.entitySelected.name)
+        );
         target.innerHTML = `<p>> ${toPascalCase(
             this.context.entitySelected.name
         )} <</p>`;

@@ -1,10 +1,12 @@
-import { Component } from "../../core/component.js";
-import { Entity } from "../../core/entity.js";
+import { Component } from "@koala-engine/core/component.js";
+import { Entity } from "@koala-engine/core/entity.js";
 import { HTMLComponent } from "../HTML/HTMLComponent.js";
 import { HTMLEntity } from "../HTML/HTMLEntity.js";
 
 export class UIManager extends Component {
-    private readonly inspectorEntityName = document.querySelector("#inspector-entity-name");
+    private readonly inspectorEntityName = document.querySelector(
+        "#inspector-entity-name"
+    );
     public readonly hierarchyList = document.querySelector("#hierarchy-list");
     public readonly inspectorList = document.querySelector("#inspector-list");
 
